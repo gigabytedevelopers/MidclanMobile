@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".activities.RegisterActivity">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="?android:attr/actionBarSize"
+        android:orientation="horizontal">
+
+        <com.balysv.materialripple.MaterialRippleLayout
+            android:id="@+id/back_button_register"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="@dimen/marginMedium"
+            app:mrl_rippleColor="@color/colorAccent"
+            app:mrl_rippleOverlay="true"
+            app:mrl_rippleDuration="350"
+            app:mrl_rippleFadeDuration="75"
+            app:mrl_rippleDelayClick="true">
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="@dimen/icon_size"
+            android:layout_height="@dimen/icon_size"
+            app:srcCompat="@drawable/ic_close"
+            android:tint="@color/white"/>
+        </com.balysv.materialripple.MaterialRippleLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="@dimen/spacing_medium">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:paddingTop="8dp">
+
+            <View
+                android:id="@+id/line_first"
+                android:layout_width="0dp"
+                android:layout_height="3dp"
+                android:layout_marginLeft="@dimen/spacing_mxlarge"
+                android:layout_marginStart="@dimen/spacing_mxlarge"
+                android:layout_weight="1"
+                android:background="@color/overlay_light_70" />
+
+            <View
+                android:id="@+id/line_second"
+                android:layout_width="0dp"
+                android:layout_height="3dp"
+                android:layout_marginEnd="@dimen/spacing_mxlarge"
+                android:layout_marginRight="@dimen/spacing_mxlarge"
+                android:layout_weight="1"
+                android:background="@color/overlay_light_70" />
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true">
+
+            <ImageView
+                android:id="@+id/image_shipping"
+                android:layout_width="@dimen/spacing_smlarge"
+                android:layout_height="@dimen/spacing_smlarge"
+                android:layout_centerHorizontal="true"
+                android:background="@android:color/white"
+                android:src="@drawable/shape_round_outline_primary" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true">
+
+            <ImageView
+                android:id="@+id/image_payment"
+                android:layout_width="@dimen/spacing_smlarge"
+                android:layout_height="@dimen/spacing_smlarge"
+                android:layout_centerHorizontal="true"
+                android:background="@android:color/white"
+                app:srcCompat="@drawable/shape_round_outline_primary" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true">
+
+            <ImageView
+                android:id="@+id/image_confirm"
+                android:layout_width="@dimen/spacing_smlarge"
+                android:layout_height="@dimen/spacing_smlarge"
+                android:layout_centerHorizontal="true"
+                android:background="@android:color/white"
+                app:srcCompat="@drawable/shape_round_outline_primary" />
+
+        </RelativeLayout>
+        </RelativeLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/paddingNormal"
+        android:orientation="vertical">
+        <FrameLayout
+            android:id="@+id/frame_content"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center">
+
+            <com.balysv.materialripple.MaterialRippleLayout
+                android:id="@+id/previous_session"
+                android:layout_width="@dimen/btn_width_small"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btn_white"
+                android:layout_marginEnd="@dimen/spacing_large">
+
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/action_previous"
+                    android:layout_gravity="center_horizontal"
+                    android:textColor="@color/colorPrimary"
+                    android:fontFamily="@font/latobold"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Button"/>
+
+            </com.balysv.materialripple.MaterialRippleLayout>
+            <com.balysv.materialripple.MaterialRippleLayout
+                android:id="@+id/next_session"
+                android:layout_width="@dimen/btn_width_small"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btn_white">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/next_session_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/action_continue"
+                    android:layout_gravity="center_horizontal"
+                    android:textColor="@color/colorPrimary"
+                    android:fontFamily="@font/latobold"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Button"/>
+
+
+            </com.balysv.materialripple.MaterialRippleLayout>
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+    </LinearLayout>

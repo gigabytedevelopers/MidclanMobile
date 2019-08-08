@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">@color/primary</color>
+    <color name="colorPrimaryDark">@color/primary_dark</color>
+    <color name="colorAccent">@color/accent</color>
+    <color name="black">@color/primary_text</color>
+    <color name="white">#ffffff</color>
+    <color name="white_hint">#f5f5f5</color>
+
+
+    <!--App Colors-->
+    <color name="primary">#03A9F4</color>
+    <color name="primary_dark">#0288D1</color>
+    <color name="primary_light">#B3E5FC</color>
+    <color name="accent">#448AFF</color>
+    <color name="primary_text">#212121</color>
+    <color name="secondary_text">#757575</color>
+    <color name="alt_primary_dark">#F3F3F3</color>
+    <color name="icons">@color/white</color>
+    <color name="divider">#BDBDBD</color>
+
+    <!--Transparent-->
+
+    <color name="colorPrimaryTransparent10">#1A00ADFE</color>
+    <color name="colorPrimaryTransparent20">#3300ADFE</color>
+    <color name="colorPrimaryTransparent30">#4D00ADFE</color>
+    <color name="colorPrimaryTransparent40">#6600ADFE</color>
+    <color name="colorPrimaryTransparent50">#8F00ADFE</color>
+    <color name="colorPrimaryTransparent60">#9900ADFE</color>
+
+    <!--Transparency Colors i.e Important-->
+    <color name="overlay_dark_10">#1A000000</color>
+    <color name="overlay_dark_20">#33000000</color>
+    <color name="overlay_dark_30">#4D000000</color>
+    <color name="overlay_dark_40">#66000000</color>
+    <color name="overlay_dark_50">#80000000</color>
+    <color name="overlay_dark_60">#99000000</color>
+    <color name="overlay_dark_70">#B3000000</color>
+    <color name="overlay_dark_80">#CC000000</color>
+    <color name="overlay_dark_90">#E6000000</color>
+
+    <color name="overlay_light_10">#1AFFFFFF</color>
+    <color name="overlay_light_20">#33FFFFFF</color>
+    <color name="overlay_light_30">#4DFFFFFF</color>
+    <color name="overlay_light_40">#66FFFFFF</color>
+    <color name="overlay_light_50">#8FFFFFF0</color>
+    <color name="overlay_light_60">#99FFFFFF</color>
+    <color name="overlay_light_70">#B3FFFFFF</color>
+    <color name="overlay_light_80">#CCFFFFFF</color>
+    <color name="overlay_light_90">#E6FFFFFF</color>
+</resources>
