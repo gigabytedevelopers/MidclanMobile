@@ -12,6 +12,7 @@
     <dimen name="marginMedium">18dp</dimen>
 
     <dimen name="btn_width_small">145dp</dimen>
+    <dimen name="corner_radius">4dp</dimen>
 
     <!--genaral spacing-->
     <dimen name="spacing_xsmall">2dp</dimen>
@@ -28,15 +29,14 @@
     <dimen name="spacing_xxlarge">50dp</dimen>
     <dimen name="spacing_xxxlarge">55dp</dimen>
 
-    <!--RippleEffect-->
-    <dimen name="rippleDuration">350</dimen>
-    <dimen name="rippleFadeDuration">75</dimen>
+    <dimen name="avatar_chat_size">60dp</dimen>
 
 
-    <dimen name="icon_size">36dp</dimen>
+    <dimen name="icon_size">26dp</dimen>
     <dimen name="icon_social_media_login">42dp</dimen>
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
 
 </resources>

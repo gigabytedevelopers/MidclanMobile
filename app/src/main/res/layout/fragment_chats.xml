@@ -3,16 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white_hint"
     android:orientation="vertical"
-    tools:context=".fragments.DiscoverFragment">
-    <include layout="@layout/app_bar_discover"/>
+    tools:context=".fragments.ChatsFragment">
+
+    <include layout="@layout/app_bar"/>
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/list_discover"
+        android:id="@+id/fees_list"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:paddingStart="@dimen/spacing_smlarge"
-        android:paddingEnd="@dimen/spacing_smlarge"/>
+        android:layout_height="match_parent"/>
 
 </LinearLayout>

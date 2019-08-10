@@ -10,10 +10,18 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".activities.MainActivity"
-            android:label="@string/title_activity_main"
+            android:name=".activities.ChatActivity"
+            android:label="@string/nav_chat"
+            android:parentActivityName=".activities.MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.gigabytedevs.apps.midclan.activities.MainActivity" />
         </activity>
+        <activity
+            android:name=".activities.MainActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name=".activities.SplashActivity"
             android:theme="@style/StartUpTheme">
@@ -26,11 +34,10 @@
         <activity
             android:name=".activities.SignInActivity"
             android:theme="@style/StartUpTheme" />
-
         <activity
             android:name=".activities.RegisterActivity"
-            android:theme="@style/StartUpTheme"
-            android:parentActivityName=".activities.SignInActivity">
+            android:parentActivityName=".activities.SignInActivity"
+            android:theme="@style/StartUpTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.gigabytedevs.apps.midclan.activities.RegisterActivity" />

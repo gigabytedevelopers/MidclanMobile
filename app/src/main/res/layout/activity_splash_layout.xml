@@ -22,7 +22,7 @@
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:src="@drawable/logo_white"/>
-
+        <!--Loading the app-->
         <ProgressBar
             android:id="@+id/splash_progress_bar"
             style="@style/Widget.AppCompat.ProgressBar"
