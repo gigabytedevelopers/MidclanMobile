@@ -63,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
         feedsTransaction.commit();
         BottomNavigationView navView = findViewById(R.id.nav_view);
         navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+
     }
 
 }

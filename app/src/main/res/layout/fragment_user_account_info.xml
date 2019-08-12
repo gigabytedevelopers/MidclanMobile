@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/colorPrimary"
+    android:padding="@dimen/spacing_smlarge"
+    tools:context=".fragments.UserAccountInfoFragment">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <com.mikhaellopez.circularimageview.CircularImageView
+            android:layout_gravity="center"
+            android:layout_width="@dimen/avatar_registration_size"
+            android:layout_height="@dimen/avatar_registration_size"
+            android:scaleType="centerCrop"
+            android:src="@drawable/test"
+            app:civ_border="false"
+            android:layout_marginBottom="@dimen/marginMedium"/>
+
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/create_new_firstname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:fontFamily="@font/latoregular"
+            android:hint="@string/text_field_first_name"
+            android:inputType="textAutoComplete"
+            android:maxLines="1"
+            android:textColorHint="@color/white_hint"
+            android:layout_marginBottom="@dimen/marginSmall"/>
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/create_new_lastname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:fontFamily="@font/latoregular"
+            android:hint="@string/text_field_last_name"
+            android:inputType="textAutoComplete"
+            android:maxLines="1"
+            android:textColorHint="@color/white_hint"
+            android:layout_marginBottom="@dimen/marginSmall"/>
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/create_new_username"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:fontFamily="@font/latoregular"
+            android:hint="@string/text_field_username"
+            android:inputType="textAutoComplete"
+            android:maxLines="1"
+            android:textColorHint="@color/white_hint"
+            android:layout_marginBottom="@dimen/marginSmall"/>
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/create_new_email_address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:fontFamily="@font/latoregular"
+            android:hint="@string/text_field_email"
+            android:inputType="textEmailAddress"
+            android:maxLines="1"
+            android:textColorHint="@color/white_hint"
+            android:layout_marginBottom="@dimen/marginSmall"/>
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/create_new_phone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:fontFamily="@font/latoregular"
+            android:hint="@string/text_field_mobile_no"
+            android:inputType="phone"
+            android:maxLines="1"
+            android:textColorHint="@color/white_hint"
+            android:layout_marginBottom="@dimen/marginSmall"/>
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/create_new_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:inputType="textPassword"
+            android:maxLines="1"
+            android:textColorHint="@color/white_hint"
+            android:fontFamily="@font/latoregular"
+            android:hint="@string/text_field_password"
+            android:layout_marginBottom="@dimen/marginSmall"/>
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/create_new_confirm_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:inputType="textPassword"
+            android:maxLines="1"
+            android:textColorHint="@color/white_hint"
+            android:fontFamily="@font/latoregular"
+            android:hint="@string/text_field_confirm_password"
+            android:layout_marginBottom="@dimen/marginSmall"/>
+    </LinearLayout>
+    </ScrollView>
+
+
+
+</FrameLayout>

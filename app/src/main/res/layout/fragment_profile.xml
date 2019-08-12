@@ -3,18 +3,47 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/white_hint"
+    android:orientation="vertical"
     tools:context=".fragments.ProfileFragment">
     <include layout="@layout/app_bar"/>
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:scrollbars="none">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-
+            <!--layer for user to click to avoid complexitiy-->
+            <RelativeLayout
+                android:id="@+id/edit_profile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/spacing_large">
+                <!--User's profile image-->
+                <com.mikhaellopez.circularimageview.CircularImageView
+                    android:id="@+id/user_profile_image"
+                    android:layout_width="@dimen/avatar_profile_size"
+                    android:layout_height="@dimen/avatar_profile_size"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/test"
+                    android:layout_centerInParent="true"
+                    app:civ_border="false" />
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="@dimen/icon_size"
+                    android:layout_height="@dimen/icon_size"
+                    android:layout_centerInParent="true"
+                    app:srcCompat="@drawable/ic_plus"/>
+            </RelativeLayout>
+            <!--Extra user content to be displayed on the recycler view-->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/profile_list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scrollbars="none"/>
         </LinearLayout>
     </ScrollView>
 

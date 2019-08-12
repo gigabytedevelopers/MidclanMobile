@@ -18,6 +18,8 @@
             android:id="@+id/chat_user_avatar"
             android:layout_width="@dimen/avatar_chat_size"
             android:layout_height="@dimen/avatar_chat_size"
+            android:src="@drawable/test"
+            android:scaleType="centerCrop"
             app:civ_border="false"/>
         <RelativeLayout
             android:layout_width="0dp"
@@ -30,6 +32,7 @@
                 android:id="@+id/chat_user_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:singleLine="true"
                 android:textAppearance="@style/TextAppearance.AppCompat.Title"
                 android:maxLines="1"
                 android:fontFamily="@font/latosemibold"
@@ -40,10 +43,19 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                 android:maxLines="1"
+                android:singleLine="true"
                 android:layout_below="@id/chat_user_name"
                 android:fontFamily="@font/latoregular"
                 tools:text="@string/users_doctor"/>
         </RelativeLayout>
+        <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+        android:maxLines="1"
+        android:fontFamily="@font/latoregular"
+        tools:text="4:00pm"/>
     </LinearLayout>
 
 </com.balysv.materialripple.MaterialRippleLayout>

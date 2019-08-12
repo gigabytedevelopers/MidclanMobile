@@ -12,7 +12,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="@dimen/paddingNormal"
+            android:padding="@dimen/spacing_smlarge"
             android:orientation="vertical">
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/sign_in_logo"
@@ -25,7 +25,7 @@
                 android:text="@string/action_sign_in"
                 android:layout_gravity="center_horizontal"
                 android:fontFamily="@font/latobold"
-                android:layout_marginBottom="@dimen/marginMedium"
+                android:layout_marginBottom="@dimen/spacing_smlarge"
                 android:textAppearance="@style/TextAppearance.AppCompat.Display1"/>
             <androidx.appcompat.widget.AppCompatEditText
                 android:id="@+id/userName"
@@ -37,7 +37,7 @@
                 android:inputType="textAutoComplete"
                 android:maxLines="1"
                 android:textColorHint="@color/white_hint"
-                android:layout_marginBottom="@dimen/marginSmall"/>
+                android:layout_marginBottom="@dimen/spacing_middle"/>
             <androidx.appcompat.widget.AppCompatEditText
                 android:id="@+id/passWord"
                 android:layout_width="match_parent"
@@ -55,7 +55,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/action_forgot_password"
-                android:layout_marginBottom="@dimen/marginMedium"
+                android:layout_marginBottom="@dimen/spacing_smlarge"
                 android:fontFamily="@font/latoregular"
                 android:textAppearance="@style/TextAppearance.AppCompat.Menu"/>
 
@@ -69,7 +69,7 @@
                 app:mrl_rippleFadeDuration="75"
                 app:mrl_rippleDelayClick="true"
                 android:background="@drawable/btn_white"
-                android:layout_marginBottom="@dimen/marginMedium">
+                android:layout_marginBottom="@dimen/spacing_smlarge">
                 <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -95,8 +95,8 @@
                 android:layout_height="2dp"
                 android:layout_gravity="center_horizontal"
                 android:background="@drawable/btn_white"
-                android:layout_marginTop="@dimen/marginMedium"
-                android:layout_marginBottom="@dimen/marginMedium"/>
+                android:layout_marginTop="@dimen/spacing_smlarge"
+                android:layout_marginBottom="@dimen/spacing_smlarge"/>
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="wrap_content"
@@ -126,7 +126,7 @@
                         android:layout_height="@dimen/icon_social_media_login"
                         app:srcCompat="@drawable/ic_facebook_btn"
                         android:tint="@color/white"
-                        android:layout_marginEnd="@dimen/marginMedium"/>
+                        android:layout_marginEnd="@dimen/spacing_smlarge"/>
                 </com.balysv.materialripple.MaterialRippleLayout>
                 <com.balysv.materialripple.MaterialRippleLayout
                     android:id="@+id/sign_in_with_tw"

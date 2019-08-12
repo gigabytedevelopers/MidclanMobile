@@ -9,9 +9,23 @@
     <string name="action_next">Next</string>
     <string name="action_finish">Finish</string>
     <string name="action_previous">Previous</string>
+    <string name="action_edit_profile">Edit Profile</string>
+    <string name="text_create_account">Create account</string>
+    <string name="text_create_account_step_1_hint">I want to join as a</string>
     <string name="text_field_username">Username</string>
     <string name="text_field_password">Password</string>
+    <string name="text_field_confirm_password">Confirm password</string>
     <string name="text_field_email">Email</string>
+    <string name="text_field_first_name">First Name</string>
+    <string name="text_field_last_name">Last Name</string>
+    <string name="text_field_mobile_no">Phone</string>
+    <string name="text_field_user_family">Family</string>
+    <string name="text_field_user_dob">Date of Birth</string>
+    <string name="text_field_user_blood_group">Blood group</string>
+    <string name="text_field_user_genotype">Genotype</string>
+    <string name="text_field_user_bio_data">Bio data</string>
+    <string name="text_field_doctor_soo">State of origin</string>
+    <string name="text_field_doctor_lga">Local government</string>
     <string name="text_sign_in_with">Sign in with</string>
     <string name="nav_feeds">Timeline</string>
     <string name="nav_profile">Profile</string>
@@ -23,8 +37,16 @@
     <string name="users_patient">Patient</string>
     <string name="users_nurse">Nurse</string>
     <string name="users_doctor">Doctor</string>
+    <string name="users_hospital">Hospital</string>
+    <string name="users_lab_technician">Lab technician</string>
+    <string name="users_pharmacist">Pharmacist</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_chat">ChatActivity</string>
+    <string name="dummy_title">Check out the rest of the DesignBetter.co library</string>
+    <string name="dummy_text">the social network’s popularity, but they never actually did
+anything meaningful with the integration. The product team
+changed course once the qualitative findings clarified the
+motivations behind the customer behavior</string>
 </resources>

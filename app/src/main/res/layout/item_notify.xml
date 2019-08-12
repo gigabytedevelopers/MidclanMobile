@@ -1,6 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<com.balysv.materialripple.MaterialRippleLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:mrl_rippleColor="@color/colorAccent"
+    app:mrl_rippleOverlay="true"
+    app:mrl_rippleDuration="350"
+    app:mrl_rippleFadeDuration="75"
+    app:mrl_rippleDelayClick="true">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="@dimen/spacing_medium">
+        <com.mikhaellopez.circularimageview.CircularImageView
+            android:id="@+id/notify_image"
+            android:layout_width="@dimen/avatar_chat_size"
+            android:layout_height="@dimen/avatar_chat_size"
+            android:src="@drawable/test"
+            android:scaleType="centerCrop"
+            app:civ_border="false"/>
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:paddingStart="@dimen/spacing_small"
+            android:paddingEnd="@dimen/spacing_small"
+            android:padding="@dimen/spacing_small">
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/notify_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:maxLines="2"
+                android:fontFamily="@font/latoregular"
+                tools:text="@string/users_doctor"/>
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/notify_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/notify_text"
+                android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+                android:maxLines="1"
+                android:fontFamily="@font/latoregular"
+                tools:text="4:00pm"/>
+        </RelativeLayout>
 
-</LinearLayout>
+    </LinearLayout>
+
+</com.balysv.materialripple.MaterialRippleLayout>

@@ -3,25 +3,21 @@
 
     <item
         android:id="@+id/nav_feeds"
-        android:icon="@drawable/ic_home_black_24dp"
+        android:icon="@drawable/ic_nav_home"
         android:title="@string/nav_feeds" />
 
     <item
         android:id="@+id/nav_discover"
-        android:icon="@drawable/ic_search_black_24dp"
+        android:icon="@drawable/ic_nav_search"
         android:title="@string/nav_discover" />
-    <item
-        android:id="@+id/nav_add"
-        android:icon="@drawable/ic_add_black_24dp"
-        android:title="@string/nav_create" />
 
     <item
         android:id="@+id/nav_chats"
-        android:icon="@drawable/ic_chat_white_24dp"
+        android:icon="@drawable/ic_nav_message"
         android:title="@string/nav_chat" />
     <item
         android:id="@+id/nav_profile"
-        android:icon="@drawable/ic_person_black_24dp"
+        android:icon="@drawable/ic_nav_profile"
         android:title="@string/nav_profile"/>
 
 </menu>
