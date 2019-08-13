@@ -46,19 +46,23 @@ public class FeedsFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        appTitle = view.findViewById(R.id.app_bar);
-        appNotify = view.findViewById(R.id.notification_btn);
-        appTitle.setText(getString(R.string.nav_feeds));
-        appNotify.setOnClickListener(view1 -> {
-
-        });
+//        appTitle = view.findViewById(R.id.app_bar);
+//        appNotify = view.findViewById(R.id.notification_btn);
+//        appTitle.setText(getString(R.string.nav_feeds));
+//        appNotify.setOnClickListener(view1 -> {
+//
+//        });
 
         recyclerView = view.findViewById(R.id.feeds_list);
         list = new ArrayList<>();
-        adapter = new TimelineAdapter(list);
 
         TimelineModel timelineModel = new TimelineModel(R.drawable.test,getResources().getString(R.string.dummy_title),getResources().getString(R.string.dummy_text),"mezueceejay","Today",R.drawable.test);
         list.add(timelineModel);
+
+        TimelineModel timelineModel2 = new TimelineModel(R.drawable.test,getResources().getString(R.string.dummy_title),getResources().getString(R.string.dummy_text),"mezueceejay","Today",R.drawable.test);
+        list.add(timelineModel2);
+
+        adapter = new TimelineAdapter(getContext(), list);
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         layoutManager.setOrientation(RecyclerView.VERTICAL);
