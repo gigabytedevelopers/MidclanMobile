@@ -11,8 +11,15 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.gigabytedevs.apps.midclan.R;
+import com.gigabytedevs.apps.midclan.adapters.TimelineAdapter;
+import com.gigabytedevs.apps.midclan.models.TimelineModel;
+
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -20,6 +27,9 @@ import com.gigabytedevs.apps.midclan.R;
 public class FeedsFragment extends Fragment {
     private AppCompatTextView appTitle;
     private AppCompatImageView appNotify;
+    private RecyclerView recyclerView;
+    private ArrayList<TimelineModel> list;
+    private TimelineAdapter adapter;
 
     public FeedsFragment() {
         // Required empty public constructor
@@ -42,5 +52,17 @@ public class FeedsFragment extends Fragment {
         appNotify.setOnClickListener(view1 -> {
 
         });
+
+        recyclerView = view.findViewById(R.id.feeds_list);
+        list = new ArrayList<>();
+        adapter = new TimelineAdapter(list);
+
+        TimelineModel timelineModel = new TimelineModel(R.drawable.test,getResources().getString(R.string.dummy_title),getResources().getString(R.string.dummy_text),"mezueceejay","Today",R.drawable.test);
+        list.add(timelineModel);
+
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
+        layoutManager.setOrientation(RecyclerView.VERTICAL);
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setAdapter(adapter);
     }
 }
