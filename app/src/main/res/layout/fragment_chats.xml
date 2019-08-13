@@ -6,7 +6,7 @@
     android:orientation="vertical"
     tools:context=".fragments.ChatsFragment">
 
-    <include layout="@layout/app_bar"/>
+    <!--<include layout="@layout/app_bar"/>-->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/fees_list"
         android:layout_width="match_parent"
