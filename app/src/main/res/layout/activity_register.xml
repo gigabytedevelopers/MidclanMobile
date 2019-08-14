@@ -42,7 +42,7 @@
                 android:layout_width="@dimen/icon_dot"
                 android:layout_height="@dimen/icon_dot"
                 android:layout_marginEnd="@dimen/spacing_medium"
-                app:srcCompat="@drawable/shape_round_outline_primary"/>
+                app:srcCompat="@drawable/shape_round_primary"/>
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/second_dot_user_account_info"
                 android:layout_width="@dimen/icon_dot"
