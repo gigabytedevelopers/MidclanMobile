@@ -1,21 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<com.balysv.materialripple.MaterialRippleLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="@dimen/spacing_middle">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:mrl_rippleColor="@color/divider"
+    app:mrl_rippleOverlay="true"
+    app:mrl_rippleDuration="350"
+    app:mrl_rippleFadeDuration="75"
+    app:mrl_rippleDelayClick="true">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/spacing_xmedium">
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/profile_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/primary_text"
         android:singleLine="true"
-        android:textAppearance="@style/TextAppearance.AppCompat.Menu"/>
+        android:fontFamily="@font/latoregular"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/profile_caption"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:singleLine="true"
+        android:fontFamily="@font/latoregular"
+        android:textColor="@color/secondary_text"
         android:textAppearance="@style/TextAppearance.AppCompat.Caption"/>
 </LinearLayout>
+</com.balysv.materialripple.MaterialRippleLayout>

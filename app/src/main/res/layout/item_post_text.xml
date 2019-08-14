@@ -4,7 +4,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/spacing_small">
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="@dimen/image_preview_size">
@@ -13,28 +14,59 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
-            android:src="@drawable/test"/>
+            android:src="@drawable/img_plant_1"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/overlay_dark_10"/>
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/post_text_bookmark"
+            android:layout_width="@dimen/icon_size"
+            android:layout_height="@dimen/icon_size"
+            android:layout_gravity="top|end"
+            android:layout_marginTop="@dimen/spacing_smlarge"
+            android:layout_marginEnd="@dimen/spacing_smlarge"
+            app:srcCompat="@drawable/ic_bookmark_outline"
+            app:tint="@color/white"/>
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/user_text_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:layout_gravity="bottom|end"
+            android:textColor="@color/white"
+            android:shadowColor="@color/secondary_text"
+            android:layout_marginBottom="@dimen/spacing_smlarge"
+            android:layout_marginEnd="@dimen/spacing_smlarge"
+            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:fontFamily="@font/latoregular"
+            tools:text="Today"/>
     </FrameLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="@dimen/spacing_large">
+        android:paddingEnd="@dimen/spacing_middle"
+        android:paddingStart="@dimen/spacing_middle"
+        android:paddingTop="@dimen/spacing_medium">
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/post_text_title"
-            android:textAppearance="@style/TextAppearance.AppCompat.Title"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textColor="@color/primary_text"
-            android:fontFamily="@font/latobold"
+            android:fontFamily="@font/latosemibold"
             android:singleLine="true"
             tools:text="@string/dummy_title"/>
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/post_text_body"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
             android:textColor="@color/primary_text"
+            android:layout_marginTop="@dimen/spacing_small"
             android:maxLines="2"
             android:ellipsize="end"
             android:fontFamily="@font/latoregular"
@@ -44,46 +76,44 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingStart="@dimen/spacing_large"
-        android:paddingEnd="@dimen/spacing_large"
+        android:paddingStart="@dimen/spacing_middle"
+        android:paddingEnd="@dimen/spacing_middle"
+        android:paddingTop="@dimen/spacing_medium"
+        android:paddingBottom="@dimen/spacing_medium"
         android:orientation="horizontal">
         <com.mikhaellopez.circularimageview.CircularImageView
             android:id="@+id/user_text_post_profile"
             android:layout_width="@dimen/avatar_post_size"
             android:layout_height="@dimen/avatar_post_size"
             android:src="@drawable/test"
+            android:layout_gravity="center"
             app:civ_border="false"/>
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="0.5"
-            android:layout_marginStart="@dimen/spacing_medium"
+            android:layout_marginStart="@dimen/spacing_xmedium"
+            android:layout_gravity="center"
             android:orientation="vertical">
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/user_text_username"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:singleLine="true"
                 android:fontFamily="@font/latosemibold"
                 tools:text="mezueceejay"/>
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/user_text_time"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="@style/TextAppearance.AppCompat.Caption"
-                android:fontFamily="@font/latoregular"
-                tools:text="Today"/>
         </LinearLayout>
         <RelativeLayout
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="0.44"
             android:padding="@dimen/spacing_small"
             android:layout_gravity="center">
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/post_text_like"
                 android:layout_width="@dimen/icon_size"
                 android:layout_height="@dimen/icon_size"
+                app:tint="@color/primary_text"
                 app:srcCompat="@drawable/ic_heart_outline"/>
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/post_text_comment"
@@ -91,6 +121,7 @@
                 android:layout_height="@dimen/icon_size"
                 android:layout_toEndOf="@id/post_text_like"
                 android:layout_marginStart="@dimen/spacing_smlarge"
+                app:tint="@color/primary_text"
                 app:srcCompat="@drawable/ic_comment"/>
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/post_text_share"
@@ -98,14 +129,8 @@
                 android:layout_height="@dimen/icon_size"
                 android:layout_toEndOf="@id/post_text_comment"
                 android:layout_marginStart="@dimen/spacing_smlarge"
+                app:tint="@color/primary_text"
                 app:srcCompat="@drawable/ic_share"/>
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/post_text_bookmark"
-                android:layout_width="@dimen/icon_size"
-                android:layout_height="@dimen/icon_size"
-                android:layout_toEndOf="@id/post_text_share"
-                android:layout_marginStart="@dimen/spacing_smlarge"
-                app:srcCompat="@drawable/ic_bookmark_outline"/>
         </RelativeLayout>
     </LinearLayout>
 

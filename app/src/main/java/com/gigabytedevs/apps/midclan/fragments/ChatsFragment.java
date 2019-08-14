@@ -45,12 +45,11 @@ public class ChatsFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-//        appTitle = view.findViewById(R.id.app_bar);
-//        appNotify = view.findViewById(R.id.notification_btn);
-//        appTitle.setText(getString(R.string.nav_chat));
-//        appNotify.setOnClickListener(view1 -> {
-//
-//        });
+        appTitle = view.findViewById(R.id.app_bar);
+        appNotify = view.findViewById(R.id.notification_btn);
+        appTitle.setText(getString(R.string.nav_chat));
+        appNotify.setOnClickListener(view1 -> {
+        });
 
         recyclerView = view.findViewById(R.id.fees_list);
         list = new ArrayList<>();

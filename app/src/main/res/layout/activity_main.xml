@@ -6,10 +6,74 @@
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
     <FrameLayout
-        android:id="@+id/mainContent"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"/>
+        android:layout_weight="1">
+    <FrameLayout
+        android:id="@+id/mainContent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+        <RelativeLayout
+            android:id="@+id/network_not_available_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white_hint"
+            android:padding="@dimen/spacing_smlarge"
+            android:visibility="gone">
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/network_image"
+                android:layout_width="@dimen/no_internet_size"
+                android:layout_height="@dimen/no_internet_size"
+                android:layout_centerInParent="true"
+                android:src="@drawable/img_no_internet_satellite"/>
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/network_image_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/text_network_not_available"
+                android:layout_gravity="center_horizontal"
+                android:textColor="@color/primary_text"
+                android:layout_below="@id/network_image"
+                android:fontFamily="@font/latobold"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/spacing_medium"
+                android:textAppearance="@style/TextAppearance.AppCompat.Title"/>
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/network_image_hint"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/text_network_not_available_hint"
+                android:layout_gravity="center_horizontal"
+                android:textColor="@color/primary_text"
+                android:layout_below="@id/network_image_title"
+                android:fontFamily="@font/latoregular"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/spacing_medium"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
+            <com.balysv.materialripple.MaterialRippleLayout
+                android:id="@+id/network_retry_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:mrl_rippleColor="@color/colorAccent"
+                app:mrl_rippleOverlay="true"
+                app:mrl_rippleDuration="350"
+                app:mrl_rippleFadeDuration="75"
+                app:mrl_rippleDelayClick="true"
+                android:layout_below="@id/network_image_hint"
+                android:background="@drawable/btn_coloured"
+                android:layout_marginTop="@dimen/spacing_smlarge">
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/action_retry"
+                    android:layout_gravity="center_horizontal"
+                    android:textColor="@color/white"
+                    android:fontFamily="@font/latobold"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Button"/>
+            </com.balysv.materialripple.MaterialRippleLayout>
+
+        </RelativeLayout>
+    </FrameLayout>
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/nav_view"
         android:layout_width="match_parent"
@@ -17,5 +81,7 @@
         android:layout_marginStart="0dp"
         android:layout_marginEnd="0dp"
         android:background="?android:attr/windowBackground"
+        app:labelVisibilityMode="unlabeled"
+        app:elevation="2dp"
         app:menu="@menu/bottom_nav_menu" />
 </LinearLayout>

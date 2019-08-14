@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:mrl_rippleColor="@color/colorAccent"
+    app:mrl_rippleColor="@color/divider"
     app:mrl_rippleOverlay="true"
     app:mrl_rippleDuration="350"
     app:mrl_rippleFadeDuration="75"
@@ -13,13 +13,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:padding="@dimen/spacing_medium">
+        android:padding="@dimen/spacing_xmedium">
         <com.mikhaellopez.circularimageview.CircularImageView
             android:id="@+id/chat_user_avatar"
             android:layout_width="@dimen/avatar_chat_size"
             android:layout_height="@dimen/avatar_chat_size"
             android:src="@drawable/test"
             android:scaleType="centerCrop"
+            android:layout_marginEnd="@dimen/spacing_medium"
             app:civ_border="false"/>
         <RelativeLayout
             android:layout_width="0dp"
@@ -33,9 +34,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:singleLine="true"
-                android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:maxLines="1"
-                android:fontFamily="@font/latosemibold"
+                android:textColor="@color/primary_text"
+                android:fontFamily="@font/latoregular"
                 tools:text="@string/users_doctor"/>
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/chat_msg"
@@ -44,18 +46,20 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                 android:maxLines="1"
                 android:singleLine="true"
+                android:textColor="@color/secondary_text"
                 android:layout_below="@id/chat_user_name"
                 android:fontFamily="@font/latoregular"
                 tools:text="@string/users_doctor"/>
         </RelativeLayout>
         <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/time"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="@style/TextAppearance.AppCompat.Caption"
-        android:maxLines="1"
-        android:fontFamily="@font/latoregular"
-        tools:text="4:00pm"/>
+            android:id="@+id/time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+            android:maxLines="1"
+            android:layout_gravity="top"
+            android:fontFamily="@font/latoregular"
+            tools:text="4:00pm"/>
     </LinearLayout>
 
 </com.balysv.materialripple.MaterialRippleLayout>

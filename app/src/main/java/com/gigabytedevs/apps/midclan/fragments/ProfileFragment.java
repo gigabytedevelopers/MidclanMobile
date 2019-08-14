@@ -11,8 +11,16 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.gigabytedevs.apps.midclan.R;
+import com.gigabytedevs.apps.midclan.adapters.ProfileAdapter;
+import com.gigabytedevs.apps.midclan.models.ProfileModel;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -20,6 +28,9 @@ import com.gigabytedevs.apps.midclan.R;
 public class ProfileFragment extends Fragment {
     private AppCompatTextView appTitle;
     private AppCompatImageView appNotify;
+    private RecyclerView recyclerView;
+    private ArrayList<ProfileModel> list;
+    private ProfileAdapter adapter;
 
     public ProfileFragment() {
         // Required empty public constructor
@@ -42,5 +53,25 @@ public class ProfileFragment extends Fragment {
         appNotify.setOnClickListener(view1 -> {
 
         });
+        recyclerView = view.findViewById(R.id.profile_list);
+        list = new ArrayList<>();
+
+        ProfileModel profileModel = new ProfileModel(getString(R.string.text_profile_edit_profile), getString(R.string.text_profile_edit_profile_hint));
+        list.add(profileModel);
+        ProfileModel profileModel2 = new ProfileModel(getString(R.string.text_profile_bookmark), getString(R.string.text_profile_bookmark_hint));
+        list.add(profileModel2);
+        ProfileModel profileModel3 = new ProfileModel(getString(R.string.text_profile_subscriptions), getString(R.string.text_profile_subscriptions_hint));
+        list.add(profileModel3);
+
+
+        adapter = new ProfileAdapter(getContext(), list);
+
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
+        layoutManager.setOrientation(RecyclerView.VERTICAL);
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+        recyclerView.addItemDecoration(new DividerItemDecoration(getActivity(),DividerItemDecoration.VERTICAL));
+
+        recyclerView.setAdapter(adapter);
     }
 }

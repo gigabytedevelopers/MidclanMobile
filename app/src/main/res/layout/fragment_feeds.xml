@@ -4,12 +4,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white_hint"
+    android:orientation="vertical"
     tools:context=".fragments.FeedsFragment">
-   <!--<include layout="@layout/app_bar"/>-->
+   <include layout="@layout/app_bar"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/feeds_list"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:paddingStart="@dimen/spacing_medium"
+        android:paddingEnd="@dimen/spacing_medium"/>
 
 </LinearLayout>

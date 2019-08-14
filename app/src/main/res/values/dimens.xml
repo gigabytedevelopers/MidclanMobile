@@ -10,12 +10,14 @@
     <dimen name="image_preview_size">190dp</dimen>
     <dimen name="user_picker_size">137dp</dimen>
     <dimen name="user_picker_image">70dp</dimen>
+    <dimen name="discover_image_size">55dp</dimen>
+    <dimen name="no_internet_size">160dp</dimen>
 
 
     <dimen name="marginSmall">10dp</dimen>
     <dimen name="marginMedium">18dp</dimen>
 
-    <dimen name="btn_width_small">150dp</dimen>
+    <dimen name="btn_width_small">145dp</dimen>
     <dimen name="corner_radius">4dp</dimen>
 
     <!--genaral spacing-->
@@ -33,13 +35,13 @@
     <dimen name="spacing_xxlarge">50dp</dimen>
     <dimen name="spacing_xxxlarge">55dp</dimen>
 
-    <dimen name="avatar_chat_size">60dp</dimen>
-    <dimen name="avatar_post_size">40dp</dimen>
+    <dimen name="avatar_chat_size">50dp</dimen>
+    <dimen name="avatar_post_size">30dp</dimen>
     <dimen name="avatar_registration_size">100dp</dimen>
     <dimen name="avatar_profile_size">110dp</dimen>
 
 
-    <dimen name="icon_size">26dp</dimen>
+    <dimen name="icon_size">24dp</dimen>
     <dimen name="icon_dot">9dp</dimen>
     <dimen name="icon_social_media_login">42dp</dimen>
     <!-- Default screen margins, per the Android Design guidelines. -->

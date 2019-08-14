@@ -12,6 +12,11 @@
         android:title="@string/nav_discover" />
 
     <item
+        android:id="@+id/nav_create"
+        android:icon="@drawable/ic_plus_circle_outline"
+        android:title="@string/nav_create" />
+
+    <item
         android:id="@+id/nav_chats"
         android:icon="@drawable/ic_nav_message"
         android:title="@string/nav_chat" />

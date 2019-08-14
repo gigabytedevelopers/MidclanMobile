@@ -5,6 +5,8 @@
     <string name="action_create_account">Create an account?</string>
     <string name="action_have_account">Have an account?</string>
     <string name="action_forgot_password">Forgot Password?</string>
+    <string name="action_try_again">Try again</string>
+    <string name="action_retry">Retry</string>
     <string name="action_continue">Continue</string>
     <string name="action_next">Next</string>
     <string name="action_finish">Finish</string>
@@ -27,6 +29,17 @@
     <string name="text_field_doctor_soo">State of origin</string>
     <string name="text_field_doctor_lga">Local government</string>
     <string name="text_sign_in_with">Sign in with</string>
+    <string name="text_network_not_available">No Internet Connection</string>
+    <string name="text_network_not_available_hint">Seems you dropped off the radar there!!!</string>
+    <string name="text_profile_edit_profile">Edit profile</string>
+    <string name="text_profile_edit_profile_hint">Change username, password, name, email etc.</string>
+    <string name="text_profile_bookmark">Bookmarks</string>
+    <string name="text_profile_bookmark_hint">Saved posts and videos</string>
+    <string name="text_profile_log_out">Log_out</string>
+    <string name="text_profile_privacy_policy">Privacy Policy</string>
+    <string name="text_profile_subscriptions">Subscriptions</string>
+    <string name="text_profile_subscriptions_hint">Update or check your subscriptions</string>
+    <string name="text_discover_find_hospital">Find Nearby Hospital</string>
     <string name="nav_feeds">Timeline</string>
     <string name="nav_profile">Profile</string>
     <string name="nav_chat">Chat</string>
