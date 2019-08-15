@@ -1,6 +1,7 @@
 package com.gigabytedevs.apps.midclan.fragments;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.gigabytedevs.apps.midclan.R;
+import com.gigabytedevs.apps.midclan.activities.NotificationActivity;
 import com.gigabytedevs.apps.midclan.adapters.ChatAdapter;
 import com.gigabytedevs.apps.midclan.models.ChatModel;
 
@@ -49,6 +51,7 @@ public class ChatsFragment extends Fragment {
         appNotify = view.findViewById(R.id.notification_btn);
         appTitle.setText(getString(R.string.nav_chat));
         appNotify.setOnClickListener(view1 -> {
+            startActivity(new Intent(getActivity(), NotificationActivity.class));
         });
 
         recyclerView = view.findViewById(R.id.fees_list);
