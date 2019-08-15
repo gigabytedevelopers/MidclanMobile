@@ -64,6 +64,7 @@ public class RegisterActivity extends AppCompatActivity {
                 designationTransaction.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
                 designationTransaction.replace(R.id.frame_content,designationFragment);
                 designationTransaction.commit();
+                previousSession.setVisibility(View.INVISIBLE);
 
             }else if(count == 1){
                 UserAccountInfoFragment userAccountInfoFragment = new UserAccountInfoFragment();
@@ -71,6 +72,7 @@ public class RegisterActivity extends AppCompatActivity {
                 userAccountInfoTransaction.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
                 userAccountInfoTransaction.replace(R.id.frame_content, userAccountInfoFragment);
                 userAccountInfoTransaction.commit();
+                previousSession.setVisibility(View.VISIBLE);
             }
         }else{
             if (count > 0 ){
@@ -89,6 +91,7 @@ public class RegisterActivity extends AppCompatActivity {
                 userAccountInfoTransaction.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
                 userAccountInfoTransaction.replace(R.id.frame_content, userAccountInfoFragment);
                 userAccountInfoTransaction.commit();
+                previousSession.setVisibility(View.VISIBLE);
             }
         }
 

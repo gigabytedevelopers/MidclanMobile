@@ -4,7 +4,6 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatImageView;
@@ -49,7 +48,7 @@ public class TimelineAdapter extends RecyclerView.Adapter<TimelineAdapter.ViewHo
     @NonNull
     @Override
     public TimelineAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        final View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_post_text, parent, false);
+        final View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_card_post_text, parent, false);
         final ViewHolder myViewHolder = new ViewHolder(view);
         return myViewHolder;
     }

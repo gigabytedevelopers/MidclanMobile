@@ -62,4 +62,5 @@
 anything meaningful with the integration. The product team
 changed course once the qualitative findings clarified the
 motivations behind the customer behavior</string>
+    <string name="title_activity_notification">Notifications</string>
 </resources>

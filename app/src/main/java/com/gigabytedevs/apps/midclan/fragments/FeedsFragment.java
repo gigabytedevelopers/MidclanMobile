@@ -1,6 +1,7 @@
 package com.gigabytedevs.apps.midclan.fragments;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,9 +16,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.gigabytedevs.apps.midclan.R;
+import com.gigabytedevs.apps.midclan.activities.NotificationActivity;
 import com.gigabytedevs.apps.midclan.adapters.TimelineAdapter;
 import com.gigabytedevs.apps.midclan.models.TimelineModel;
-
 
 import java.util.ArrayList;
 
@@ -46,17 +47,17 @@ public class FeedsFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-//        appTitle = view.findViewById(R.id.app_bar);
-//        appNotify = view.findViewById(R.id.notification_btn);
-//        appTitle.setText(getString(R.string.nav_feeds));
-//        appNotify.setOnClickListener(view1 -> {
-//
-//        });
+        appTitle = view.findViewById(R.id.app_bar);
+        appNotify = view.findViewById(R.id.notification_btn);
+        appTitle.setText(getString(R.string.nav_feeds));
+        appNotify.setOnClickListener(view1 -> {
+            startActivity(new Intent(getActivity(), NotificationActivity.class));
+        });
 
         recyclerView = view.findViewById(R.id.feeds_list);
         list = new ArrayList<>();
 
-        TimelineModel timelineModel = new TimelineModel(R.drawable.test,getResources().getString(R.string.dummy_title),getResources().getString(R.string.dummy_text),"mezueceejay","Today",R.drawable.test);
+        TimelineModel timelineModel = new TimelineModel(R.drawable.img_plant_9,getResources().getString(R.string.dummy_title),getResources().getString(R.string.dummy_text),"dennisrichtie","11:00pm",R.drawable.test);
         list.add(timelineModel);
 
         TimelineModel timelineModel2 = new TimelineModel(R.drawable.test,getResources().getString(R.string.dummy_title),getResources().getString(R.string.dummy_text),"mezueceejay","Today",R.drawable.test);
