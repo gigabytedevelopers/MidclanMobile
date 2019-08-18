@@ -20,7 +20,7 @@
     <dimen name="btn_width_small">50dp</dimen>
     <dimen name="corner_radius">4dp</dimen>
     <dimen name="card_elevation">2dp</dimen>
-    <dimen name="card_subscriptioon_width">230dp</dimen>
+    <dimen name="card_subscriptioon_width">250dp</dimen>
 
     <!--genaral spacing-->
     <dimen name="spacing_xsmall">2dp</dimen>

@@ -5,6 +5,7 @@ import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatImageView;
+import androidx.appcompat.widget.AppCompatTextView;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.balysv.materialripple.MaterialRippleLayout;
@@ -17,6 +18,7 @@ import com.gigabytedevs.apps.midclan.fragments.UserInfoFragment;
 public class RegisterActivity extends AppCompatActivity {
     private MaterialRippleLayout backBtn, nextSession, previousSession;
     private AppCompatImageView firstDotDesignation, secondDot,thirdDot,fourthDot;
+    private AppCompatTextView nextSessionText;
     private int count = 0;
 
     @Override
@@ -29,6 +31,7 @@ public class RegisterActivity extends AppCompatActivity {
         thirdDot = findViewById(R.id.third_dot_user_info);
         fourthDot = findViewById(R.id.final_dot_subscription);
         nextSession = findViewById(R.id.next_session);
+        nextSessionText = findViewById(R.id.next_session_text);
         previousSession = findViewById(R.id.previous_session);
         backBtn.setOnClickListener(view -> {
             onBackPressed();
@@ -89,6 +92,7 @@ public class RegisterActivity extends AppCompatActivity {
                 subscriptionTransaction.replace(R.id.frame_content, subscriptionFragment);
                 subscriptionTransaction.commit();
                 previousSession.setVisibility(View.VISIBLE);
+                nextSessionText.setText(getString(R.string.action_finish));
             }
         }else{
             if (count > 0 ){
