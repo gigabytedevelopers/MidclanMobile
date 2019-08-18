@@ -8,16 +8,16 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
-import com.balysv.materialripple.MaterialRippleLayout;
 import com.gigabytedevs.apps.midclan.R;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class DesignationFragment extends Fragment {
-    private MaterialRippleLayout patients, doctors, labTechnicians, pharmacist,nurse, hospital;
+    private CardView patients, doctors, labTechnicians, pharmacist,nurse, hospital;
 
 
     public DesignationFragment() {

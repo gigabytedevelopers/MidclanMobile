@@ -10,7 +10,9 @@ import androidx.fragment.app.FragmentTransaction;
 import com.balysv.materialripple.MaterialRippleLayout;
 import com.gigabytedevs.apps.midclan.R;
 import com.gigabytedevs.apps.midclan.fragments.DesignationFragment;
+import com.gigabytedevs.apps.midclan.fragments.SubscriptionFragment;
 import com.gigabytedevs.apps.midclan.fragments.UserAccountInfoFragment;
+import com.gigabytedevs.apps.midclan.fragments.UserInfoFragment;
 
 public class RegisterActivity extends AppCompatActivity {
     private MaterialRippleLayout backBtn, nextSession, previousSession;
@@ -33,7 +35,7 @@ public class RegisterActivity extends AppCompatActivity {
         });
 
         nextSession.setOnClickListener(view -> {
-          switchFragments("next");
+            switchFragments("next");
 
         });
 
@@ -52,7 +54,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     private void switchFragments(String whichButton){
         if (whichButton.equals("next")){
-            if (count <= 4 ){
+            if (count <= 3 ){
                 count++;
             }
 
@@ -72,6 +74,20 @@ public class RegisterActivity extends AppCompatActivity {
                 userAccountInfoTransaction.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
                 userAccountInfoTransaction.replace(R.id.frame_content, userAccountInfoFragment);
                 userAccountInfoTransaction.commit();
+                previousSession.setVisibility(View.VISIBLE);
+            }else if(count == 2){
+                UserInfoFragment userInfoFragment = new UserInfoFragment();
+                FragmentTransaction userInfoInfoTransaction = getSupportFragmentManager().beginTransaction();
+                userInfoInfoTransaction.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+                userInfoInfoTransaction.replace(R.id.frame_content, userInfoFragment);
+                userInfoInfoTransaction.commit();
+                previousSession.setVisibility(View.VISIBLE);
+            }else if(count == 3) {
+                SubscriptionFragment subscriptionFragment = new SubscriptionFragment();
+                FragmentTransaction subscriptionTransaction = getSupportFragmentManager().beginTransaction();
+                subscriptionTransaction.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+                subscriptionTransaction.replace(R.id.frame_content, subscriptionFragment);
+                subscriptionTransaction.commit();
                 previousSession.setVisibility(View.VISIBLE);
             }
         }else{

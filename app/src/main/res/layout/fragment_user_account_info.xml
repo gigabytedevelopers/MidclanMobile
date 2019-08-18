@@ -13,8 +13,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingStart="@dimen/spacing_middle"
-        android:paddingEnd="@dimen/spacing_middle"
+        android:paddingStart="@dimen/spacing_large"
+        android:paddingEnd="@dimen/spacing_large"
         android:orientation="vertical">
         <com.mikhaellopez.circularimageview.CircularImageView
             android:layout_gravity="center"
@@ -23,8 +23,8 @@
             android:scaleType="centerCrop"
             android:src="@drawable/test"
             app:civ_border="false"
-            android:layout_marginBottom="@dimen/marginMedium"/>
-
+            android:layout_marginTop="@dimen/spacing_small"
+            android:layout_marginBottom="@dimen/spacing_large"/>
 
         <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/create_new_firstname"
@@ -34,10 +34,10 @@
             android:fontFamily="@font/latoregular"
             android:hint="@string/text_field_first_name"
             android:inputType="textAutoComplete"
+            android:background="@drawable/registration_edit_text_bg"
             android:maxLines="1"
-            android:textColorHint="@color/white_hint"
-            android:layout_marginBottom="@dimen/marginSmall"/>
-
+            android:textColorHint="@color/white"
+            android:layout_marginBottom="@dimen/spacing_smlarge"/>
         <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/create_new_lastname"
             android:layout_width="match_parent"
@@ -46,9 +46,10 @@
             android:fontFamily="@font/latoregular"
             android:hint="@string/text_field_last_name"
             android:inputType="textAutoComplete"
+            android:background="@drawable/registration_edit_text_bg"
             android:maxLines="1"
-            android:textColorHint="@color/white_hint"
-            android:layout_marginBottom="@dimen/marginSmall"/>
+            android:textColorHint="@color/white"
+            android:layout_marginBottom="@dimen/spacing_smlarge"/>
 
         <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/create_new_username"
@@ -58,9 +59,10 @@
             android:fontFamily="@font/latoregular"
             android:hint="@string/text_field_username"
             android:inputType="textAutoComplete"
+            android:background="@drawable/registration_edit_text_bg"
             android:maxLines="1"
-            android:textColorHint="@color/white_hint"
-            android:layout_marginBottom="@dimen/marginSmall"/>
+            android:textColorHint="@color/white"
+            android:layout_marginBottom="@dimen/spacing_smlarge"/>
         <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/create_new_email_address"
             android:layout_width="match_parent"
@@ -69,9 +71,10 @@
             android:fontFamily="@font/latoregular"
             android:hint="@string/text_field_email"
             android:inputType="textEmailAddress"
+            android:background="@drawable/registration_edit_text_bg"
             android:maxLines="1"
-            android:textColorHint="@color/white_hint"
-            android:layout_marginBottom="@dimen/marginSmall"/>
+            android:textColorHint="@color/white"
+            android:layout_marginBottom="@dimen/spacing_smlarge"/>
 
         <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/create_new_phone"
@@ -81,20 +84,21 @@
             android:fontFamily="@font/latoregular"
             android:hint="@string/text_field_mobile_no"
             android:inputType="phone"
+            android:background="@drawable/registration_edit_text_bg"
             android:maxLines="1"
-            android:textColorHint="@color/white_hint"
-            android:layout_marginBottom="@dimen/marginSmall"/>
+            android:textColorHint="@color/white"
+            android:layout_marginBottom="@dimen/spacing_smlarge"/>
         <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/create_new_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/white"
             android:inputType="textPassword"
+            android:background="@drawable/registration_edit_text_bg"
             android:maxLines="1"
-            android:textColorHint="@color/white_hint"
-            android:fontFamily="@font/latoregular"
             android:hint="@string/text_field_password"
-            android:layout_marginBottom="@dimen/marginSmall"/>
+            android:textColorHint="@color/white"
+            android:layout_marginBottom="@dimen/spacing_smlarge"/>
 
         <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/create_new_confirm_password"
@@ -102,11 +106,12 @@
             android:layout_height="wrap_content"
             android:textColor="@color/white"
             android:inputType="textPassword"
-            android:maxLines="1"
-            android:textColorHint="@color/white_hint"
             android:fontFamily="@font/latoregular"
             android:hint="@string/text_field_confirm_password"
-            android:layout_marginBottom="@dimen/marginSmall"/>
+            android:background="@drawable/registration_edit_text_bg"
+            android:maxLines="1"
+            android:textColorHint="@color/white"
+            android:layout_marginBottom="@dimen/spacing_smlarge"/>
     </LinearLayout>
     </ScrollView>
 

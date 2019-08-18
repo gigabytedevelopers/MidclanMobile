@@ -35,9 +35,10 @@
                 android:fontFamily="@font/latoregular"
                 android:hint="@string/text_field_username"
                 android:inputType="textAutoComplete"
+                android:background="@drawable/registration_edit_text_bg"
                 android:maxLines="1"
-                android:textColorHint="@color/white_hint"
-                android:layout_marginBottom="@dimen/spacing_middle"/>
+                android:textColorHint="@color/white"
+                android:layout_marginBottom="@dimen/spacing_smlarge"/>
             <androidx.appcompat.widget.AppCompatEditText
                 android:id="@+id/passWord"
                 android:layout_width="match_parent"
@@ -45,10 +46,11 @@
                 android:textColor="@color/white"
                 android:inputType="textPassword"
                 android:maxLines="1"
+                android:background="@drawable/registration_edit_text_bg"
                 android:textColorHint="@color/white_hint"
                 android:fontFamily="@font/latoregular"
                 android:hint="@string/text_field_password"
-                android:layout_marginBottom="@dimen/marginSmall"/>
+                android:layout_marginBottom="@dimen/spacing_smlarge"/>
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/action_forgot_password"

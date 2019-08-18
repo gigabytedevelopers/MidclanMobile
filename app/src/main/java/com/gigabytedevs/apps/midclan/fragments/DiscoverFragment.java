@@ -15,6 +15,7 @@ import androidx.fragment.app.Fragment;
 
 import com.gigabytedevs.apps.midclan.R;
 import com.gigabytedevs.apps.midclan.activities.NotificationActivity;
+import com.gigabytedevs.apps.midclan.activities.SearchActivity;
 
 
 /**
@@ -47,7 +48,7 @@ public class DiscoverFragment extends Fragment {
             startActivity(new Intent(getActivity(), NotificationActivity.class));
         });
         appSearch.setOnClickListener(view1 -> {
-
+            startActivity(new Intent(getActivity(), SearchActivity.class));
         });
     }
 }

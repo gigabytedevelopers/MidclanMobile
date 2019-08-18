@@ -17,9 +17,10 @@
     <dimen name="marginSmall">10dp</dimen>
     <dimen name="marginMedium">18dp</dimen>
 
-    <dimen name="btn_width_small">145dp</dimen>
+    <dimen name="btn_width_small">50dp</dimen>
     <dimen name="corner_radius">4dp</dimen>
     <dimen name="card_elevation">2dp</dimen>
+    <dimen name="card_subscriptioon_width">230dp</dimen>
 
     <!--genaral spacing-->
     <dimen name="spacing_xsmall">2dp</dimen>
@@ -38,7 +39,7 @@
 
     <dimen name="avatar_chat_size">50dp</dimen>
     <dimen name="avatar_post_size">32dp</dimen>
-    <dimen name="avatar_registration_size">130dp</dimen>
+    <dimen name="avatar_registration_size">100dp</dimen>
     <dimen name="avatar_profile_size">110dp</dimen>
 
 

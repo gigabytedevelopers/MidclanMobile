@@ -40,227 +40,267 @@
                 android:layout_height="match_parent"
                 android:columnOrderPreserved="true"
                 android:layout_gravity="center"
-                android:padding="@dimen/spacing_smlarge"
+                android:padding="@dimen/spacing_middle"
                 android:columnCount="2">
-                <com.balysv.materialripple.MaterialRippleLayout
+                <androidx.cardview.widget.CardView
                     android:id="@+id/user_picker_card"
                     android:layout_width="@dimen/user_picker_size"
                     android:layout_height="@dimen/user_picker_size"
                     android:layout_marginBottom="@dimen/spacing_smlarge"
                     android:layout_marginEnd="@dimen/spacing_smlarge"
-                    android:background="@drawable/btn_white">
-                    <LinearLayout
+                    app:cardBackgroundColor="@color/white"
+                    app:cardCornerRadius="@dimen/corner_radius"
+                    app:cardElevation="@dimen/card_elevation">
+                    <com.balysv.materialripple.MaterialRippleLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical"
-                        android:padding="@dimen/spacing_small">
-                        <RelativeLayout
+                        android:layout_height="match_parent">
+                        <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="1">
-                            <androidx.appcompat.widget.AppCompatImageView
-                                android:id="@+id/user_picker_image"
-                                android:layout_width="@dimen/user_picker_image"
-                                android:layout_height="@dimen/user_picker_image"
-                                android:layout_centerInParent="true"
-                                app:srcCompat="@drawable/ic_patient"/>
-                        </RelativeLayout>
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:id="@+id/user_picker_name"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/spacing_small"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Title"
-                            android:fontFamily="@font/latosemibold"
-                            android:singleLine="true"
-                            android:layout_gravity="center"
-                            android:textColor="@color/primary_text"
-                            android:text="@string/users_patient"/>
-                    </LinearLayout>
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:padding="@dimen/spacing_small">
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1">
+                                <androidx.appcompat.widget.AppCompatImageView
+                                    android:id="@+id/user_picker_image"
+                                    android:layout_width="@dimen/user_picker_image"
+                                    android:layout_height="@dimen/user_picker_image"
+                                    android:layout_centerInParent="true"
+                                    app:srcCompat="@drawable/ic_patient"/>
+                            </RelativeLayout>
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/user_picker_name"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/spacing_small"
+                                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                                android:fontFamily="@font/latosemibold"
+                                android:singleLine="true"
+                                android:layout_gravity="center"
+                                android:layout_marginBottom="@dimen/spacing_middle"
+                                android:textColor="@color/primary_text"
+                                android:text="@string/users_patient"/>
+                        </LinearLayout>
 
-                </com.balysv.materialripple.MaterialRippleLayout>
-                <com.balysv.materialripple.MaterialRippleLayout
+                    </com.balysv.materialripple.MaterialRippleLayout>
+
+                </androidx.cardview.widget.CardView>
+                <androidx.cardview.widget.CardView
                     android:id="@+id/doctor_picker_card"
                     android:layout_width="@dimen/user_picker_size"
                     android:layout_height="@dimen/user_picker_size"
                     android:layout_marginBottom="@dimen/spacing_smlarge"
-                    android:background="@drawable/btn_white">
-                    <LinearLayout
+                    app:cardBackgroundColor="@color/white"
+                    app:cardCornerRadius="@dimen/corner_radius"
+                    app:cardElevation="@dimen/card_elevation">
+                    <com.balysv.materialripple.MaterialRippleLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical"
-                        android:padding="@dimen/spacing_small">
-                        <RelativeLayout
+                        android:layout_height="match_parent">
+                        <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="1">
-                            <androidx.appcompat.widget.AppCompatImageView
-                                android:id="@+id/doctor_picker_image"
-                                android:layout_width="@dimen/user_picker_image"
-                                android:layout_height="@dimen/user_picker_image"
-                                android:layout_centerInParent="true"
-                                app:srcCompat="@drawable/ic_doctor"/>
-                        </RelativeLayout>
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:id="@+id/doctor_picker_name"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/spacing_small"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Title"
-                            android:fontFamily="@font/latosemibold"
-                            android:layout_gravity="center"
-                            android:singleLine="true"
-                            android:textColor="@color/primary_text"
-                            android:text="@string/users_doctor"/>
-                    </LinearLayout>
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:padding="@dimen/spacing_small">
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1">
+                                <androidx.appcompat.widget.AppCompatImageView
+                                    android:id="@+id/doctor_picker_image"
+                                    android:layout_width="@dimen/user_picker_image"
+                                    android:layout_height="@dimen/user_picker_image"
+                                    android:layout_centerInParent="true"
+                                    app:srcCompat="@drawable/ic_doctor"/>
+                            </RelativeLayout>
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/doctor_picker_name"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/spacing_small"
+                                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                                android:fontFamily="@font/latosemibold"
+                                android:layout_gravity="center"
+                                android:singleLine="true"
+                                android:layout_marginBottom="@dimen/spacing_middle"
+                                android:textColor="@color/primary_text"
+                                android:text="@string/users_doctor"/>
+                        </LinearLayout>
 
-                </com.balysv.materialripple.MaterialRippleLayout>
-                <com.balysv.materialripple.MaterialRippleLayout
+                    </com.balysv.materialripple.MaterialRippleLayout>
+                </androidx.cardview.widget.CardView>
+                <androidx.cardview.widget.CardView
                     android:id="@+id/nurse_picker_card"
                     android:layout_width="@dimen/user_picker_size"
                     android:layout_height="@dimen/user_picker_size"
                     android:layout_marginBottom="@dimen/spacing_smlarge"
-                    android:layout_marginEnd="@dimen/spacing_smlarge"
-                    android:background="@drawable/btn_white">
-                    <LinearLayout
+                    app:cardBackgroundColor="@color/white"
+                    app:cardCornerRadius="@dimen/corner_radius"
+                    app:cardElevation="@dimen/card_elevation">
+                    <com.balysv.materialripple.MaterialRippleLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical"
-                        android:padding="@dimen/spacing_small">
-                        <RelativeLayout
+                        android:layout_height="match_parent">
+                        <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="1">
-                            <androidx.appcompat.widget.AppCompatImageView
-                                android:id="@+id/nurse_picker_image"
-                                android:layout_width="@dimen/user_picker_image"
-                                android:layout_height="@dimen/user_picker_image"
-                                android:layout_centerInParent="true"
-                                app:srcCompat="@drawable/ic_nurse"/>
-                        </RelativeLayout>
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:id="@+id/nurse_picker_name"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/spacing_small"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Title"
-                            android:fontFamily="@font/latosemibold"
-                            android:layout_gravity="center"
-                            android:singleLine="true"
-                            android:textColor="@color/primary_text"
-                            android:text="@string/users_nurse"/>
-                    </LinearLayout>
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:padding="@dimen/spacing_small">
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1">
+                                <androidx.appcompat.widget.AppCompatImageView
+                                    android:id="@+id/nurse_picker_image"
+                                    android:layout_width="@dimen/user_picker_image"
+                                    android:layout_height="@dimen/user_picker_image"
+                                    android:layout_centerInParent="true"
+                                    app:srcCompat="@drawable/ic_nurse"/>
+                            </RelativeLayout>
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/nurse_picker_name"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/spacing_small"
+                                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                                android:fontFamily="@font/latosemibold"
+                                android:layout_gravity="center"
+                                android:singleLine="true"
+                                android:layout_marginBottom="@dimen/spacing_middle"
+                                android:textColor="@color/primary_text"
+                                android:text="@string/users_nurse"/>
+                        </LinearLayout>
 
-                </com.balysv.materialripple.MaterialRippleLayout>
-                <com.balysv.materialripple.MaterialRippleLayout
+                    </com.balysv.materialripple.MaterialRippleLayout>
+                </androidx.cardview.widget.CardView>
+                <androidx.cardview.widget.CardView
                     android:id="@+id/hospital_picker_card"
                     android:layout_width="@dimen/user_picker_size"
                     android:layout_height="@dimen/user_picker_size"
                     android:layout_marginBottom="@dimen/spacing_smlarge"
-                    android:background="@drawable/btn_white">
-                    <LinearLayout
+                    app:cardBackgroundColor="@color/white"
+                    app:cardCornerRadius="@dimen/corner_radius"
+                    app:cardElevation="@dimen/card_elevation">
+                    <com.balysv.materialripple.MaterialRippleLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical"
-                        android:padding="@dimen/spacing_small">
-                        <RelativeLayout
+                        android:layout_height="match_parent">
+                        <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="1">
-                            <androidx.appcompat.widget.AppCompatImageView
-                                android:id="@+id/hospital_picker_image"
-                                android:layout_width="@dimen/user_picker_image"
-                                android:layout_height="@dimen/user_picker_image"
-                                android:layout_centerInParent="true"
-                                app:srcCompat="@drawable/ic_hospital"/>
-                        </RelativeLayout>
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:id="@+id/hospital_picker_name"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/spacing_small"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Title"
-                            android:fontFamily="@font/latosemibold"
-                            android:layout_gravity="center"
-                            android:singleLine="true"
-                            android:textColor="@color/primary_text"
-                            android:text="@string/users_hospital"/>
-                    </LinearLayout>
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:padding="@dimen/spacing_small">
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1">
+                                <androidx.appcompat.widget.AppCompatImageView
+                                    android:id="@+id/hospital_picker_image"
+                                    android:layout_width="@dimen/user_picker_image"
+                                    android:layout_height="@dimen/user_picker_image"
+                                    android:layout_centerInParent="true"
+                                    app:srcCompat="@drawable/ic_hospital"/>
+                            </RelativeLayout>
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/hospital_picker_name"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/spacing_small"
+                                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                                android:fontFamily="@font/latosemibold"
+                                android:layout_gravity="center"
+                                android:singleLine="true"
+                                android:layout_marginBottom="@dimen/spacing_middle"
+                                android:textColor="@color/primary_text"
+                                android:text="@string/users_hospital"/>
+                        </LinearLayout>
 
-                </com.balysv.materialripple.MaterialRippleLayout>
-                <com.balysv.materialripple.MaterialRippleLayout
+                    </com.balysv.materialripple.MaterialRippleLayout>
+                </androidx.cardview.widget.CardView>
+                <androidx.cardview.widget.CardView
                     android:id="@+id/lab_technician_picker_card"
                     android:layout_width="@dimen/user_picker_size"
                     android:layout_height="@dimen/user_picker_size"
-                    android:layout_marginBottom="@dimen/spacing_smlarge"
                     android:layout_marginEnd="@dimen/spacing_smlarge"
-                    android:background="@drawable/btn_white">
-                    <LinearLayout
+                    app:cardBackgroundColor="@color/white"
+                    app:cardCornerRadius="@dimen/corner_radius"
+                    app:cardElevation="@dimen/card_elevation">
+                    <com.balysv.materialripple.MaterialRippleLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical"
-                        android:padding="@dimen/spacing_small">
-                        <RelativeLayout
+                        android:layout_height="match_parent">
+                        <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="1">
-                            <androidx.appcompat.widget.AppCompatImageView
-                                android:id="@+id/lab_technician_picker_image"
-                                android:layout_width="@dimen/user_picker_image"
-                                android:layout_height="@dimen/user_picker_image"
-                                android:layout_centerInParent="true"
-                                app:srcCompat="@drawable/ic_lab"/>
-                        </RelativeLayout>
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:id="@+id/lab_technician_picker_name"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/spacing_small"
-                            android:singleLine="true"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Title"
-                            android:fontFamily="@font/latosemibold"
-                            android:layout_gravity="center"
-                            android:textColor="@color/primary_text"
-                            android:text="@string/users_lab_technician"/>
-                    </LinearLayout>
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:padding="@dimen/spacing_small">
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1">
+                                <androidx.appcompat.widget.AppCompatImageView
+                                    android:id="@+id/lab_technician_picker_image"
+                                    android:layout_width="@dimen/user_picker_image"
+                                    android:layout_height="@dimen/user_picker_image"
+                                    android:layout_centerInParent="true"
+                                    app:srcCompat="@drawable/ic_lab"/>
+                            </RelativeLayout>
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/lab_technician_picker_name"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/spacing_small"
+                                android:singleLine="true"
+                                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                                android:fontFamily="@font/latosemibold"
+                                android:layout_gravity="center"
+                                android:layout_marginBottom="@dimen/spacing_middle"
+                                android:textColor="@color/primary_text"
+                                android:text="@string/users_lab_technician"/>
+                        </LinearLayout>
 
-                </com.balysv.materialripple.MaterialRippleLayout>
-                <com.balysv.materialripple.MaterialRippleLayout
+                    </com.balysv.materialripple.MaterialRippleLayout>
+                </androidx.cardview.widget.CardView>
+                <androidx.cardview.widget.CardView
                     android:id="@+id/pharmacist_picker_card"
                     android:layout_width="@dimen/user_picker_size"
                     android:layout_height="@dimen/user_picker_size"
-                    android:layout_marginBottom="@dimen/spacing_smlarge"
-                    android:background="@drawable/btn_white">
-                    <LinearLayout
+                    app:cardBackgroundColor="@color/white"
+                    app:cardCornerRadius="@dimen/corner_radius"
+                    app:cardElevation="@dimen/card_elevation">
+                    <com.balysv.materialripple.MaterialRippleLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical"
-                        android:padding="@dimen/spacing_small">
-                        <RelativeLayout
+                        android:layout_height="match_parent">
+                        <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="0dp"
-                            android:layout_weight="1">
-                            <androidx.appcompat.widget.AppCompatImageView
-                                android:id="@+id/pharmacist_picker_image"
-                                android:layout_width="@dimen/user_picker_image"
-                                android:layout_height="@dimen/user_picker_image"
-                                android:layout_centerInParent="true"
-                                app:srcCompat="@drawable/ic_pharmacist"/>
-                        </RelativeLayout>
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:id="@+id/pharmacist_picker_name"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/spacing_small"
-                            android:textAppearance="@style/TextAppearance.AppCompat.Title"
-                            android:fontFamily="@font/latosemibold"
-                            android:layout_gravity="center"
-                            android:singleLine="true"
-                            android:textColor="@color/primary_text"
-                            android:text="@string/users_pharmacist"/>
-                    </LinearLayout>
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:padding="@dimen/spacing_small">
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1">
+                                <androidx.appcompat.widget.AppCompatImageView
+                                    android:id="@+id/pharmacist_picker_image"
+                                    android:layout_width="@dimen/user_picker_image"
+                                    android:layout_height="@dimen/user_picker_image"
+                                    android:layout_centerInParent="true"
+                                    app:srcCompat="@drawable/ic_pharmacist"/>
+                            </RelativeLayout>
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/pharmacist_picker_name"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/spacing_small"
+                                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                                android:fontFamily="@font/latosemibold"
+                                android:layout_gravity="center"
+                                android:singleLine="true"
+                                android:layout_marginBottom="@dimen/spacing_middle"
+                                android:textColor="@color/primary_text"
+                                android:text="@string/users_pharmacist"/>
+                        </LinearLayout>
 
-                </com.balysv.materialripple.MaterialRippleLayout>
+                    </com.balysv.materialripple.MaterialRippleLayout>
+                </androidx.cardview.widget.CardView>
             </GridLayout>
 
         </LinearLayout>

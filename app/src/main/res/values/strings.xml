@@ -11,6 +11,7 @@
     <string name="action_next">Next</string>
     <string name="action_finish">Finish</string>
     <string name="action_previous">Previous</string>
+    <string name="action_get">Get</string>
     <string name="action_edit_profile">Edit Profile</string>
     <string name="text_create_account">Create account</string>
     <string name="text_create_account_step_1_hint">I want to join as a</string>
@@ -26,8 +27,12 @@
     <string name="text_field_user_blood_group">Blood group</string>
     <string name="text_field_user_genotype">Genotype</string>
     <string name="text_field_user_bio_data">Bio data</string>
-    <string name="text_field_doctor_soo">State of origin</string>
-    <string name="text_field_doctor_lga">Local government</string>
+    <string name="text_field_user_soo">State of origin</string>
+    <string name="text_field_user_lga">Local government</string>
+    <string name="text_field_user_college_of_study">College of study</string>
+    <string name="text_field_user_university">University</string>
+    <string name="text_field_user_alma_mata">Alma mata</string>
+    <string name="text_field_user_referees_contacts">Referees and Contact</string>
     <string name="text_sign_in_with">Sign in with</string>
     <string name="text_network_not_available">No Internet Connection</string>
     <string name="text_network_not_available_hint">Seems you dropped off the radar there!!!</string>
@@ -39,6 +44,13 @@
     <string name="text_profile_privacy_policy">Privacy Policy</string>
     <string name="text_profile_subscriptions">Subscriptions</string>
     <string name="text_profile_subscriptions_hint">Update or check your subscriptions</string>
+    <string name="text_subscription_features">Features</string>
+    <string name="text_subscription_user_feature_free">Free</string>
+    <string name="text_subscription_user_feature_free_1">1 doctor</string>
+    <string name="text_subscription_user_feature_free_2">1 pharmacist</string>
+    <string name="text_subscription_user_feature_free_3">1 nurse</string>
+    <string name="text_subscription_user_feature_intermediate">Intermediate</string>
+    <string name="text_subscription_user_feature_professional">Professional</string>
     <string name="text_discover_find_hospital">Find Nearby Hospital</string>
     <string name="nav_feeds">Timeline</string>
     <string name="nav_profile">Profile</string>

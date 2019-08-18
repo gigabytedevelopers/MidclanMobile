@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    android:id="@+id/user_subscription_card"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="@dimen/card_subscriptioon_width"
+    android:layout_height="wrap_content"
+    app:cardBackgroundColor="@color/white"
+    app:cardCornerRadius="@dimen/corner_radius"
+    app:cardElevation="@dimen/card_elevation"
+    app:contentPadding="@dimen/spacing_medium"
+    app:cardUseCompatPadding="true"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/user_subscription_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                android:fontFamily="@font/latoblack"
+                android:textColor="@color/primary_text"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/spacing_large"
+                tools:text="Free"/>
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/user_subscription_amount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                android:fontFamily="@font/latoblack"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/spacing_xmedium"
+                tools:text="$200"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:fontFamily="@font/latosemibolditalic"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/spacing_xmedium"
+                android:text="@string/text_subscription_features"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/user_subscription_feature_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:fontFamily="@font/latoregular"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/spacing_small"
+                tools:text="@string/text_subscription_user_feature_free_1"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/user_subscription_feature_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:fontFamily="@font/latoregular"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/spacing_small"
+                tools:text="@string/text_subscription_user_feature_free_2"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/user_subscription_feature_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:fontFamily="@font/latoregular"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/spacing_small"
+                tools:text="@string/text_subscription_user_feature_free_3"/>
+
+
+            <com.balysv.materialripple.MaterialRippleLayout
+                android:id="@+id/sign_in_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:mrl_rippleColor="@color/colorAccent"
+                app:mrl_rippleOverlay="true"
+                app:mrl_rippleDuration="350"
+                app:mrl_rippleFadeDuration="75"
+                app:mrl_rippleDelayClick="true"
+                android:layout_marginTop="@dimen/spacing_large"
+                android:background="@drawable/btn_coloured"
+                android:layout_marginBottom="@dimen/spacing_mlarge">
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/action_get"
+                    android:layout_gravity="center_horizontal"
+                    android:textColor="@color/white"
+                    android:fontFamily="@font/latobold"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Button"/>
+            </com.balysv.materialripple.MaterialRippleLayout>
+        </LinearLayout>
+
+
+    </FrameLayout>
+
+
+</androidx.cardview.widget.CardView>

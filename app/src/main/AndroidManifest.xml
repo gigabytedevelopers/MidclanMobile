@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".activities.SearchActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
             android:name=".activities.NotificationActivity"
             android:label="@string/title_activity_notification"
             android:parentActivityName=".activities.MainActivity"
