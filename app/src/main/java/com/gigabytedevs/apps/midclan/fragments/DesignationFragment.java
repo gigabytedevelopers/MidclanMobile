@@ -50,19 +50,46 @@ public class DesignationFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         patientRipple = view.findViewById(R.id.patient_ripple);
+        doctorRipple = view.findViewById(R.id.doctor_ripple);
+        nurseRipple = view.findViewById(R.id.nurse_ripple);
+        pharmRipple = view.findViewById(R.id.pharm_ripple);
+        labTechRipple = view.findViewById(R.id.lab_tech_ripple);
+        hospitalRipple = view.findViewById(R.id.hospital_ripple);
         tinyDb = new TinyDb(getContext());
 
-        patientRipple.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        patientRipple.setOnClickListener(view1 -> {
+            fireEventAndSaveCategory("patient");
 
-                //using event bus to send a message to the Register Activity
-                EventBus.getDefault().post(new ChangeFrameEvent( "patient"));
-                //save the category the user has choosen
-                tinyDb.putString("category", "patient");
-                EventBus.getDefault().post(new ButtonVisibilityEvent(1));
-            }
         });
 
+        doctorRipple.setOnClickListener(view12 -> {
+            fireEventAndSaveCategory("doctor");
+        });
+
+        nurseRipple.setOnClickListener(view1->{
+            fireEventAndSaveCategory("nurse");
+        });
+
+        hospitalRipple.setOnClickListener(view1->{
+            fireEventAndSaveCategory("hospital");
+        });
+
+        labTechRipple.setOnClickListener(view1->{
+            fireEventAndSaveCategory("lab_tech");
+        });
+
+        pharmRipple.setOnClickListener(view1->{
+            fireEventAndSaveCategory("pharm");
+        });
+
+    }
+
+    private void fireEventAndSaveCategory(String category){
+        //using event bus to send a message to the Register Activity
+        EventBus.getDefault().post(new ChangeFrameEvent( category));
+        //save the category the user has choosen
+        tinyDb.putString("category", category);
+        //for the next session and previous session buttons to come into view
+        EventBus.getDefault().post(new ButtonVisibilityEvent(1));
     }
 }

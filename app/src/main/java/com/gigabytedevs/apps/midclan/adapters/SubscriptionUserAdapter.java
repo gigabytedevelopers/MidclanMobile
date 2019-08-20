@@ -53,7 +53,7 @@ public class SubscriptionUserAdapter extends RecyclerView.Adapter<SubscriptionUs
         holder.subscriptionAmount.setText(subscriptionUserModel.getSubscriptionAmount());
         holder.featureInfo1.setText(subscriptionUserModel.getFeatureInfo1());
         holder.featureInfo2.setText(subscriptionUserModel.getFeatureInfo2());
-        holder.featureInfo1.setText(subscriptionUserModel.getFeatureInfo2());
+        holder.featureInfo3.setText(subscriptionUserModel.getFeatureInfo3());
     }
 
     @Override

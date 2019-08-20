@@ -76,8 +76,7 @@ public class RegisterActivity extends AppCompatActivity {
      *                     that the previous button was clicked
      */
     private void switchFragments(String whichAccount, int whichClicked){
-        Toast.makeText(this, String.valueOf(count), Toast.LENGTH_SHORT).show();
-        if (whichAccount.equals("patient")){
+
             if (count <= 3 && whichClicked == 1){
                 count++;
             }else if (whichClicked == 0){
@@ -122,7 +121,7 @@ public class RegisterActivity extends AppCompatActivity {
                 previousSession.setVisibility(View.VISIBLE);
                 nextSessionText.setText(getString(R.string.action_finish));
             }
-        }
+
 
     }
 
@@ -164,6 +163,11 @@ public class RegisterActivity extends AppCompatActivity {
         EventBus.getDefault().unregister(this);
     }
 
+    /**
+     * This is a method that is used by the eventbus library for events
+     * @param event this param is representing the event that was passed to this method from the
+     *              DesignationFragment
+     */
     @Subscribe
     public void onEvent(ButtonVisibilityEvent event){
         if (event.getVisible() == 0){
@@ -175,9 +179,13 @@ public class RegisterActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * This is a method that is used by the eventbus library for events
+     * @param event this param is representing the event that was passed to this method from the
+     *              DesignationFragment
+     */
     @Subscribe
     public void onEvent(ChangeFrameEvent event){
-        if (event.getChoose().equals("patient")){
             count++;
             Toast.makeText(this, String.valueOf(count), Toast.LENGTH_SHORT).show();
             UserAccountInfoFragment userAccountInfoFragment = new UserAccountInfoFragment();
@@ -185,7 +193,7 @@ public class RegisterActivity extends AppCompatActivity {
             userAccountInfoTransaction.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
             userAccountInfoTransaction.replace(R.id.frame_content, userAccountInfoFragment);
             userAccountInfoTransaction.commit();
-        }
+
     }
 
 }

@@ -98,7 +98,8 @@
                     app:cardElevation="@dimen/card_elevation">
                     <com.balysv.materialripple.MaterialRippleLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_height="match_parent"
+                        android:id="@+id/doctor_ripple">
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
@@ -141,7 +142,8 @@
                     app:cardElevation="@dimen/card_elevation">
                     <com.balysv.materialripple.MaterialRippleLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_height="match_parent"
+                        android:id="@+id/nurse_ripple">
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
@@ -184,7 +186,8 @@
                     app:cardElevation="@dimen/card_elevation">
                     <com.balysv.materialripple.MaterialRippleLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_height="match_parent"
+                        android:id="@+id/hospital_ripple">
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
@@ -227,7 +230,8 @@
                     app:cardElevation="@dimen/card_elevation">
                     <com.balysv.materialripple.MaterialRippleLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_height="match_parent"
+                        android:id="@+id/lab_tech_ripple">
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
@@ -269,7 +273,8 @@
                     app:cardElevation="@dimen/card_elevation">
                     <com.balysv.materialripple.MaterialRippleLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_height="match_parent"
+                        android:id="@+id/pharm_ripple">
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"

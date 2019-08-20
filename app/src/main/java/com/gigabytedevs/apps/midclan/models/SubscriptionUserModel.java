@@ -11,6 +11,19 @@ public class SubscriptionUserModel {
         this.featureInfo3 = featureInfo3;
     }
 
+    public SubscriptionUserModel(String subscriptionType, String subscriptionAmount, String featureInfo1, String featureInfo2){
+        this.subscriptionType = subscriptionType;
+        this.subscriptionAmount = subscriptionAmount;
+        this.featureInfo1 = featureInfo1;
+        this.featureInfo2 = featureInfo2;
+    }
+
+    public SubscriptionUserModel(String subscriptionType, String subscriptionAmount){
+        this.subscriptionType = subscriptionType;
+        this.subscriptionAmount = subscriptionAmount;
+    }
+
+
     public String getSubscriptionType() {
         return subscriptionType;
     }
