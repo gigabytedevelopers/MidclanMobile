@@ -57,12 +57,7 @@
                 android:layout_marginEnd="@dimen/spacing_medium"
                 android:layout_toEndOf="@id/second_dot_user_account_info"
                 app:srcCompat="@drawable/shape_round_outline_primary"/>
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/final_dot_subscription"
-                android:layout_width="@dimen/icon_dot"
-                android:layout_height="@dimen/icon_dot"
-                android:layout_toEndOf="@id/third_dot_user_info"
-                app:srcCompat="@drawable/shape_round_outline_primary"/>
+
         </RelativeLayout>
     </RelativeLayout>
 

@@ -24,9 +24,9 @@ import org.greenrobot.eventbus.Subscribe;
 
 public class RegisterActivity extends AppCompatActivity {
     private MaterialRippleLayout backBtn, nextSession, previousSession;
-    private AppCompatImageView firstDotDesignation, secondDot,thirdDot,fourthDot;
+    private AppCompatImageView firstDotDesignation, secondDot,thirdDot;
     private AppCompatTextView nextSessionText;
-    public static int count = 1;
+    public static int count = 0;
     private TinyDb tinyDb;
 
 
@@ -38,13 +38,13 @@ public class RegisterActivity extends AppCompatActivity {
         firstDotDesignation = findViewById(R.id.first_dot_designation);
         secondDot = findViewById(R.id.second_dot_user_account_info);
         thirdDot = findViewById(R.id.third_dot_user_info);
-        fourthDot = findViewById(R.id.final_dot_subscription);
         nextSession = findViewById(R.id.next_session);
         nextSessionText = findViewById(R.id.next_session_text);
         previousSession = findViewById(R.id.previous_session);
         tinyDb = new TinyDb(this);
         backBtn.setOnClickListener(view -> {
             onBackPressed();
+            count = 0;
         });
 
         DesignationFragment designationFragment = new DesignationFragment();
@@ -56,16 +56,32 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //category gotten from the designation fragment
-                switchFragments(tinyDb.getString("category"));
+                switchFragments(tinyDb.getString("category"), 1);
+            }
+        });
+
+        previousSession.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                switchFragments(tinyDb.getString("category"), 0);
             }
         });
     }
 
-    private void switchFragments(String whichAccount){
+    /**
+     *
+     * @param whichAccount this is the string that holds which account or cateory the user has selected
+     * @param whichClicked this is the int which determines if the next button was clicked or the previous
+     *                     was clicked 1 representing that the next button was clicked and 0 representing
+     *                     that the previous button was clicked
+     */
+    private void switchFragments(String whichAccount, int whichClicked){
         Toast.makeText(this, String.valueOf(count), Toast.LENGTH_SHORT).show();
         if (whichAccount.equals("patient")){
-            if (count <= 3 ){
+            if (count <= 3 && whichClicked == 1){
                 count++;
+            }else if (whichClicked == 0){
+                count--;
             }
 
             switchDots();
@@ -76,58 +92,64 @@ public class RegisterActivity extends AppCompatActivity {
                 designationTransaction.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
                 designationTransaction.replace(R.id.frame_content,designationFragment);
                 designationTransaction.commit();
+                nextSession.setVisibility(View.INVISIBLE);
+                previousSession.setVisibility(View.INVISIBLE);
             }else if(count == 1){
                 UserAccountInfoFragment userAccountInfoFragment = new UserAccountInfoFragment();
                 FragmentTransaction userAccountInfoTransaction = getSupportFragmentManager().beginTransaction();
                 userAccountInfoTransaction.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
                 userAccountInfoTransaction.replace(R.id.frame_content, userAccountInfoFragment);
                 userAccountInfoTransaction.commit();
-                EventBus.getDefault().post(new ButtonVisibilityEvent(1));
-
+                firstDotDesignation.setVisibility(View.VISIBLE);
+                secondDot.setVisibility(View.VISIBLE);
+                thirdDot.setVisibility(View.VISIBLE);
+                previousSession.setVisibility(View.INVISIBLE);
+                nextSessionText.setText(getString(R.string.action_continue));
             }else if(count == 2){
                 UserInfoFragment userInfoFragment = new UserInfoFragment();
                 FragmentTransaction userInfoInfoTransaction = getSupportFragmentManager().beginTransaction();
                 userInfoInfoTransaction.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
                 userInfoInfoTransaction.replace(R.id.frame_content, userInfoFragment);
                 userInfoInfoTransaction.commit();
-
+                previousSession.setVisibility(View.VISIBLE);
+                nextSessionText.setText(getString(R.string.action_continue));
             }else if(count == 3) {
                 SubscriptionFragment subscriptionFragment = new SubscriptionFragment();
                 FragmentTransaction subscriptionTransaction = getSupportFragmentManager().beginTransaction();
                 subscriptionTransaction.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
                 subscriptionTransaction.replace(R.id.frame_content, subscriptionFragment);
                 subscriptionTransaction.commit();
-//                previousSession.setVisibility(View.VISIBLE);
+                previousSession.setVisibility(View.VISIBLE);
                 nextSessionText.setText(getString(R.string.action_finish));
             }
         }
 
     }
 
+    /**
+     * The switchDots method is for switching the dots depending on the parameter whichclicked
+     * if it was the next button or the previous button
+     *
+     */
     private void switchDots() {
-        if (count == 0) {
+        if (count == 1) {
             firstDotDesignation.setImageResource(R.drawable.shape_round_primary);
         } else {
             firstDotDesignation.setImageResource(R.drawable.shape_round_outline_primary);
         }
 
-        if (count == 1){
+        if (count == 2){
             secondDot.setImageResource(R.drawable.shape_round_primary);
         }else {
             secondDot.setImageResource(R.drawable.shape_round_outline_primary);
         }
 
-        if (count == 2){
+        if (count == 3){
             thirdDot.setImageResource(R.drawable.shape_round_primary);
         }else {
             thirdDot.setImageResource(R.drawable.shape_round_outline_primary);
         }
 
-        if (count == 3){
-            fourthDot.setImageResource(R.drawable.shape_round_primary);
-        }else {
-            fourthDot.setImageResource(R.drawable.shape_round_outline_primary);
-        }
     }
 
     @Override
@@ -156,6 +178,8 @@ public class RegisterActivity extends AppCompatActivity {
     @Subscribe
     public void onEvent(ChangeFrameEvent event){
         if (event.getChoose().equals("patient")){
+            count++;
+            Toast.makeText(this, String.valueOf(count), Toast.LENGTH_SHORT).show();
             UserAccountInfoFragment userAccountInfoFragment = new UserAccountInfoFragment();
             FragmentTransaction userAccountInfoTransaction = getSupportFragmentManager().beginTransaction();
             userAccountInfoTransaction.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right);

@@ -29,7 +29,8 @@ import org.greenrobot.eventbus.EventBus;
  * A simple {@link Fragment} subclass.
  */
 public class DesignationFragment extends Fragment {
-    private MaterialRippleLayout patientRipple;
+    private MaterialRippleLayout patientRipple, doctorRipple, nurseRipple,
+                                    hospitalRipple,labTechRipple, pharmRipple;
     private TinyDb tinyDb;
 
     public DesignationFragment() {
