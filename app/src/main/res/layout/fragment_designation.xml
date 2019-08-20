@@ -53,7 +53,8 @@
                     app:cardElevation="@dimen/card_elevation">
                     <com.balysv.materialripple.MaterialRippleLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_height="match_parent"
+                        android:id="@+id/patient_ripple">
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"

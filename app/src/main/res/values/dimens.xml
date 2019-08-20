@@ -18,7 +18,7 @@
     <dimen name="marginMedium">18dp</dimen>
 
     <dimen name="btn_width_small">50dp</dimen>
-    <dimen name="corner_radius">4dp</dimen>
+    <dimen name="corner_radius">10dp</dimen>
     <dimen name="card_elevation">2dp</dimen>
     <dimen name="card_subscriptioon_width">250dp</dimen>
 

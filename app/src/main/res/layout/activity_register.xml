@@ -98,6 +98,7 @@
                 android:id="@+id/next_session"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/btn_width_small"
+                android:visibility="gone"
                 android:layout_weight="1"
                 android:background="@drawable/btn_custom_white">
 

@@ -2,6 +2,7 @@ package com.gigabytedevs.apps.midclan.activities;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatImageView;
@@ -14,12 +15,20 @@ import com.gigabytedevs.apps.midclan.fragments.DesignationFragment;
 import com.gigabytedevs.apps.midclan.fragments.SubscriptionFragment;
 import com.gigabytedevs.apps.midclan.fragments.UserAccountInfoFragment;
 import com.gigabytedevs.apps.midclan.fragments.UserInfoFragment;
+import com.gigabytedevs.apps.midclan.utils.TinyDb;
+import com.gigabytedevs.apps.midclan.utils.events.ButtonVisibilityEvent;
+import com.gigabytedevs.apps.midclan.utils.events.ChangeFrameEvent;
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+
 
 public class RegisterActivity extends AppCompatActivity {
     private MaterialRippleLayout backBtn, nextSession, previousSession;
     private AppCompatImageView firstDotDesignation, secondDot,thirdDot,fourthDot;
     private AppCompatTextView nextSessionText;
-    private int count = 0;
+    public static int count = 1;
+    private TinyDb tinyDb;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,17 +42,9 @@ public class RegisterActivity extends AppCompatActivity {
         nextSession = findViewById(R.id.next_session);
         nextSessionText = findViewById(R.id.next_session_text);
         previousSession = findViewById(R.id.previous_session);
+        tinyDb = new TinyDb(this);
         backBtn.setOnClickListener(view -> {
             onBackPressed();
-        });
-
-        nextSession.setOnClickListener(view -> {
-            switchFragments("next");
-
-        });
-
-        previousSession.setOnClickListener(view -> {
-            switchFragments("previous");
         });
 
         DesignationFragment designationFragment = new DesignationFragment();
@@ -51,12 +52,18 @@ public class RegisterActivity extends AppCompatActivity {
         designationTransaction.replace(R.id.frame_content,designationFragment);
         designationTransaction.commit();
 
-
+        nextSession.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //category gotten from the designation fragment
+                switchFragments(tinyDb.getString("category"));
+            }
+        });
     }
 
-
-    private void switchFragments(String whichButton){
-        if (whichButton.equals("next")){
+    private void switchFragments(String whichAccount){
+        Toast.makeText(this, String.valueOf(count), Toast.LENGTH_SHORT).show();
+        if (whichAccount.equals("patient")){
             if (count <= 3 ){
                 count++;
             }
@@ -69,49 +76,29 @@ public class RegisterActivity extends AppCompatActivity {
                 designationTransaction.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
                 designationTransaction.replace(R.id.frame_content,designationFragment);
                 designationTransaction.commit();
-                previousSession.setVisibility(View.INVISIBLE);
-
             }else if(count == 1){
                 UserAccountInfoFragment userAccountInfoFragment = new UserAccountInfoFragment();
                 FragmentTransaction userAccountInfoTransaction = getSupportFragmentManager().beginTransaction();
                 userAccountInfoTransaction.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
                 userAccountInfoTransaction.replace(R.id.frame_content, userAccountInfoFragment);
                 userAccountInfoTransaction.commit();
-                previousSession.setVisibility(View.VISIBLE);
+                EventBus.getDefault().post(new ButtonVisibilityEvent(1));
+
             }else if(count == 2){
                 UserInfoFragment userInfoFragment = new UserInfoFragment();
                 FragmentTransaction userInfoInfoTransaction = getSupportFragmentManager().beginTransaction();
                 userInfoInfoTransaction.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
                 userInfoInfoTransaction.replace(R.id.frame_content, userInfoFragment);
                 userInfoInfoTransaction.commit();
-                previousSession.setVisibility(View.VISIBLE);
+
             }else if(count == 3) {
                 SubscriptionFragment subscriptionFragment = new SubscriptionFragment();
                 FragmentTransaction subscriptionTransaction = getSupportFragmentManager().beginTransaction();
                 subscriptionTransaction.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
                 subscriptionTransaction.replace(R.id.frame_content, subscriptionFragment);
                 subscriptionTransaction.commit();
-                previousSession.setVisibility(View.VISIBLE);
+//                previousSession.setVisibility(View.VISIBLE);
                 nextSessionText.setText(getString(R.string.action_finish));
-            }
-        }else{
-            if (count > 0 ){
-                count--;
-            }
-
-            if (count == 0){
-                DesignationFragment designationFragment = new DesignationFragment();
-                FragmentTransaction designationTransaction = getSupportFragmentManager().beginTransaction();
-                designationTransaction.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
-                designationTransaction.replace(R.id.frame_content,designationFragment);
-                designationTransaction.commit();
-            }else if(count == 1){
-                UserAccountInfoFragment userAccountInfoFragment = new UserAccountInfoFragment();
-                FragmentTransaction userAccountInfoTransaction = getSupportFragmentManager().beginTransaction();
-                userAccountInfoTransaction.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
-                userAccountInfoTransaction.replace(R.id.frame_content, userAccountInfoFragment);
-                userAccountInfoTransaction.commit();
-                previousSession.setVisibility(View.VISIBLE);
             }
         }
 
@@ -142,4 +129,39 @@ public class RegisterActivity extends AppCompatActivity {
             fourthDot.setImageResource(R.drawable.shape_round_outline_primary);
         }
     }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        EventBus.getDefault().register(this);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        EventBus.getDefault().unregister(this);
+    }
+
+    @Subscribe
+    public void onEvent(ButtonVisibilityEvent event){
+        if (event.getVisible() == 0){
+            nextSession.setVisibility(View.INVISIBLE);
+            previousSession.setVisibility(View.INVISIBLE);
+        }else {
+            nextSession.setVisibility(View.VISIBLE);
+            previousSession.setVisibility(View.VISIBLE);
+        }
+    }
+
+    @Subscribe
+    public void onEvent(ChangeFrameEvent event){
+        if (event.getChoose().equals("patient")){
+            UserAccountInfoFragment userAccountInfoFragment = new UserAccountInfoFragment();
+            FragmentTransaction userAccountInfoTransaction = getSupportFragmentManager().beginTransaction();
+            userAccountInfoTransaction.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+            userAccountInfoTransaction.replace(R.id.frame_content, userAccountInfoFragment);
+            userAccountInfoTransaction.commit();
+        }
+    }
+
 }

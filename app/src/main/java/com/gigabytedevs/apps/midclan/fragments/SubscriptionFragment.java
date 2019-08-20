@@ -45,7 +45,7 @@ public class SubscriptionFragment extends Fragment {
     public void onViewCreated(@NonNull View view,@Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         RecyclerView recyclerView = view.findViewById(R.id.subscription_list);
-        recyclerView.setLayoutManager(new CardSliderLayoutManager(1,480,10));
+        recyclerView.setLayoutManager(new CardSliderLayoutManager(1,750,14));
 
         new CardSnapHelper().attachToRecyclerView(recyclerView);
 
