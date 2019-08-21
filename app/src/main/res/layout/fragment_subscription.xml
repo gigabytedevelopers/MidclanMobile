@@ -14,4 +14,48 @@
       app:layoutManager="com.ramotion.cardslider.CardSliderLayoutManager"
       android:scrollbars="none"/>
 
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_alignParentBottom="true"
+      android:orientation="horizontal">
+
+    <com.balysv.materialripple.MaterialRippleLayout
+        android:id="@+id/previous_session"
+        android:layout_width="@dimen/btn_width_small"
+        android:layout_height="@dimen/btn_width_small"
+        android:background="@drawable/btn_custom_white">
+
+
+      <androidx.appcompat.widget.AppCompatImageView
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          app:tint="@color/colorPrimary"
+          app:srcCompat="@drawable/ic_arrowhead_left_outline"
+          android:layout_gravity="center_horizontal" />
+
+    </com.balysv.materialripple.MaterialRippleLayout>
+    <com.balysv.materialripple.MaterialRippleLayout
+        android:id="@+id/next_session"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/btn_width_small"
+        android:layout_weight="1"
+        android:background="@drawable/btn_custom_white">
+
+      <androidx.appcompat.widget.AppCompatTextView
+          android:id="@+id/next_session_text"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="@string/action_finish"
+          android:layout_gravity="center"
+          android:textColor="@color/colorPrimary"
+          android:fontFamily="@font/latobold"
+          android:textAppearance="@style/TextAppearance.AppCompat.Button"/>
+
+
+    </com.balysv.materialripple.MaterialRippleLayout>
+
+
+  </LinearLayout>
+
 </RelativeLayout>

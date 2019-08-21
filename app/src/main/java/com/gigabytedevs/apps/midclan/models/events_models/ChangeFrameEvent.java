@@ -1,4 +1,4 @@
-package com.gigabytedevs.apps.midclan.utils.events;
+package com.gigabytedevs.apps.midclan.models.events_models;
 
 public class ChangeFrameEvent {
 

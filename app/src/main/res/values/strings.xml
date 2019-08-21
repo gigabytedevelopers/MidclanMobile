@@ -75,4 +75,9 @@ anything meaningful with the integration. The product team
 changed course once the qualitative findings clarified the
 motivations behind the customer behavior</string>
     <string name="title_activity_notification">Notifications</string>
+    <string name="address_user">Address</string>
+    <string name="user_state">State</string>
+    <string name="user_country">Country</string>
+    <string name="user_date_of_birth">Date of Birth</string>
+    <string name="user_gender">Gender</string>
 </resources>

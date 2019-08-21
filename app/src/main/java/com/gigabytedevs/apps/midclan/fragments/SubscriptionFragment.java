@@ -9,15 +9,20 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.balysv.materialripple.MaterialRippleLayout;
 import com.gigabytedevs.apps.midclan.R;
 import com.gigabytedevs.apps.midclan.adapters.ProfileAdapter;
 import com.gigabytedevs.apps.midclan.adapters.SubscriptionUserAdapter;
 import com.gigabytedevs.apps.midclan.models.SubscriptionUserModel;
+import com.gigabytedevs.apps.midclan.models.events_models.CountEvent;
 import com.gigabytedevs.apps.midclan.utils.TinyDb;
 import com.ramotion.cardslider.CardSliderLayoutManager;
 import com.ramotion.cardslider.CardSnapHelper;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
 
@@ -29,6 +34,7 @@ public class SubscriptionFragment extends Fragment {
     private ArrayList<SubscriptionUserModel> list;
     private ProfileAdapter adapter;
     private TinyDb tinyDb;
+    private MaterialRippleLayout nextSession, previousSession;
 
 
     public SubscriptionFragment() {
@@ -52,7 +58,29 @@ public class SubscriptionFragment extends Fragment {
         new CardSnapHelper().attachToRecyclerView(recyclerView);
         tinyDb = new TinyDb(getContext());
         list = new ArrayList<>();
+        nextSession = view.findViewById(R.id.next_session);
+        previousSession = view.findViewById(R.id.previous_session);
 
+        nextSession.setOnClickListener(view1 -> {
+//This event bus gives an int telling the Register Activity that this is the
+            // first fragment thereby changing the dots on top
+            EventBus.getDefault().post(new CountEvent(5));
+        });
+
+        previousSession.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //This event bus gives an int telling the Register Activity that this is the
+                // first fragment thereby changing the dots on top
+                EventBus.getDefault().post(new CountEvent(3));
+
+                UserInfoFragment userInfoFragment = new UserInfoFragment();
+                FragmentTransaction userInfoInfoTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+                userInfoInfoTransaction.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+                userInfoInfoTransaction.replace(R.id.frame_content, userInfoFragment);
+                userInfoInfoTransaction.commit();
+            }
+        });
         //category gotten from designation fragment
         if (tinyDb.getString("category").equals("doctor") || tinyDb.getString("category").equals("nurse")||
                     tinyDb.getString("category").equals("pharm")){
