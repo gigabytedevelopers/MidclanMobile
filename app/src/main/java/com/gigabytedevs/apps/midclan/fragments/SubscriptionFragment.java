@@ -72,6 +72,7 @@ public class SubscriptionFragment extends Fragment {
         list = new ArrayList<>();
         MaterialRippleLayout nextSession = view.findViewById(R.id.next_session);
         MaterialRippleLayout previousSession = view.findViewById(R.id.previous_session);
+        tinyDb = new TinyDb(requireContext());
 
         nextSession.setOnClickListener(view1 -> {
             Toast.makeText(getContext(), "SignUp being done", Toast.LENGTH_SHORT).show();
@@ -172,16 +173,16 @@ public class SubscriptionFragment extends Fragment {
 
         call.enqueue(new Callback<PatientModel>() {
             @Override
-            public void onResponse( Call<PatientModel> call, Response<PatientModel> response) {
+            public void onResponse(@NotNull Call<PatientModel> call, @NotNull Response<PatientModel> response) {
                 if (response.isSuccessful()){
-                    Toast.makeText(getContext(), response.body().getToken(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(), String.valueOf(response.body()), Toast.LENGTH_LONG).show();
                 }
 
 
             }
 
             @Override
-            public void onFailure(Call<PatientModel> call, Throwable t) {
+            public void onFailure(@NotNull Call<PatientModel> call, @NotNull Throwable t) {
                 Toast.makeText(getContext(), "Error", Toast.LENGTH_SHORT).show();
             }
         });
