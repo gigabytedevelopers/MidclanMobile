@@ -73,9 +73,9 @@ public class ProfileFragment extends Fragment {
             switch (position){
                 case 0:
                     Toast.makeText(getContext(),"Hello it works",Toast.LENGTH_LONG).show();
-                    return;
+                    break;
                 case 1:
-                    return;
+                    break;
             }
         });
 

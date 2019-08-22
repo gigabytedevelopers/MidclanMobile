@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListAdapter;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -22,9 +23,11 @@ import com.gigabytedevs.apps.midclan.models.api_models.PatientModel;
 import com.gigabytedevs.apps.midclan.models.events_models.CountEvent;
 import com.gigabytedevs.apps.midclan.service.PatientClient;
 import com.gigabytedevs.apps.midclan.utils.TinyDb;
+import com.ramotion.cardslider.CardSliderLayoutManager;
 import com.ramotion.cardslider.CardSnapHelper;
 
 import org.greenrobot.eventbus.EventBus;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 
@@ -64,11 +67,11 @@ public class SubscriptionFragment extends Fragment {
     public void onViewCreated(@NonNull View view,@Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         RecyclerView recyclerView = view.findViewById(R.id.subscription_list);
-        recyclerView.setLayoutManager(new SwipeableLayoutManager().setAngle(10)
-                .setAnimationDuratuion(100)
-                .setScaleGap(0.1f));
+        recyclerView.setLayoutManager(new CardSliderLayoutManager(1,700,30));
 
         new CardSnapHelper().attachToRecyclerView(recyclerView);
+
+
         tinyDb = new TinyDb(getContext());
         list = new ArrayList<>();
         MaterialRippleLayout nextSession = view.findViewById(R.id.next_session);
@@ -155,34 +158,6 @@ public class SubscriptionFragment extends Fragment {
 
         SubscriptionUserAdapter adapter = new SubscriptionUserAdapter(getContext(), list);
         recyclerView.setAdapter(adapter);
-
-        SwipeableTouchHelperCallback swipeableTouchHelperCallback =
-                new SwipeableTouchHelperCallback(new OnItemSwiped() {
-                    //Called after swiping view, place to remove top item from your recyclerview adapter
-                    @Override public void onItemSwiped() {
-
-                    }
-
-                    @Override public void onItemSwipedLeft() {
-
-                    }
-
-                    @Override public void onItemSwipedRight() {
-
-                    }
-
-                    @Override
-                    public void onItemSwipedUp() {
-
-                    }
-
-                    @Override
-                    public void onItemSwipedDown() {
-
-                    }
-                });
-        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(swipeableTouchHelperCallback);
-        itemTouchHelper.attachToRecyclerView(recyclerView);
     }
 
     private void sendSignUpRequest(PatientModel patient){
@@ -199,16 +174,16 @@ public class SubscriptionFragment extends Fragment {
 
         call.enqueue(new Callback<PatientModel>() {
             @Override
-            public void onResponse( Call<PatientModel> call, Response<PatientModel> response) {
+            public void onResponse(@NotNull Call<PatientModel> call, @NotNull Response<PatientModel> response) {
                 if (response.isSuccessful()){
-                    Toast.makeText(getContext(), response.body().getToken(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(), String.valueOf(response.body()), Toast.LENGTH_LONG).show();
                 }
 
 
             }
 
             @Override
-            public void onFailure(Call<PatientModel> call, Throwable t) {
+            public void onFailure(@NotNull Call<PatientModel> call, @NotNull Throwable t) {
                 Toast.makeText(getContext(), "Error", Toast.LENGTH_SHORT).show();
             }
         });
