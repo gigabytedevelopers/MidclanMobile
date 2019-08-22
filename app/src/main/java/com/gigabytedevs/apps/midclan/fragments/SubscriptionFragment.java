@@ -45,8 +45,6 @@ public class SubscriptionFragment extends Fragment {
     private ArrayList<SubscriptionUserModel> list;
     private ProfileAdapter adapter;
     private TinyDb tinyDb;
-    private MaterialRippleLayout nextSession, previousSession;
-
 
 
     public SubscriptionFragment() {
@@ -55,7 +53,7 @@ public class SubscriptionFragment extends Fragment {
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NotNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_subscription, container, false);
@@ -70,8 +68,8 @@ public class SubscriptionFragment extends Fragment {
         new CardSnapHelper().attachToRecyclerView(recyclerView);
         tinyDb = new TinyDb(getContext());
         list = new ArrayList<>();
-        nextSession = view.findViewById(R.id.next_session);
-        previousSession = view.findViewById(R.id.previous_session);
+        MaterialRippleLayout nextSession = view.findViewById(R.id.next_session);
+        MaterialRippleLayout previousSession = view.findViewById(R.id.previous_session);
 
         nextSession.setOnClickListener(view1 -> {
             Toast.makeText(getContext(), "SignUp being done", Toast.LENGTH_SHORT).show();

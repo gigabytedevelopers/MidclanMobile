@@ -1,43 +1,32 @@
 package com.gigabytedevs.apps.midclan.activities;
 
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.fragment.app.FragmentTransaction;
-
 import com.balysv.materialripple.MaterialRippleLayout;
 import com.gigabytedevs.apps.midclan.R;
 import com.gigabytedevs.apps.midclan.fragments.DesignationFragment;
-import com.gigabytedevs.apps.midclan.fragments.UserAccountInfoFragment;
 import com.gigabytedevs.apps.midclan.models.events_models.CountEvent;
-import com.gigabytedevs.apps.midclan.utils.TinyDb;
-import com.gigabytedevs.apps.midclan.models.events_models.ButtonVisibilityEvent;
-import com.gigabytedevs.apps.midclan.models.events_models.ChangeFrameEvent;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
 
 public class RegisterActivity extends AppCompatActivity {
-    private MaterialRippleLayout backBtn, nextSession, previousSession;
     private AppCompatImageView firstDotDesignation, secondDot,thirdDot,finalDot;
     public static int count = 0;
-    private TinyDb tinyDb;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-        backBtn = findViewById(R.id.back_button_register);
+        MaterialRippleLayout backBtn = findViewById(R.id.back_button_register);
         firstDotDesignation = findViewById(R.id.first_dot_designation);
         secondDot = findViewById(R.id.second_dot_user_account_info);
         thirdDot = findViewById(R.id.third_dot_user_info);
         finalDot = findViewById(R.id.final_dot_user_info);
-        nextSession = findViewById(R.id.next_session);
-        tinyDb = new TinyDb(this);
         backBtn.setOnClickListener(view -> {
             onBackPressed();
             count = 0;
