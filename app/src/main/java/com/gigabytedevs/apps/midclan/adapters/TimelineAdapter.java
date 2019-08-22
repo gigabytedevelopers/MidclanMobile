@@ -12,12 +12,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.gigabytedevs.apps.midclan.R;
 import com.gigabytedevs.apps.midclan.models.TimelineModel;
+import com.gigabytedevs.apps.midclan.utils.ClickListener;
 
 import java.util.ArrayList;
 
 public class TimelineAdapter extends RecyclerView.Adapter<TimelineAdapter.ViewHolder> {
  private Context context;
  private ArrayList<TimelineModel> list;
+ private ClickListener clickListener;
 
  public class ViewHolder extends RecyclerView.ViewHolder{
      private AppCompatImageView mainImage;
@@ -38,9 +40,10 @@ public class TimelineAdapter extends RecyclerView.Adapter<TimelineAdapter.ViewHo
  }
 
 
-         public TimelineAdapter(Context context, ArrayList<TimelineModel> list){
+         public TimelineAdapter(Context context, ArrayList<TimelineModel> list, ClickListener clickListener){
                 this.context = context;
                 this.list = list;
+                this.clickListener = clickListener;
             }
 
 

@@ -11,16 +11,19 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.gigabytedevs.apps.midclan.R;
 import com.gigabytedevs.apps.midclan.models.ProfileModel;
+import com.gigabytedevs.apps.midclan.utils.ClickListener;
 
 import java.util.ArrayList;
 
 public class ProfileAdapter extends RecyclerView.Adapter<ProfileAdapter.ViewHolder> {
     private Context context;
     private ArrayList<ProfileModel> list;
+    private ClickListener clickListener;
 
-    public ProfileAdapter(Context context, ArrayList<ProfileModel> list){
+    public ProfileAdapter(Context context, ArrayList<ProfileModel> list, ClickListener clickListener){
         this.context = context;
         this.list = list;
+        this.clickListener = clickListener;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{

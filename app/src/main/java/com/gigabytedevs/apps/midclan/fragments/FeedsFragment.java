@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.gigabytedevs.apps.midclan.R;
 import com.gigabytedevs.apps.midclan.activities.NotificationActivity;
+import com.gigabytedevs.apps.midclan.activities.PostPreviewActivity;
 import com.gigabytedevs.apps.midclan.adapters.TimelineAdapter;
 import com.gigabytedevs.apps.midclan.models.TimelineModel;
 
@@ -63,7 +64,13 @@ public class FeedsFragment extends Fragment {
         TimelineModel timelineModel2 = new TimelineModel(R.drawable.test,getResources().getString(R.string.dummy_title),getResources().getString(R.string.dummy_text),"mezueceejay","Today",R.drawable.test);
         list.add(timelineModel2);
 
-        adapter = new TimelineAdapter(getContext(), list);
+        adapter = new TimelineAdapter(getContext(), list, ((view1, position) -> {
+        switch (position){
+            case 0:
+                startActivity(new Intent(getActivity(), PostPreviewActivity.class));
+                return;
+        }
+        }));
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         layoutManager.setOrientation(RecyclerView.VERTICAL);

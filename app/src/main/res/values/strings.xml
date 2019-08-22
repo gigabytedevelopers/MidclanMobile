@@ -34,6 +34,7 @@
     <string name="text_field_user_alma_mata">Alma mata</string>
     <string name="text_field_user_referees_contacts">Referees and Contact</string>
     <string name="text_sign_in_with">Sign in with</string>
+    <string name="text_register_with">Register with</string>
     <string name="text_network_not_available">No Internet Connection</string>
     <string name="text_network_not_available_hint">Seems you dropped off the radar there!!!</string>
     <string name="text_profile_edit_profile">Edit profile</string>
@@ -65,6 +66,11 @@
     <string name="users_hospital">Hospital</string>
     <string name="users_lab_technician">Lab technician</string>
     <string name="users_pharmacist">Pharmacist</string>
+    <string name="address_user">Address</string>
+    <string name="user_state">State</string>
+    <string name="user_country">Country</string>
+    <string name="user_date_of_birth">Date of Birth</string>
+    <string name="user_gender">Gender</string>
     <string name="base_url_sign_up">https://midclan-api.herokuapp.com/api/v1/auth/signup/</string>
 
     <!-- TODO: Remove or change this placeholder text -->
@@ -76,9 +82,4 @@ anything meaningful with the integration. The product team
 changed course once the qualitative findings clarified the
 motivations behind the customer behavior</string>
     <string name="title_activity_notification">Notifications</string>
-    <string name="address_user">Address</string>
-    <string name="user_state">State</string>
-    <string name="user_country">Country</string>
-    <string name="user_date_of_birth">Date of Birth</string>
-    <string name="user_gender">Gender</string>
 </resources>

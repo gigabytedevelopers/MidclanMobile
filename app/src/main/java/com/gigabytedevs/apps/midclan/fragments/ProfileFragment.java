@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -68,7 +69,15 @@ public class ProfileFragment extends Fragment {
         list.add(profileModel3);
 
 
-        adapter = new ProfileAdapter(getContext(), list);
+        adapter = new ProfileAdapter(getContext(), list, (view1, position)->{
+            switch (position){
+                case 0:
+                    Toast.makeText(getContext(),"Hello it works",Toast.LENGTH_LONG).show();
+                    return;
+                case 1:
+                    return;
+            }
+        });
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         layoutManager.setOrientation(RecyclerView.VERTICAL);

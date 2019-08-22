@@ -2,7 +2,6 @@ package com.gigabytedevs.apps.midclan.fragments;
 
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,11 +22,9 @@ import com.gigabytedevs.apps.midclan.models.api_models.PatientModel;
 import com.gigabytedevs.apps.midclan.models.events_models.CountEvent;
 import com.gigabytedevs.apps.midclan.service.PatientClient;
 import com.gigabytedevs.apps.midclan.utils.TinyDb;
-import com.ramotion.cardslider.CardSliderLayoutManager;
 import com.ramotion.cardslider.CardSnapHelper;
 
 import org.greenrobot.eventbus.EventBus;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 
@@ -36,6 +33,10 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import swipeable.com.layoutmanager.OnItemSwiped;
+import swipeable.com.layoutmanager.SwipeableLayoutManager;
+import swipeable.com.layoutmanager.SwipeableTouchHelperCallback;
+import swipeable.com.layoutmanager.touchelper.ItemTouchHelper;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -63,7 +64,9 @@ public class SubscriptionFragment extends Fragment {
     public void onViewCreated(@NonNull View view,@Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         RecyclerView recyclerView = view.findViewById(R.id.subscription_list);
-        recyclerView.setLayoutManager(new CardSliderLayoutManager(1,750,14));
+        recyclerView.setLayoutManager(new SwipeableLayoutManager().setAngle(10)
+                .setAnimationDuratuion(100)
+                .setScaleGap(0.1f));
 
         new CardSnapHelper().attachToRecyclerView(recyclerView);
         tinyDb = new TinyDb(getContext());
@@ -152,6 +155,34 @@ public class SubscriptionFragment extends Fragment {
 
         SubscriptionUserAdapter adapter = new SubscriptionUserAdapter(getContext(), list);
         recyclerView.setAdapter(adapter);
+
+        SwipeableTouchHelperCallback swipeableTouchHelperCallback =
+                new SwipeableTouchHelperCallback(new OnItemSwiped() {
+                    //Called after swiping view, place to remove top item from your recyclerview adapter
+                    @Override public void onItemSwiped() {
+
+                    }
+
+                    @Override public void onItemSwipedLeft() {
+
+                    }
+
+                    @Override public void onItemSwipedRight() {
+
+                    }
+
+                    @Override
+                    public void onItemSwipedUp() {
+
+                    }
+
+                    @Override
+                    public void onItemSwipedDown() {
+
+                    }
+                });
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(swipeableTouchHelperCallback);
+        itemTouchHelper.attachToRecyclerView(recyclerView);
     }
 
     private void sendSignUpRequest(PatientModel patient){
