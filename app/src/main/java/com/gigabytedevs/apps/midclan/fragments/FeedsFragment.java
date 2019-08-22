@@ -65,6 +65,7 @@ public class FeedsFragment extends Fragment {
         list.add(timelineModel2);
 
         adapter = new TimelineAdapter(getContext(), list, ((view1, position) -> {
+            //TODO Ebube help me fix this
         switch (position){
             case 0:
                 startActivity(new Intent(getActivity(), PostPreviewActivity.class));

@@ -25,6 +25,7 @@ import com.gigabytedevs.apps.midclan.utils.TinyDb;
 import com.ramotion.cardslider.CardSnapHelper;
 
 import org.greenrobot.eventbus.EventBus;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 
