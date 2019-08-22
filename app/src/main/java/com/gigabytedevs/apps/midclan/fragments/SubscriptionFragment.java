@@ -67,8 +67,7 @@ public class SubscriptionFragment extends Fragment {
         recyclerView.setLayoutManager(new SwipeableLayoutManager().setAngle(10)
                 .setAnimationDuratuion(100)
                 .setScaleGap(0.1f));
-
-        new CardSnapHelper().attachToRecyclerView(recyclerView);
+        
         tinyDb = new TinyDb(getContext());
         list = new ArrayList<>();
         MaterialRippleLayout nextSession = view.findViewById(R.id.next_session);
