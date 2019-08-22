@@ -22,9 +22,11 @@ import com.gigabytedevs.apps.midclan.models.api_models.PatientModel;
 import com.gigabytedevs.apps.midclan.models.events_models.CountEvent;
 import com.gigabytedevs.apps.midclan.service.PatientClient;
 import com.gigabytedevs.apps.midclan.utils.TinyDb;
+import com.ramotion.cardslider.CardSliderLayoutManager;
 import com.ramotion.cardslider.CardSnapHelper;
 
 import org.greenrobot.eventbus.EventBus;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 
@@ -64,11 +66,9 @@ public class SubscriptionFragment extends Fragment {
     public void onViewCreated(@NonNull View view,@Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         RecyclerView recyclerView = view.findViewById(R.id.subscription_list);
-        recyclerView.setLayoutManager(new SwipeableLayoutManager().setAngle(10)
-                .setAnimationDuratuion(100)
-                .setScaleGap(0.1f));
-        
-        tinyDb = new TinyDb(getContext());
+        recyclerView.setLayoutManager(new CardSliderLayoutManager(1,700,30));
+
+        new CardSnapHelper().attachToRecyclerView(recyclerView);
         list = new ArrayList<>();
         MaterialRippleLayout nextSession = view.findViewById(R.id.next_session);
         MaterialRippleLayout previousSession = view.findViewById(R.id.previous_session);
@@ -155,33 +155,7 @@ public class SubscriptionFragment extends Fragment {
         SubscriptionUserAdapter adapter = new SubscriptionUserAdapter(getContext(), list);
         recyclerView.setAdapter(adapter);
 
-        SwipeableTouchHelperCallback swipeableTouchHelperCallback =
-                new SwipeableTouchHelperCallback(new OnItemSwiped() {
-                    //Called after swiping view, place to remove top item from your recyclerview adapter
-                    @Override public void onItemSwiped() {
 
-                    }
-
-                    @Override public void onItemSwipedLeft() {
-
-                    }
-
-                    @Override public void onItemSwipedRight() {
-
-                    }
-
-                    @Override
-                    public void onItemSwipedUp() {
-
-                    }
-
-                    @Override
-                    public void onItemSwipedDown() {
-
-                    }
-                });
-        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(swipeableTouchHelperCallback);
-        itemTouchHelper.attachToRecyclerView(recyclerView);
     }
 
     private void sendSignUpRequest(PatientModel patient){
