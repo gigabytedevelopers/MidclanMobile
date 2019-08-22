@@ -106,7 +106,6 @@
             android:layout_height="wrap_content"
             android:textColor="@color/white"
             android:inputType="textPassword"
-            android:fontFamily="@font/latoregular"
             android:hint="@string/text_field_confirm_password"
             android:background="@drawable/registration_edit_text_bg"
             android:maxLines="1"

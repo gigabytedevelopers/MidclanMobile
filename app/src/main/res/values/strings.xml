@@ -65,6 +65,7 @@
     <string name="users_hospital">Hospital</string>
     <string name="users_lab_technician">Lab technician</string>
     <string name="users_pharmacist">Pharmacist</string>
+    <string name="base_url_sign_up">https://midclan-api.herokuapp.com/api/v1/auth/signup/</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

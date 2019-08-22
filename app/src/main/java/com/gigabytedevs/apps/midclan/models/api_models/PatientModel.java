@@ -12,6 +12,11 @@ public class PatientModel {
     private String country;
     private String dob;
     private String gender;
+    private String token;
+
+    public String getToken() {
+        return token;
+    }
 
     public PatientModel(
             String firstName,

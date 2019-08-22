@@ -18,6 +18,7 @@ import com.gigabytedevs.apps.midclan.models.events_models.CountEvent;
 import com.gigabytedevs.apps.midclan.utils.TinyDb;
 
 import org.greenrobot.eventbus.EventBus;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -25,7 +26,6 @@ import org.greenrobot.eventbus.EventBus;
 public class UserAccountInfoFragment extends Fragment {
     private AppCompatEditText firstName, lastName,userName,emailAddress,phone,password;
     private TinyDb tinyDb;
-    private MaterialRippleLayout nextSession, previousSession;
 
     public UserAccountInfoFragment() {
         // Required empty public constructor
@@ -33,7 +33,7 @@ public class UserAccountInfoFragment extends Fragment {
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NotNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_user_account_info, container, false);
@@ -48,9 +48,18 @@ public class UserAccountInfoFragment extends Fragment {
         emailAddress = view.findViewById(R.id.create_new_email_address);
         phone = view.findViewById(R.id.create_new_phone);
         password = view.findViewById(R.id.create_new_password);
-        nextSession = view.findViewById(R.id.next_session);
-        previousSession = view.findViewById(R.id.previous_session);
+        MaterialRippleLayout nextSession = view.findViewById(R.id.next_session);
+        MaterialRippleLayout previousSession = view.findViewById(R.id.previous_session);
         tinyDb = new TinyDb(getContext());
+
+        //Get the saved strings from tinydb if they exist if they don't exist
+        //then it will be empty
+        firstName.setText(tinyDb.getString("firstNameUser"));
+        lastName.setText(tinyDb.getString("lastNameUser"));
+        userName.setText(tinyDb.getString("userNameUser"));
+        emailAddress.setText(tinyDb.getString("emailAddress"));
+        phone.setText(tinyDb.getString("phoneUser"));
+        password.setText(tinyDb.getString("passwordUser"));
 
 
         nextSession.setOnClickListener(view12 -> {
@@ -58,8 +67,17 @@ public class UserAccountInfoFragment extends Fragment {
             // first fragment thereby changing the dots on top
             EventBus.getDefault().post(new CountEvent(3));
 
+            //save user details in tinydb
+
+            tinyDb.putString("firstNameUser", String.valueOf(firstName.getText()));
+            tinyDb.putString("lastNameUser", String.valueOf(lastName.getText()));
+            tinyDb.putString("userNameUser", String.valueOf(userName.getText()));
+            tinyDb.putString("emailAddress", String.valueOf(emailAddress.getText()));
+            tinyDb.putString("phoneUser", String.valueOf(phone.getText()));
+            tinyDb.putString("passwordUser", String.valueOf(password.getText()));
+
                 UserInfoFragment userInfoFragment = new UserInfoFragment();
-                FragmentTransaction userInfoInfoTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+                FragmentTransaction userInfoInfoTransaction = requireActivity().getSupportFragmentManager().beginTransaction();
                 userInfoInfoTransaction.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
                 userInfoInfoTransaction.replace(R.id.frame_content, userInfoFragment);
                 userInfoInfoTransaction.commit();
@@ -72,7 +90,7 @@ public class UserAccountInfoFragment extends Fragment {
             EventBus.getDefault().post(new CountEvent(1));
 
             DesignationFragment designationFragment = new DesignationFragment();
-            FragmentTransaction designationTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+            FragmentTransaction designationTransaction = requireActivity().getSupportFragmentManager().beginTransaction();
             designationTransaction.replace(R.id.frame_content,designationFragment);
             designationTransaction.commit();
         });

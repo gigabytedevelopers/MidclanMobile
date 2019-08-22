@@ -2,9 +2,11 @@ package com.gigabytedevs.apps.midclan.fragments;
 
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -17,14 +19,23 @@ import com.gigabytedevs.apps.midclan.R;
 import com.gigabytedevs.apps.midclan.adapters.ProfileAdapter;
 import com.gigabytedevs.apps.midclan.adapters.SubscriptionUserAdapter;
 import com.gigabytedevs.apps.midclan.models.SubscriptionUserModel;
+import com.gigabytedevs.apps.midclan.models.api_models.PatientModel;
 import com.gigabytedevs.apps.midclan.models.events_models.CountEvent;
+import com.gigabytedevs.apps.midclan.service.PatientClient;
 import com.gigabytedevs.apps.midclan.utils.TinyDb;
 import com.ramotion.cardslider.CardSliderLayoutManager;
 import com.ramotion.cardslider.CardSnapHelper;
 
 import org.greenrobot.eventbus.EventBus;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -35,6 +46,7 @@ public class SubscriptionFragment extends Fragment {
     private ProfileAdapter adapter;
     private TinyDb tinyDb;
     private MaterialRippleLayout nextSession, previousSession;
+
 
 
     public SubscriptionFragment() {
@@ -62,9 +74,22 @@ public class SubscriptionFragment extends Fragment {
         previousSession = view.findViewById(R.id.previous_session);
 
         nextSession.setOnClickListener(view1 -> {
-//This event bus gives an int telling the Register Activity that this is the
-            // first fragment thereby changing the dots on top
-            EventBus.getDefault().post(new CountEvent(5));
+            Toast.makeText(getContext(), "SignUp being done", Toast.LENGTH_SHORT).show();
+//            PatientModel patientModel = new PatientModel(
+//                    tinyDb.getString("firstNameUser"),
+//                    tinyDb.getString("lastNameUser"),
+//                    tinyDb.getString("userNameUser"),
+//                    tinyDb.getString("emailAddress"),
+//                    tinyDb.getString("phoneUser"),
+//                    tinyDb.getString("passwordUser"),
+//                    tinyDb.getString("addressUser"),
+//                    tinyDb.getString("state"),
+//                    tinyDb.getString("country"),
+//                    tinyDb.getString("dob"),
+//                    tinyDb.getString("gender")
+//            );
+//
+//            sendSignUpRequest(patientModel);
         });
 
         previousSession.setOnClickListener(new View.OnClickListener() {
@@ -75,7 +100,7 @@ public class SubscriptionFragment extends Fragment {
                 EventBus.getDefault().post(new CountEvent(3));
 
                 UserInfoFragment userInfoFragment = new UserInfoFragment();
-                FragmentTransaction userInfoInfoTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+                FragmentTransaction userInfoInfoTransaction = requireActivity().getSupportFragmentManager().beginTransaction();
                 userInfoInfoTransaction.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
                 userInfoInfoTransaction.replace(R.id.frame_content, userInfoFragment);
                 userInfoInfoTransaction.commit();
@@ -129,5 +154,34 @@ public class SubscriptionFragment extends Fragment {
 
         SubscriptionUserAdapter adapter = new SubscriptionUserAdapter(getContext(), list);
         recyclerView.setAdapter(adapter);
+    }
+
+    private void sendSignUpRequest(PatientModel patient){
+        String base_url = getResources().getString(R.string.base_url_sign_up);
+
+        Retrofit.Builder builder = new Retrofit.Builder()
+                .baseUrl(base_url)
+                .addConverterFactory(GsonConverterFactory.create());
+
+        Retrofit retrofit = builder.build();
+
+        PatientClient client = retrofit.create(PatientClient.class);
+        Call<PatientModel> call = client.createAccount(patient);
+
+        call.enqueue(new Callback<PatientModel>() {
+            @Override
+            public void onResponse( Call<PatientModel> call, Response<PatientModel> response) {
+                if (response.isSuccessful()){
+                    Toast.makeText(getContext(), response.body().getToken(), Toast.LENGTH_LONG).show();
+                }
+
+
+            }
+
+            @Override
+            public void onFailure(Call<PatientModel> call, Throwable t) {
+                Toast.makeText(getContext(), "Error", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }

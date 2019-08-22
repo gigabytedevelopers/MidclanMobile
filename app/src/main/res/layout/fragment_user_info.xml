@@ -37,20 +37,20 @@
                     android:maxLines="1"
                     android:textColorHint="@color/white"
                     android:layout_marginBottom="@dimen/spacing_smlarge"/>
-                <androidx.appcompat.widget.AppCompatEditText
+                <androidx.appcompat.widget.AppCompatAutoCompleteTextView
                     android:id="@+id/create_user_state"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColor="@color/white"
                     android:fontFamily="@font/latoregular"
                     android:hint="@string/user_state"
-                    android:inputType="date"
+                    android:inputType="textAutoComplete"
                     android:background="@drawable/registration_edit_text_bg"
                     android:maxLines="1"
                     android:textColorHint="@color/white"
                     android:layout_marginBottom="@dimen/spacing_smlarge"/>
 
-                <androidx.appcompat.widget.AppCompatEditText
+                <androidx.appcompat.widget.AppCompatAutoCompleteTextView
                     android:id="@+id/create_user_country"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -75,7 +75,7 @@
                     android:textColorHint="@color/white"
                     android:layout_marginBottom="@dimen/spacing_smlarge"/>
 
-                <androidx.appcompat.widget.AppCompatEditText
+                <androidx.appcompat.widget.AppCompatAutoCompleteTextView
                     android:id="@+id/create_user_gender"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

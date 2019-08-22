@@ -54,29 +54,35 @@ public class DesignationFragment extends Fragment {
 
 
         patientRipple.setOnClickListener(view1 -> {
+            tinyDb.putString("category", "patient");
             switchFragment();
 
         });
 
         doctorRipple.setOnClickListener(view12 -> {
+            tinyDb.putString("category", "doctor");
             switchFragment();
 
         });
 
         nurseRipple.setOnClickListener(view1->{
+            tinyDb.putString("category", "nurse");
             switchFragment();
         });
 
         hospitalRipple.setOnClickListener(view1->{
+            tinyDb.putString("category", "hospital");
             switchFragment();
 
         });
 
         labTechRipple.setOnClickListener(view1->{
+            tinyDb.putString("category", "labTech");
             switchFragment();
         });
 
         pharmRipple.setOnClickListener(view1->{
+            tinyDb.putString("category", "pharm");
             switchFragment();
         });
 
