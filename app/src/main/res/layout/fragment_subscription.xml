@@ -11,9 +11,9 @@
       android:layout_centerInParent="true"
       android:layout_width="match_parent"
       android:layout_height="match_parent"
-      android:padding="@dimen/spacing_large"
-      app:layoutManager="swipeable.com.layoutmanager.SwipeableLayoutManager"
-      android:scrollbars="none"/>
+      android:scrollbars="none"
+      android:layout_margin="@dimen/spacing_medium"
+      app:layoutManager="com.ramotion.cardslider.CardSliderLayoutManager"/>
 
   <LinearLayout
       android:layout_width="match_parent"

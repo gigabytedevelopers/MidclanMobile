@@ -40,6 +40,7 @@ public class ProfileAdapter extends RecyclerView.Adapter<ProfileAdapter.ViewHold
     public ProfileAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         final View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_profile_card, parent, false);
         final ProfileAdapter.ViewHolder myViewHolder = new ProfileAdapter.ViewHolder(view);
+        view.setOnClickListener(view1 -> clickListener.onItemClick(view1, myViewHolder.getAdapterPosition()));
         return myViewHolder;
     }
 
