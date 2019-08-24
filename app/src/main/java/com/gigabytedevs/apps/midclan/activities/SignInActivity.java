@@ -27,6 +27,8 @@ public class SignInActivity extends AppCompatActivity {
     private MaterialRippleLayout facebook, twitter, signIn;
     private AppCompatTextView createAccount, forgotPassword;
     String mRequestBody;
+    private String base_url_signin;
+    private TinyDb tinyDb;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +40,7 @@ public class SignInActivity extends AppCompatActivity {
         username = findViewById(R.id.userName);
         password = findViewById(R.id.passWord);
         forgotPassword = findViewById(R.id.action_forgot_password);
+        tinyDb = new TinyDb(this);
         forgotPassword.setOnClickListener(view -> {
 
         });
@@ -62,7 +65,20 @@ public class SignInActivity extends AppCompatActivity {
     }
 
     private void sendSignInRequest(){
-        String base_url_signin = getResources().getString(R.string.base_url_sign_in) + "user";
+        switch (tinyDb.getString("category")) {
+            case "patient":
+                base_url_signin = getResources().getString(R.string.base_url_sign_in) + "user";
+                break;
+            case "doctor":
+                base_url_signin = getResources().getString(R.string.base_url_sign_in) + "doctor";
+                break;
+            case "pharm":
+                base_url_signin = getResources().getString(R.string.base_url_sign_in) + "pharmacist";
+                break;
+            case "labTech":
+                base_url_signin = getResources().getString(R.string.base_url_sign_in) + "labtech";
+                break;
+        }
         JSONObject params = new JSONObject();
 
         //Creating the body of the request

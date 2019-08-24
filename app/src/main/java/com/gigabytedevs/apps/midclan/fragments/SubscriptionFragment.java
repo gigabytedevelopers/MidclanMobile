@@ -57,7 +57,8 @@ public class SubscriptionFragment extends Fragment{
     private ArrayList<SubscriptionUserModel> list;
     private ProfileAdapter adapter;
     private TinyDb tinyDb;
-    String mRequestBody;
+    private String mRequestBody;
+    private String base_url_signup;
 
 
     public SubscriptionFragment() {
@@ -161,7 +162,23 @@ public class SubscriptionFragment extends Fragment{
      *  to sign up for the app
      */
     private void sendSignUpRequest()  {
-        String base_url_signup = getResources().getString(R.string.base_url_sign_up) + "user";
+        ///category key gotten from Designation Fragment
+
+        switch (tinyDb.getString("category")) {
+            case "patient":
+                base_url_signup = getResources().getString(R.string.base_url_sign_up) + "user";
+                break;
+            case "doctor":
+                base_url_signup = getResources().getString(R.string.base_url_sign_up) + "doctor";
+                break;
+            case "pharm":
+                base_url_signup = getResources().getString(R.string.base_url_sign_up) + "pharmacist";
+                break;
+            case "labTech":
+                base_url_signup = getResources().getString(R.string.base_url_sign_up) + "labtech";
+                break;
+        }
+
         JSONObject params = new JSONObject();
 
         //Creating the body of the request
