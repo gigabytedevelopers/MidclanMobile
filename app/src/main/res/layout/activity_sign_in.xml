@@ -33,7 +33,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/white"
                 android:fontFamily="@font/latoregular"
-                android:hint="@string/text_field_username"
+                android:hint="@string/text_field_email"
                 android:inputType="textAutoComplete"
                 android:background="@drawable/registration_edit_text_bg"
                 android:maxLines="1"
