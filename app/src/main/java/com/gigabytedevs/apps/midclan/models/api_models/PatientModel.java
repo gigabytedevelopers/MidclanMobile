@@ -1,5 +1,8 @@
 package com.gigabytedevs.apps.midclan.models.api_models;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 public class PatientModel {
     private String firstName;
     private String lastName;
@@ -9,10 +12,16 @@ public class PatientModel {
     private String password;
     private String address;
     private String state;
+
+    public boolean isSuccess() {
+        return success;
+    }
+
     private String country;
     private String dob;
     private String gender;
     private String token;
+    private boolean success;
 
     public String getToken() {
         return token;

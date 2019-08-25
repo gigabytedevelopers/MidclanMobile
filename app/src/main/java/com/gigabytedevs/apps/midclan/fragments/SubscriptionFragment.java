@@ -2,6 +2,7 @@ package com.gigabytedevs.apps.midclan.fragments;
 
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,15 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.NetworkResponse;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.VolleyLog;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.balysv.materialripple.MaterialRippleLayout;
 import com.gigabytedevs.apps.midclan.R;
 import com.gigabytedevs.apps.midclan.adapters.ProfileAdapter;
@@ -22,32 +32,33 @@ import com.gigabytedevs.apps.midclan.models.api_models.PatientModel;
 import com.gigabytedevs.apps.midclan.models.events_models.CountEvent;
 import com.gigabytedevs.apps.midclan.service.PatientClient;
 import com.gigabytedevs.apps.midclan.utils.TinyDb;
+import com.google.gson.Gson;
+import com.google.gson.TypeAdapter;
 import com.ramotion.cardslider.CardSliderLayoutManager;
 import com.ramotion.cardslider.CardSnapHelper;
 
 import org.greenrobot.eventbus.EventBus;
 import org.jetbrains.annotations.NotNull;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
-import swipeable.com.layoutmanager.OnItemSwiped;
-import swipeable.com.layoutmanager.SwipeableLayoutManager;
-import swipeable.com.layoutmanager.SwipeableTouchHelperCallback;
-import swipeable.com.layoutmanager.touchelper.ItemTouchHelper;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class SubscriptionFragment extends Fragment {
+public class SubscriptionFragment extends Fragment{
     private RecyclerView recyclerView;
     private ArrayList<SubscriptionUserModel> list;
     private ProfileAdapter adapter;
     private TinyDb tinyDb;
+    private String mRequestBody;
+    private String base_url_signup;
 
 
     public SubscriptionFragment() {
@@ -76,21 +87,8 @@ public class SubscriptionFragment extends Fragment {
 
         nextSession.setOnClickListener(view1 -> {
             Toast.makeText(getContext(), "SignUp being done", Toast.LENGTH_SHORT).show();
-//            PatientModel patientModel = new PatientModel(
-//                    tinyDb.getString("firstNameUser"),
-//                    tinyDb.getString("lastNameUser"),
-//                    tinyDb.getString("userNameUser"),
-//                    tinyDb.getString("emailAddress"),
-//                    tinyDb.getString("phoneUser"),
-//                    tinyDb.getString("passwordUser"),
-//                    tinyDb.getString("addressUser"),
-//                    tinyDb.getString("state"),
-//                    tinyDb.getString("country"),
-//                    tinyDb.getString("dob"),
-//                    tinyDb.getString("gender")
-//            );
-//
-//            sendSignUpRequest(patientModel);
+
+            sendSignUpRequest();
         });
 
         previousSession.setOnClickListener(new View.OnClickListener() {
@@ -109,7 +107,7 @@ public class SubscriptionFragment extends Fragment {
         });
         //category gotten from designation fragment
         if (tinyDb.getString("category").equals("doctor") || tinyDb.getString("category").equals("nurse")||
-                    tinyDb.getString("category").equals("pharm")){
+                tinyDb.getString("category").equals("pharm")){
             SubscriptionUserModel subscriptionUserModel = new SubscriptionUserModel("Free","500 Naira","10 Patients", "Monthly");
             list.add(subscriptionUserModel);
 
@@ -159,32 +157,92 @@ public class SubscriptionFragment extends Fragment {
 
     }
 
-    private void sendSignUpRequest(PatientModel patient){
-        String base_url = getResources().getString(R.string.base_url_sign_up);
+    /**
+     *  This method is used to send the person's signup details to the server
+     *  to sign up for the app
+     */
+    private void sendSignUpRequest()  {
+        ///category key gotten from Designation Fragment
 
-        Retrofit.Builder builder = new Retrofit.Builder()
-                .baseUrl(base_url)
-                .addConverterFactory(GsonConverterFactory.create());
+        switch (tinyDb.getString("category")) {
+            case "patient":
+                base_url_signup = getResources().getString(R.string.base_url_sign_up) + "user";
+                break;
+            case "doctor":
+                base_url_signup = getResources().getString(R.string.base_url_sign_up) + "doctor";
+                break;
+            case "pharm":
+                base_url_signup = getResources().getString(R.string.base_url_sign_up) + "pharmacist";
+                break;
+            case "labTech":
+                base_url_signup = getResources().getString(R.string.base_url_sign_up) + "labtech";
+                break;
+        }
 
-        Retrofit retrofit = builder.build();
+        JSONObject params = new JSONObject();
 
-        PatientClient client = retrofit.create(PatientClient.class);
-        Call<PatientModel> call = client.createAccount(patient);
+        //Creating the body of the request
+        try {
+            params.put("firstname", tinyDb.getString("firstNameUser"));
+            params.put("lastname", tinyDb.getString("lastNameUser"));
+            params.put("username", tinyDb.getString("userNameUser"));
+            params.put("email", tinyDb.getString("emailAddress"));
+            params.put("mobileno", tinyDb.getString("phoneUser"));
+            params.put("password", tinyDb.getString("passwordUser"));
+            params.put("address", tinyDb.getString("addressUser"));
+            params.put("state", tinyDb.getString("state"));
+            params.put("country", tinyDb.getString("country"));
+            params.put("dob", tinyDb.getString("dob"));
+            params.put("gender", tinyDb.getString("gender"));
+            mRequestBody = params.toString();
 
-        call.enqueue(new Callback<PatientModel>() {
-            @Override
-            public void onResponse(@NotNull Call<PatientModel> call, @NotNull Response<PatientModel> response) {
-                if (response.isSuccessful()){
-                    Toast.makeText(getContext(), String.valueOf(response.body()), Toast.LENGTH_LONG).show();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+
+        JsonObjectRequest signUp = new JsonObjectRequest(Request.Method.POST, base_url_signup, null, response -> {
+            //Called when the server gives a valid response
+            try {
+                if (response.getBoolean("success")){
+                    Toast.makeText(requireContext(), "User Created" , Toast.LENGTH_LONG).show();
                 }
-
-
+            } catch (JSONException e) {
+                e.printStackTrace();
             }
+        }, error -> {
+            //Called when the server gives an error
+            try {
+                String responseBody = new String(error.networkResponse.data, "utf-8");
+                Log.i("Responsee", responseBody);
+                JSONObject jsonObject = new JSONObject(responseBody);
 
+                //Getting the message from the json
+                String message = jsonObject.getJSONObject("error").getString("message");
+
+                Toast.makeText(requireContext(), message, Toast.LENGTH_LONG).show();
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }){
             @Override
-            public void onFailure(@NotNull Call<PatientModel> call, @NotNull Throwable t) {
-                Toast.makeText(getContext(), "Error", Toast.LENGTH_SHORT).show();
+            public byte[] getBody() {
+                //Sending the user parameters as a body to the server
+                try {
+                    return mRequestBody == null ? null : mRequestBody.getBytes("utf-8");
+                } catch (UnsupportedEncodingException uee) {
+                    VolleyLog.wtf("Unsupported Encoding while trying to get the bytes of %s using %s", mRequestBody, "utf-8");
+                    return null;
+                }
             }
-        });
+        };
+
+        //Queuing the data so as to be async
+        RequestQueue requestQueue = Volley.newRequestQueue(requireContext());
+        requestQueue.add(signUp);
+
     }
+
 }
