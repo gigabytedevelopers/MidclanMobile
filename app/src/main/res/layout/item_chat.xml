@@ -21,6 +21,7 @@
             android:layout_height="@dimen/avatar_chat_size"
             android:src="@drawable/test"
             android:scaleType="centerCrop"
+            android:layout_gravity="center"
             android:layout_marginEnd="@dimen/spacing_medium"
             app:civ_border="false"/>
         <RelativeLayout

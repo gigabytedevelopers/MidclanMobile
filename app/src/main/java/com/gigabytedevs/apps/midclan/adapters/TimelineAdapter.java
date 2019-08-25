@@ -52,7 +52,8 @@ public class TimelineAdapter extends RecyclerView.Adapter<TimelineAdapter.ViewHo
     @Override
     public TimelineAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         final View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_card_post_text, parent, false);
-        final ViewHolder myViewHolder = new ViewHolder(view);
+        final TimelineAdapter.ViewHolder myViewHolder = new TimelineAdapter.ViewHolder(view);
+        view.setOnClickListener(view1 -> clickListener.onItemClick(view1, myViewHolder.getAdapterPosition()));
         return myViewHolder;
     }
 

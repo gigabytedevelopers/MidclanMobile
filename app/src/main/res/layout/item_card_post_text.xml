@@ -61,7 +61,7 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Body2"
                 android:textColor="@color/secondary_text"
                 android:layout_marginTop="@dimen/spacing_small"
-                android:maxLines="2"
+                android:maxLines="4"
                 android:ellipsize="end"
                 android:fontFamily="@font/latoregular"
                 tools:text="@string/dummy_text"/>

@@ -12,7 +12,8 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:paddingStart="@dimen/spacing_smlarge"
-        android:paddingEnd="@dimen/spacing_smlarge"/>
+        android:scrollbars="none"
+        android:paddingStart="@dimen/spacing_medium"
+        android:paddingEnd="@dimen/spacing_medium"/>
 
 </LinearLayout>

@@ -12,11 +12,14 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.gigabytedevs.apps.midclan.R;
 import com.gigabytedevs.apps.midclan.activities.NotificationActivity;
+import com.gigabytedevs.apps.midclan.activities.UserChatActivity;
 import com.gigabytedevs.apps.midclan.adapters.ChatAdapter;
 import com.gigabytedevs.apps.midclan.models.ChatModel;
 
@@ -63,11 +66,15 @@ public class ChatsFragment extends Fragment {
         ChatModel chatModel2 = new ChatModel("Doctor Mark", "New Message", "12:00", R.drawable.test);
         list.add(chatModel2);
 
-        adapter = new ChatAdapter(getContext(), list);
+        adapter = new ChatAdapter(getContext(), list, (view1, position)->{
+            startActivity(new Intent(getActivity(), UserChatActivity.class));
+        });
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         layoutManager.setOrientation(RecyclerView.VERTICAL);
         recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+        recyclerView.addItemDecoration(new DividerItemDecoration(requireActivity(),DividerItemDecoration.VERTICAL));
         recyclerView.setAdapter(adapter);
     }
 }

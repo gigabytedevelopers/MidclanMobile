@@ -13,21 +13,32 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:padding="@dimen/spacing_xmedium">
+        android:padding="@dimen/spacing_xmedium"
+        android:paddingStart="@dimen/spacing_large"
+        android:paddingEnd="@dimen/spacing_large">
+<!--Discover Image-->
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/discover_image"
             android:layout_width="@dimen/discover_image_size"
             android:layout_height="@dimen/discover_image_size" />
-
+<!--Discover Title-->
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/discover_title"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:textColor="@color/primary_text"
             android:singleLine="true"
             android:layout_gravity="center"
-            android:layout_marginStart="@dimen/spacing_medium"
+            android:layout_marginStart="@dimen/spacing_middle"
             android:fontFamily="@font/latoregular"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
+<!--Forward Button-->
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="@dimen/icon_size"
+            android:layout_height="@dimen/icon_size"
+            app:srcCompat="@drawable/ic_forward"
+            android:tint="@color/secondary_text"
+            android:layout_gravity="center_vertical|end"/>
     </LinearLayout>
 </com.balysv.materialripple.MaterialRippleLayout>

@@ -7,14 +7,12 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.gigabytedevs.apps.midclan.R;
 import com.gigabytedevs.apps.midclan.models.ChatModel;
-import com.gigabytedevs.apps.midclan.models.TimelineModel;
-
+import com.gigabytedevs.apps.midclan.utils.ClickListener;
 
 import java.util.ArrayList;
 
@@ -22,10 +20,12 @@ import java.util.ArrayList;
 public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder> {
     private Context context;
     private ArrayList<ChatModel> list;
+    private ClickListener clickListener;
 
-    public ChatAdapter(Context context, ArrayList<ChatModel> list){
+    public ChatAdapter(Context context, ArrayList<ChatModel> list, ClickListener clickListener){
         this.context = context;
         this.list = list;
+        this.clickListener = clickListener;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
@@ -45,7 +45,8 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder> {
     @Override
     public ChatAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         final View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_chat, parent, false);
-        final ViewHolder myViewHolder = new ViewHolder(view);
+        final ChatAdapter.ViewHolder myViewHolder = new ChatAdapter.ViewHolder(view);
+        view.setOnClickListener(view1 -> clickListener.onItemClick(view1, myViewHolder.getAdapterPosition()));
         return myViewHolder;
     }
 

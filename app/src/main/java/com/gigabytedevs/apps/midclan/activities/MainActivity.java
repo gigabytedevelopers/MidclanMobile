@@ -1,5 +1,6 @@
 package com.gigabytedevs.apps.midclan.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 
@@ -9,9 +10,9 @@ import androidx.appcompat.widget.AppCompatTextView;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.gigabytedevs.apps.midclan.R;
+import com.gigabytedevs.apps.midclan.fragments.ChatsFragment;
 import com.gigabytedevs.apps.midclan.fragments.DiscoverFragment;
 import com.gigabytedevs.apps.midclan.fragments.FeedsFragment;
-import com.gigabytedevs.apps.midclan.fragments.ChatsFragment;
 import com.gigabytedevs.apps.midclan.fragments.ProfileFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -47,6 +48,9 @@ public class MainActivity extends AppCompatActivity {
                     FragmentTransaction profileTransaction = getSupportFragmentManager().beginTransaction();
                     profileTransaction.replace(R.id.mainContent,profileFragment);
                     profileTransaction.commit();
+                    return true;
+                case R.id.nav_create:
+                    startActivity(new Intent(MainActivity.this, CreateActivity.class));
                     return true;
             }
             return false;

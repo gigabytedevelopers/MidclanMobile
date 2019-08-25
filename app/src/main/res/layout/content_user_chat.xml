@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".activities.NotificationActivity"
+    tools:showIn="@layout/activity_notification">
+
+    <FrameLayout
+        android:id="@+id/chat_fragment"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" >
+
+        <RelativeLayout
+            android:id="@+id/no_messages_available"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white_hint"
+            android:padding="@dimen/spacing_smlarge"
+            android:visibility="visible">
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/no_messages_image"
+                android:layout_width="@dimen/no_internet_size"
+                android:layout_height="@dimen/no_internet_size"
+                android:layout_centerInParent="true"
+                android:src="@drawable/img_no_internet_satellite"/>
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/no_messages_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/text_no_message"
+                android:layout_gravity="center_horizontal"
+                android:textColor="@color/primary_text"
+                android:layout_below="@id/no_messages_image"
+                android:fontFamily="@font/latobold"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/spacing_medium"
+                android:textAppearance="@style/TextAppearance.AppCompat.Title"/>
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/no_messages_hint"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/text_no_message_hint"
+                android:layout_gravity="center_horizontal"
+                android:textColor="@color/primary_text"
+                android:layout_below="@id/no_messages_title"
+                android:fontFamily="@font/latoregular"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/spacing_medium"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
+
+        </RelativeLayout>
+
+    </FrameLayout>
+
+    <include layout="@layout/layout_chat_edit_box" />
+</LinearLayout>

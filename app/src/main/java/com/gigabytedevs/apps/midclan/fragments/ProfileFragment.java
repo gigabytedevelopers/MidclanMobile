@@ -68,14 +68,15 @@ public class ProfileFragment extends Fragment {
         ProfileModel profileModel3 = new ProfileModel(getString(R.string.text_profile_subscriptions), getString(R.string.text_profile_subscriptions_hint));
         list.add(profileModel3);
 
+        ProfileModel profileModel7 = new ProfileModel(getString(R.string.text_profile_about), getString(R.string.text_profile_about_hint));
+        list.add(profileModel7);
+
 
         adapter = new ProfileAdapter(getContext(), list, (view1, position)->{
             switch (position){
                 case 0:
                     Toast.makeText(getContext(),"Hello it works",Toast.LENGTH_LONG).show();
-                    break;
                 case 1:
-                    break;
             }
         });
 

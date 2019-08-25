@@ -61,6 +61,10 @@
                 android:fontFamily="@font/latoregular"
                 android:textAppearance="@style/TextAppearance.AppCompat.Menu"/>
 
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/spacing_smlarge">
             <com.balysv.materialripple.MaterialRippleLayout
                 android:id="@+id/sign_in_btn"
                 android:layout_width="match_parent"
@@ -70,8 +74,7 @@
                 app:mrl_rippleDuration="350"
                 app:mrl_rippleFadeDuration="75"
                 app:mrl_rippleDelayClick="true"
-                android:background="@drawable/btn_white"
-                android:layout_marginBottom="@dimen/spacing_smlarge">
+                android:background="@drawable/btn_white">
                 <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -81,6 +84,16 @@
                     android:fontFamily="@font/latobold"
                     android:textAppearance="@style/TextAppearance.AppCompat.Button"/>
             </com.balysv.materialripple.MaterialRippleLayout>
+
+                <ProgressBar
+                    android:id="@+id/sign_in_progress_bar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:visibility="gone"
+                    android:theme="@style/Widget.AppCompat.ProgressBar"/>
+
+            </RelativeLayout>
 
 
 
