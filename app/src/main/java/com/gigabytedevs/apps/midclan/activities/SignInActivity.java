@@ -3,6 +3,8 @@ package com.gigabytedevs.apps.midclan.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatEditText;
@@ -36,6 +38,7 @@ public class SignInActivity extends AppCompatActivity {
     private String base_url_signin;
     private TinyDb tinyDb;
     private ArrayList<String> responseArray;
+    private ProgressBar signInProgress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +50,7 @@ public class SignInActivity extends AppCompatActivity {
         username = findViewById(R.id.userName);
         password = findViewById(R.id.passWord);
         forgotPassword = findViewById(R.id.action_forgot_password);
+        signInProgress = findViewById(R.id.sign_in_progress_bar);
         tinyDb = new TinyDb(this);
         responseArray = new ArrayList<>();
         forgotPassword.setOnClickListener(view -> {
@@ -68,6 +72,9 @@ public class SignInActivity extends AppCompatActivity {
             if (String.valueOf(username.getText()).isEmpty() || String.valueOf(password.getText()).isEmpty()){
                 Toast.makeText(this, "Email or Password cannot be Empty", Toast.LENGTH_SHORT).show();
             }else {
+                signIn.setVisibility(View.GONE);
+                signInProgress.setVisibility(View.VISIBLE);
+
                 sendSignInRequest();
             }
 
@@ -108,60 +115,6 @@ public class SignInActivity extends AppCompatActivity {
         //Getting the response array from the SendVolleyRequest class
          responseArray = SendVolleyRequest.SendRequest(base_url_signin,mRequestBody,"POST", SignInActivity.this);
 
-
-//        JSONObject params = new JSONObject();
-//
-//        //Creating the body of the request
-//        try {
-//            params.put("email", String.valueOf(username.getText()).toLowerCase());
-//            params.put("password", String.valueOf(password.getText()).toLowerCase());
-//            mRequestBody = params.toString();
-//
-//        } catch (JSONException e) {
-//            e.printStackTrace();
-//        }
-//
-//        //Making the login request using volley library
-//        JsonObjectRequest signIn = new JsonObjectRequest(Request.Method.POST, base_url_signin, null, new Response.Listener<JSONObject>() {
-//            @Override
-//            public void onResponse(JSONObject response) {
-//                //the response gotten when the request has been sent
-//                Toast.makeText(SignInActivity.this, "User Logged In", Toast.LENGTH_SHORT).show();
-//            }
-//        }, new Response.ErrorListener() {
-//            @Override
-//            public void onErrorResponse(VolleyError error) {
-//                //Getting the error body from the server
-//                try {
-//                    String responseBody = new String(error.networkResponse.data, "utf-8");
-//                    JSONObject jsonObject = new JSONObject(responseBody);
-//
-//                    //Getting the message from the json
-//                    String message = jsonObject.getJSONObject("error").getString("message");
-//
-//                    Toast.makeText(SignInActivity.this, message, Toast.LENGTH_LONG).show();
-//                } catch (UnsupportedEncodingException e) {
-//                    e.printStackTrace();
-//                } catch (JSONException e) {
-//                    e.printStackTrace();
-//                }
-//            }
-//        }){
-//            @Override
-//            public byte[] getBody() {
-//                //Sending the user parameters as a body to the server
-//
-//                try {
-//                    return mRequestBody == null ? null : mRequestBody.getBytes("utf-8");
-//                } catch (UnsupportedEncodingException uee) {
-//                    VolleyLog.wtf("Unsupported Encoding while trying to get the bytes of %s using %s", mRequestBody, "utf-8");
-//                    return null;
-//                }
-//            }
-//        };
-//
-//        RequestQueue requestQueue = Volley.newRequestQueue(this);
-//        requestQueue.add(signIn);
     }
 
     @Override
@@ -196,6 +149,9 @@ public class SignInActivity extends AppCompatActivity {
                 startActivity(new Intent(SignInActivity.this,MainActivity.class));
                 Toast.makeText(this,"Welcome "+ username , Toast.LENGTH_LONG).show();
             }else {
+                signInProgress.setVisibility(View.GONE);
+                signIn.setVisibility(View.VISIBLE);
+
                 String error = responseObject.getJSONObject("error").getString("message");
                 Toast.makeText(this, error, Toast.LENGTH_LONG).show();
             }

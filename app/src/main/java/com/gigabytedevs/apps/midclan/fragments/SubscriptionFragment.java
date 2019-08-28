@@ -1,6 +1,7 @@
 package com.gigabytedevs.apps.midclan.fragments;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -14,40 +15,33 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.android.volley.AuthFailureError;
-import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.balysv.materialripple.MaterialRippleLayout;
 import com.gigabytedevs.apps.midclan.R;
+import com.gigabytedevs.apps.midclan.activities.MainActivity;
 import com.gigabytedevs.apps.midclan.adapters.ProfileAdapter;
 import com.gigabytedevs.apps.midclan.adapters.SubscriptionUserAdapter;
 import com.gigabytedevs.apps.midclan.models.SubscriptionUserModel;
-import com.gigabytedevs.apps.midclan.models.api_models.PatientModel;
 import com.gigabytedevs.apps.midclan.models.events_models.CountEvent;
+import com.gigabytedevs.apps.midclan.models.events_models.RequestDoneEvent;
 import com.gigabytedevs.apps.midclan.service.PatientClient;
+import com.gigabytedevs.apps.midclan.service.SendVolleyRequest;
 import com.gigabytedevs.apps.midclan.utils.TinyDb;
-import com.google.gson.Gson;
-import com.google.gson.TypeAdapter;
 import com.ramotion.cardslider.CardSliderLayoutManager;
 import com.ramotion.cardslider.CardSnapHelper;
 
 import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 import org.jetbrains.annotations.NotNull;
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -59,6 +53,7 @@ public class SubscriptionFragment extends Fragment{
     private TinyDb tinyDb;
     private String mRequestBody;
     private String base_url_signup;
+    private ArrayList<String> responseArray;
 
 
     public SubscriptionFragment() {
@@ -81,6 +76,7 @@ public class SubscriptionFragment extends Fragment{
 
         new CardSnapHelper().attachToRecyclerView(recyclerView);
         list = new ArrayList<>();
+        responseArray = new ArrayList<>();
         MaterialRippleLayout nextSession = view.findViewById(R.id.next_session);
         MaterialRippleLayout previousSession = view.findViewById(R.id.previous_session);
         tinyDb = new TinyDb(requireContext());
@@ -200,7 +196,6 @@ public class SubscriptionFragment extends Fragment{
             e.printStackTrace();
         }
 
-
         JsonObjectRequest signUp = new JsonObjectRequest(Request.Method.POST, base_url_signup, null, response -> {
             //Called when the server gives a valid response
             try {
@@ -244,5 +239,4 @@ public class SubscriptionFragment extends Fragment{
         requestQueue.add(signUp);
 
     }
-
 }
