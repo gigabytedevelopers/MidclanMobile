@@ -60,6 +60,7 @@ public class TimelineModel {
     private String profileImageUrl;
     private Bitmap mainImageBitmap;
     private String postId;
+    private String likesCount;
 
     public TimelineModel(int mainImageResource, String title, String description, String name, String time, int profileImage){
         this.mainImageResource = mainImageResource;
@@ -90,7 +91,11 @@ public class TimelineModel {
         return postId;
     }
 
-    public TimelineModel(String postId, Bitmap mainImageBitmap, String title, String description, String name, String time, String profileImageUrl){
+    public String getLikesCount() {
+        return likesCount;
+    }
+
+    public TimelineModel(String postId, Bitmap mainImageBitmap, String title, String description, String name, String time, String profileImageUrl, String likesCount){
         this.mainImageBitmap = mainImageBitmap;
         this.title = title;
         this.description = description;
@@ -98,5 +103,6 @@ public class TimelineModel {
         this.time = time;
         this.profileImageUrl = profileImageUrl;
         this.postId = postId;
+        this.likesCount = likesCount;
     }
 }

@@ -61,14 +61,14 @@ public class TimelineAdapter extends RecyclerView.Adapter<TimelineAdapter.ViewHo
     @Override
     public void onBindViewHolder(@NonNull TimelineAdapter.ViewHolder holder, int position) {
         TimelineModel timelineModel = list.get(position);
-//        holder.mainImage.setImageResource(timelineModel.getMainImageResource());
-        holder.mainImage.setImageBitmap(timelineModel.getMainImageBitmap());
+        holder.mainImage.setImageResource(timelineModel.getMainImageResource());
+//        holder.mainImage.setImageBitmap(timelineModel.getMainImageBitmap());
         holder.title.setText(timelineModel.getTitle());
         holder.description.setText(timelineModel.getDescription());
-//        holder.profileImage.setImageResource(timelineModel.getProfileImage());
-        Glide.with(context)
-                .load(timelineModel.getProfileImageUrl())
-                .into(holder.profileImage);
+        holder.profileImage.setImageResource(timelineModel.getProfileImage());
+//        Glide.with(context)
+//                .load(timelineModel.getProfileImageUrl())
+//                .into(holder.profileImage);
         holder.name.setText(timelineModel.getName());
         holder.time.setText(timelineModel.getTime());
     }
