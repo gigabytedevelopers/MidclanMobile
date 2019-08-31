@@ -40,15 +40,15 @@ public class PostPreviewActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setUpToolBar();
 
-        postUserNameTopBar.setText(tinyDb.getString("nameItem"));
-        title.setText(tinyDb.getString("titeItem"));
-        userName.setText(tinyDb.getString("nameItem"));
-        time.setText(tinyDb.getString("timeItem"));
-        body.setText(tinyDb.getString("descriptionItem"));
-        numberOfLikes.setText(tinyDb.getString("likesCountItem"));
-        Glide.with(this)
-                .load(tinyDb.getString("profileImageUrlItem"))
-                .into(profileImage);
+//        postUserNameTopBar.setText(tinyDb.getString("nameItem"));
+//        title.setText(tinyDb.getString("titeItem"));
+//        userName.setText(tinyDb.getString("nameItem"));
+//        time.setText(tinyDb.getString("timeItem"));
+//        body.setText(tinyDb.getString("descriptionItem"));
+//        numberOfLikes.setText(tinyDb.getString("likesCountItem"));
+//        Glide.with(this)
+//                .load(tinyDb.getString("profileImageUrlItem"))
+//                .into(profileImage);
     }
 
     private void setUpToolBar() {
