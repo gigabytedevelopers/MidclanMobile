@@ -69,14 +69,15 @@ public class SignInActivity extends AppCompatActivity {
         });
 
         signIn.setOnClickListener(view -> {
-            if (String.valueOf(username.getText()).isEmpty() || String.valueOf(password.getText()).isEmpty()){
-                Toast.makeText(this, "Email or Password cannot be Empty", Toast.LENGTH_SHORT).show();
-            }else {
-                signIn.setVisibility(View.GONE);
-                signInProgress.setVisibility(View.VISIBLE);
-
-                sendSignInRequest();
-            }
+            startActivity(new Intent(SignInActivity.this, MainActivity.class));
+//            if (String.valueOf(username.getText()).isEmpty() || String.valueOf(password.getText()).isEmpty()){
+//                Toast.makeText(this, "Email or Password cannot be Empty", Toast.LENGTH_SHORT).show();
+//            }else {
+//                signIn.setVisibility(View.GONE);
+//                signInProgress.setVisibility(View.VISIBLE);
+//
+//                sendSignInRequest();
+//            }
 
         });
     }
@@ -146,6 +147,12 @@ public class SignInActivity extends AppCompatActivity {
             if (responseObject.getBoolean("success")){
                 String username = responseObject.getJSONObject("payload")
                                     .getJSONObject("data").getString("username");
+
+                String token = responseObject.getJSONObject("payload")
+                        .getString("token");
+                tinyDb.putString("token", token);
+                Log.i("token", tinyDb.getString("token"));
+
                 startActivity(new Intent(SignInActivity.this,MainActivity.class));
                 Toast.makeText(this,"Welcome "+ username , Toast.LENGTH_LONG).show();
             }else {

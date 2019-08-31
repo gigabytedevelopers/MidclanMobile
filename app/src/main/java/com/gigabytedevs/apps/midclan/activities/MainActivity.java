@@ -2,6 +2,7 @@ package com.gigabytedevs.apps.midclan.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
@@ -14,10 +15,19 @@ import com.gigabytedevs.apps.midclan.fragments.ChatsFragment;
 import com.gigabytedevs.apps.midclan.fragments.DiscoverFragment;
 import com.gigabytedevs.apps.midclan.fragments.FeedsFragment;
 import com.gigabytedevs.apps.midclan.fragments.ProfileFragment;
+import com.gigabytedevs.apps.midclan.models.events_models.RequestDoneEvent;
+import com.gigabytedevs.apps.midclan.service.SendVolleyRequest;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     private AppCompatTextView title;
+
+
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -68,6 +78,11 @@ public class MainActivity extends AppCompatActivity {
         BottomNavigationView navView = findViewById(R.id.nav_view);
         navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
+
     }
+
+
+
+
 
 }

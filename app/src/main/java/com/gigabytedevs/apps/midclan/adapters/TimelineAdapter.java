@@ -10,6 +10,7 @@ import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.gigabytedevs.apps.midclan.R;
 import com.gigabytedevs.apps.midclan.models.TimelineModel;
 import com.gigabytedevs.apps.midclan.utils.ClickListener;
@@ -60,10 +61,14 @@ public class TimelineAdapter extends RecyclerView.Adapter<TimelineAdapter.ViewHo
     @Override
     public void onBindViewHolder(@NonNull TimelineAdapter.ViewHolder holder, int position) {
         TimelineModel timelineModel = list.get(position);
-        holder.profileImage.setImageResource(timelineModel.getMainImageResource());
+//        holder.mainImage.setImageResource(timelineModel.getMainImageResource());
+        holder.mainImage.setImageBitmap(timelineModel.getMainImageBitmap());
         holder.title.setText(timelineModel.getTitle());
         holder.description.setText(timelineModel.getDescription());
-        holder.profileImage.setImageResource(timelineModel.getProfileImage());
+//        holder.profileImage.setImageResource(timelineModel.getProfileImage());
+        Glide.with(context)
+                .load(timelineModel.getProfileImageUrl())
+                .into(holder.profileImage);
         holder.name.setText(timelineModel.getName());
         holder.time.setText(timelineModel.getTime());
     }
