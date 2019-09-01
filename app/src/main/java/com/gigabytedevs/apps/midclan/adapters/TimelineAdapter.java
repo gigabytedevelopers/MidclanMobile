@@ -4,10 +4,12 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatTextView;
+import androidx.appcompat.widget.AppCompatToggleButton;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -24,6 +26,7 @@ public class TimelineAdapter extends RecyclerView.Adapter<TimelineAdapter.ViewHo
 
  public class ViewHolder extends RecyclerView.ViewHolder{
      private AppCompatImageView mainImage;
+     private AppCompatToggleButton bookMark;
      private AppCompatTextView title;
      private AppCompatTextView description;
      private AppCompatImageView profileImage;
@@ -37,6 +40,7 @@ public class TimelineAdapter extends RecyclerView.Adapter<TimelineAdapter.ViewHo
          profileImage = view.findViewById(R.id.user_text_post_profile);
          name = view.findViewById(R.id.user_text_username);
          time = view.findViewById(R.id.user_text_time);
+         bookMark = view.findViewById(R.id.post_text_bookmark);
      }
  }
 
@@ -71,6 +75,16 @@ public class TimelineAdapter extends RecyclerView.Adapter<TimelineAdapter.ViewHo
 //                .into(holder.profileImage);
         holder.name.setText(timelineModel.getName());
         holder.time.setText(timelineModel.getTime());
+
+        holder.bookMark.setOnCheckedChangeListener((compoundButton, isChecked) -> {
+            if (isChecked){
+                holder.bookMark.setBackgroundDrawable(context.getResources().getDrawable(R.drawable.ic_bookmark));
+            }else{
+                holder.bookMark.setBackgroundDrawable(context.getResources().getDrawable(R.drawable.ic_bookmark_outline));
+            }
+        });
+
+
     }
 
     @Override

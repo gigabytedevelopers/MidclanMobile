@@ -25,14 +25,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@color/overlay_dark_10"/>
-            <androidx.appcompat.widget.AppCompatImageView
+            <androidx.appcompat.widget.AppCompatToggleButton
                 android:id="@+id/post_text_bookmark"
                 android:layout_width="@dimen/icon_size"
                 android:layout_height="@dimen/icon_size"
                 android:layout_gravity="top|end"
                 android:layout_marginTop="@dimen/spacing_smlarge"
                 android:layout_marginEnd="@dimen/spacing_smlarge"
-                app:srcCompat="@drawable/ic_bookmark_outline"
+                android:textOn=""
+                android:textOff=""
+                android:background="@drawable/ic_bookmark_outline"
                 app:tint="@color/white"/>
 
 
