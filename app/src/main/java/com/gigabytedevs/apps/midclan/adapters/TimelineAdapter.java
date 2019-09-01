@@ -51,7 +51,6 @@ public class TimelineAdapter extends RecyclerView.Adapter<TimelineAdapter.ViewHo
          bookMark = view.findViewById(R.id.post_text_bookmark);
      }
  }
-
          public TimelineAdapter(Context context, ArrayList<TimelineModel> list, ClickListener clickListener){
                 this.context = context;
                 this.list = list;
@@ -74,7 +73,9 @@ public class TimelineAdapter extends RecyclerView.Adapter<TimelineAdapter.ViewHo
     public void onBindViewHolder(@NonNull TimelineAdapter.ViewHolder holder, int position) {
         TimelineModel timelineModel = list.get(position);
         holder.mainImage.setImageResource(timelineModel.getMainImageResource());
-//        holder.mainImage.setImageBitmap(timelineModel.getMainImageBitmap());
+//        Glide.with(context)
+//                .load(timelineModel.getMainImageUrl())
+//                .into(holder.mainImage);
         holder.title.setText(timelineModel.getTitle());
         holder.description.setText(timelineModel.getDescription());
         holder.profileImage.setImageResource(timelineModel.getProfileImage());

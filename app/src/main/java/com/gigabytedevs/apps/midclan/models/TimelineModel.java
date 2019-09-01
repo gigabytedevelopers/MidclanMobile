@@ -58,7 +58,7 @@ public class TimelineModel {
     private String time;
     private int profileImage;
     private String profileImageUrl;
-    private Bitmap mainImageBitmap;
+    private String mainImageUrl;
     private String postId;
     private String likesCount;
 
@@ -75,17 +75,18 @@ public class TimelineModel {
         return profileImageUrl;
     }
 
+    public String getMainImageUrl() {
+        return mainImageUrl;
+    }
+
+    public void setMainImageUrl(String mainImageUrl) {
+        this.mainImageUrl = mainImageUrl;
+    }
+
     public void setProfileImageUrl(String profileImageUrl) {
         this.profileImageUrl = profileImageUrl;
     }
 
-    public Bitmap getMainImageBitmap() {
-        return mainImageBitmap;
-    }
-
-    public void setMainImageBitmap(Bitmap mainImageBitmap) {
-        this.mainImageBitmap = mainImageBitmap;
-    }
 
     public String getPostId() {
         return postId;
@@ -95,8 +96,8 @@ public class TimelineModel {
         return likesCount;
     }
 
-    public TimelineModel(String postId, Bitmap mainImageBitmap, String title, String description, String name, String time, String profileImageUrl, String likesCount){
-        this.mainImageBitmap = mainImageBitmap;
+    public TimelineModel(String postId, String mainImageUrl, String title, String description, String name, String time, String profileImageUrl, String likesCount){
+        this.mainImageUrl = mainImageUrl;
         this.title = title;
         this.description = description;
         this.name = name;

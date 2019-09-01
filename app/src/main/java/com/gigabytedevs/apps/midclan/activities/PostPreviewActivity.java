@@ -49,6 +49,10 @@ public class PostPreviewActivity extends AppCompatActivity {
 //        Glide.with(this)
 //                .load(tinyDb.getString("profileImageUrlItem"))
 //                .into(profileImage);
+//
+//        Glide.with(this)
+//                .load(tinyDb.getString("mainImageUrlItem"))
+//                .into(postImage);
     }
 
     private void setUpToolBar() {

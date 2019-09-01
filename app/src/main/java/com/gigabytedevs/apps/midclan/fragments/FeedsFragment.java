@@ -159,16 +159,16 @@ public class FeedsFragment extends Fragment {
 
 
                         //Getting the main images from the imagearray
-                        JSONArray mainImageArray = dataObject.getJSONArray("postImages");
-                        for (int j =0; j < mainImageArray.length(); j++ ){
-                            String postImage = mainImageArray.getString(0);
-                            Log.i("PostImage", postImage);
-                            byte[] decodedString = Base64.decode(postImage, Base64.DEFAULT);
-                            decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
-                        }
+//                        JSONArray mainImageArray = dataObject.getJSONArray("postImages");
+//                        for (int j =0; j < mainImageArray.length(); j++ ){
+//                            String postImage = mainImageArray.getString(0);
+//                            Log.i("PostImage", postImage);
+//                            byte[] decodedString = Base64.decode(postImage, Base64.DEFAULT);
+//                            decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+//                        }
 
                         //Method that updates the timeline list
-                        updateTimeLine(postId,decodedByte,title,body,name,"11:00",profileUrl, likesCountString);
+                        updateTimeLine(postId,profileUrl,title,body,name,"11:00",profileUrl, likesCountString);
                     }
 
                 }else {
@@ -190,7 +190,7 @@ public class FeedsFragment extends Fragment {
      * @param postId this is the id for the post gotten from the server which is put here by the onEvent Method with param
      *               of RequestDone Event
      *
-     * @param mainImageBitmap this is the main Image for the post gotten from the server which is put here by the onEvent Method with param
+     * @param mainImageUrl this is the main Image for the post gotten from the server which is put here by the onEvent Method with param
      *      *               of RequestDone Event
      *
      * @param title this is the title for the post gotten from the server which is put here by the onEvent Method with param
@@ -208,9 +208,9 @@ public class FeedsFragment extends Fragment {
      * @param profileImageUrl this is the profile image url for the post gotten from the server which is put here by the onEvent Method with param
      *      *               of RequestDone Event
      */
-    private void updateTimeLine(String postId,Bitmap mainImageBitmap, String title, String description, String name, String time, String profileImageUrl, String likeCount){
+    private void updateTimeLine(String postId,String mainImageUrl, String title, String description, String name, String time, String profileImageUrl, String likeCount){
 
-        TimelineModel timelineModel = new TimelineModel(postId,mainImageBitmap,title,description,name,time,profileImageUrl, likeCount);
+        TimelineModel timelineModel = new TimelineModel(postId,mainImageUrl,title,description,name,time,profileImageUrl, likeCount);
         list.add(timelineModel);
 
         adapter = new TimelineAdapter(getContext(), list, ((view1, position) -> {
@@ -225,6 +225,7 @@ public class FeedsFragment extends Fragment {
 //                    String timeItem = itemObject.getString("time");
 //                    String likesCountItem = itemObject.getString("likesCount");
 //                    String profileImageUrlItem = itemObject.getString("profileImageUrl");
+//                    String mainImageUrlItem = itemObject.getString("mainImageUrl");
 //
 //                    tinyDb.putString("titleItem", titleItem);
 //                    tinyDb.putString("descriptionItem", descriptionItem);
@@ -232,6 +233,7 @@ public class FeedsFragment extends Fragment {
 //                    tinyDb.putString("timeItem", timeItem);
 //                    tinyDb.putString("likesCountItem", likesCountItem);
 //                    tinyDb.putString("profileImageUrlItem", profileImageUrlItem);
+//                    tinyDb.putString("mainImageUrlItem", mainImageUrlItem);
 //                }
 //            } catch (JSONException e) {
 //                e.printStackTrace();
