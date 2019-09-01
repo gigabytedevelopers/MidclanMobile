@@ -48,9 +48,9 @@ public class FeedsFragment extends Fragment {
     private AppCompatTextView appTitle;
     private AppCompatImageView appNotify;
     private RecyclerView recyclerView;
-    private ArrayList<TimelineModel> list;
+    public static ArrayList<TimelineModel> list;
     private TimelineAdapter adapter;
-    private ArrayList<String> responseArray;
+    public static ArrayList<String> responseArray;
     private Bitmap decodedByte;
     private TinyDb tinyDb;
 
@@ -80,8 +80,8 @@ public class FeedsFragment extends Fragment {
         recyclerView = view.findViewById(R.id.feeds_list);
         list = new ArrayList<>();
 //
-//        responseArray = new ArrayList<>();
-//
+        responseArray = new ArrayList<>();
+
 //        responseArray = SendVolleyRequest.SendRequest(
 //                getResources().getString(R.string.base_url) + "posts/all",
 //                "",
@@ -132,51 +132,57 @@ public class FeedsFragment extends Fragment {
      */
     @Subscribe
     public void onEvent(RequestDoneEvent event){
-        String responseString = responseArray.get(0);
-        Log.i("Response", responseString);
+        if (event.getRequest().equals("TIMELINE")){
+            String responseString = responseArray.get(0);
+            Log.i("Response", responseString);
 
-        try {
-            JSONObject responseObject = new JSONObject(responseString);
+            try {
+                JSONObject responseObject = new JSONObject(responseString);
 
-            //If the success is true or false
-            if (responseObject.getBoolean("success")){
-                JSONArray jsonArray = responseObject.getJSONObject("payload").getJSONArray("data");
+                //If the success is true or false
+                if (responseObject.getBoolean("success")){
+                    JSONArray jsonArray = responseObject.getJSONObject("payload").getJSONArray("data");
 
-                //Getting the data object
-                for (int i =0; i< jsonArray.length(); i++){
-                    JSONObject dataObject = jsonArray.getJSONObject(i);
-                    Log.i("DataObject", dataObject.toString());
+                    //Getting the data object
+                    for (int i =0; i< jsonArray.length(); i++){
+                        JSONObject dataObject = jsonArray.getJSONObject(i);
+                        Log.i("DataObject", dataObject.toString());
 
-                    //Getting some data from the data object
-                    String postId = dataObject.getString("_id");
-                    String profileUrl = dataObject.getJSONObject("author").getString("imageUrl");
-                    String name = dataObject.getJSONObject("author").getString("name");
-                    String title = dataObject.getString("title");
-                    String body = dataObject.getString("body");
-                    int likeCount = dataObject.getJSONObject("meta").getInt("likesCount");
-                    String likesCountString = String.valueOf(likeCount);
+                        //Getting some data from the data object
+                        String postId = dataObject.getString("_id");
+                        String profileUrl = dataObject.getJSONObject("author").getString("imageUrl");
+                        String name = dataObject.getJSONObject("author").getString("name");
+                        String title = dataObject.getString("title");
+                        String body = dataObject.getString("body");
+                        int likeCount = dataObject.getJSONObject("meta").getInt("likesCount");
+                        String likesCountString = String.valueOf(likeCount);
 
 
-                    //Getting the main images from the imagearray
-                    JSONArray mainImageArray = dataObject.getJSONArray("postImages");
-                    for (int j =0; j < mainImageArray.length(); j++ ){
-                        String postImage = mainImageArray.getString(0);
-                        Log.i("PostImage", postImage);
-                        byte[] decodedString = Base64.decode(postImage, Base64.DEFAULT);
-                        decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+                        //Getting the main images from the imagearray
+                        JSONArray mainImageArray = dataObject.getJSONArray("postImages");
+                        for (int j =0; j < mainImageArray.length(); j++ ){
+                            String postImage = mainImageArray.getString(0);
+                            Log.i("PostImage", postImage);
+                            byte[] decodedString = Base64.decode(postImage, Base64.DEFAULT);
+                            decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+                        }
+
+                        //Method that updates the timeline list
+                        updateTimeLine(postId,decodedByte,title,body,name,"11:00",profileUrl, likesCountString);
                     }
 
-                    //Method that updates the timeline list
-                    updateTimeLine(postId,decodedByte,title,body,name,"11:00",profileUrl, likesCountString);
+                }else {
+                    String error = responseObject.getJSONObject("error").getString("message");
+                    Toast.makeText(requireContext(), error, Toast.LENGTH_LONG).show();
                 }
-
-            }else {
-                String error = responseObject.getJSONObject("error").getString("message");
-                Toast.makeText(requireContext(), error, Toast.LENGTH_LONG).show();
+            } catch (JSONException e) {
+                e.printStackTrace();
             }
-        } catch (JSONException e) {
-            e.printStackTrace();
+        }else if (event.getRequest().equals("BOOKMARK")){
+            String responseString = responseArray.get(0);
+            Log.i("Response BookMark", responseString);
         }
+
     }
 
     /**
@@ -208,28 +214,28 @@ public class FeedsFragment extends Fragment {
         list.add(timelineModel);
 
         adapter = new TimelineAdapter(getContext(), list, ((view1, position) -> {
-            try {
-                JSONArray itemJson = new JSONArray(getDetailsForTimeline(list,position));
-
-                for (int i =0; i< itemJson.length(); i++){
-                    JSONObject itemObject = itemJson.getJSONObject(i);
-                    String titleItem = itemObject.getString("title");
-                    String descriptionItem = itemObject.getString("description");
-                    String nameItem = itemObject.getString("name");
-                    String timeItem = itemObject.getString("time");
-                    String likesCountItem = itemObject.getString("likesCount");
-                    String profileImageUrlItem = itemObject.getString("profileImageUrl");
-
-                    tinyDb.putString("titleItem", titleItem);
-                    tinyDb.putString("descriptionItem", descriptionItem);
-                    tinyDb.putString("nameItem", nameItem);
-                    tinyDb.putString("timeItem", timeItem);
-                    tinyDb.putString("likesCountItem", likesCountItem);
-                    tinyDb.putString("profileImageUrlItem", profileImageUrlItem);
-                }
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
+//            try {
+//                JSONArray itemJson = new JSONArray(getDetailsForTimeline(list,position));
+//
+//                for (int i =0; i< itemJson.length(); i++){
+//                    JSONObject itemObject = itemJson.getJSONObject(i);
+//                    String titleItem = itemObject.getString("title");
+//                    String descriptionItem = itemObject.getString("description");
+//                    String nameItem = itemObject.getString("name");
+//                    String timeItem = itemObject.getString("time");
+//                    String likesCountItem = itemObject.getString("likesCount");
+//                    String profileImageUrlItem = itemObject.getString("profileImageUrl");
+//
+//                    tinyDb.putString("titleItem", titleItem);
+//                    tinyDb.putString("descriptionItem", descriptionItem);
+//                    tinyDb.putString("nameItem", nameItem);
+//                    tinyDb.putString("timeItem", timeItem);
+//                    tinyDb.putString("likesCountItem", likesCountItem);
+//                    tinyDb.putString("profileImageUrlItem", profileImageUrlItem);
+//                }
+//            } catch (JSONException e) {
+//                e.printStackTrace();
+//            }
             startActivity(new Intent(requireContext(),PostPreviewActivity.class));
         }));
 
