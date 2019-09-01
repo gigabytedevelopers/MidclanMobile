@@ -21,6 +21,7 @@ import com.gigabytedevs.apps.midclan.service.SendVolleyRequest;
 import com.gigabytedevs.apps.midclan.utils.ClickListener;
 import com.gigabytedevs.apps.midclan.utils.TinyDb;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -30,7 +31,6 @@ public class TimelineAdapter extends RecyclerView.Adapter<TimelineAdapter.ViewHo
  private Context context;
  private ArrayList<TimelineModel> list;
  private ClickListener clickListener;
- private TinyDb tinyDb;
 
  public class ViewHolder extends RecyclerView.ViewHolder{
      private AppCompatImageView mainImage;
@@ -64,7 +64,6 @@ public class TimelineAdapter extends RecyclerView.Adapter<TimelineAdapter.ViewHo
     public TimelineAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         final View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_card_post_text, parent, false);
         final TimelineAdapter.ViewHolder myViewHolder = new TimelineAdapter.ViewHolder(view);
-        tinyDb = new TinyDb(context);
         view.setOnClickListener(view1 -> clickListener.onItemClick(view1, myViewHolder.getAdapterPosition()));
         return myViewHolder;
     }
@@ -87,19 +86,19 @@ public class TimelineAdapter extends RecyclerView.Adapter<TimelineAdapter.ViewHo
 
         //setting the click function of the bookmark
         holder.bookMark.setOnCheckedChangeListener((compoundButton, isChecked) -> {
+            String mRequestBody ="";
             if (isChecked){
-                Toast.makeText(context, String.valueOf(holder.getAdapterPosition()), Toast.LENGTH_SHORT).show();
-//                //Creating the body of the request
-//                JSONObject params = new JSONObject();
-//                String mRequestBody ="";
-//
-//                try {
-//                    params.put("postId", "5d68ee42d0e6e50004933984");
-//                    mRequestBody = params.toString();
-//
-//                } catch (JSONException e) {
-//                    e.printStackTrace();
-//                }
+
+                //Creating the body of the request
+                JSONObject params = new JSONObject();
+
+                try {
+                    params.put("postId", getTimeLineId(holder.getAdapterPosition()));
+                    mRequestBody = params.toString();
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
 
                 /**
                  * When the bookmark of a paricular card is clicked, the code sets the
@@ -114,10 +113,12 @@ public class TimelineAdapter extends RecyclerView.Adapter<TimelineAdapter.ViewHo
                  *  in the response array from the FeedsFragment
                  */
                 holder.bookMark.setBackgroundDrawable(context.getResources().getDrawable(R.drawable.ic_bookmark));
-//                FeedsFragment.responseArray = SendVolleyRequest.SendRequest(context.getResources().getString(R.string.base_url)+ "bookmark/add",mRequestBody,"POST-HEAD",context);
-//
+                FeedsFragment.responseArray = SendVolleyRequest.SendRequest(context.getResources().getString(R.string.base_url)+ "bookmark/add",mRequestBody,"POST-HEAD",context);
+
             }else{
                 holder.bookMark.setBackgroundDrawable(context.getResources().getDrawable(R.drawable.ic_bookmark_outline));
+                FeedsFragment.responseArray = SendVolleyRequest.SendRequest(context.getResources().getString(R.string.base_url)+ "bookmark/remove",mRequestBody,"POST-HEAD",context);
+
             }
         });
 
@@ -128,6 +129,28 @@ public class TimelineAdapter extends RecyclerView.Adapter<TimelineAdapter.ViewHo
     @Override
     public int getItemCount() {
         return list.size();
+    }
+
+    /**
+     * This method gets the id of the post when the bookmark is clicked
+     * It uses the getDetailsForTimeline method from the FeedsFragment
+     * @param position this is the position of the card in the list
+     * @return gives back the string id
+     */
+    private String getTimeLineId(int position){
+     String id = "";
+     FeedsFragment feedsFragment = new FeedsFragment();
+        try {
+            JSONArray itemJson = new JSONArray(feedsFragment.getDetailsForTimeline(FeedsFragment.list,position));
+            for (int i =0; i< itemJson.length(); i++){
+                JSONObject jsonObject = itemJson.getJSONObject(i);
+                id = jsonObject.getString("postId");
+            }
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return id;
     }
 
 }

@@ -10,8 +10,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatImageView;
@@ -19,25 +19,20 @@ import androidx.appcompat.widget.AppCompatTextView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.gigabytedevs.apps.midclan.R;
-import com.gigabytedevs.apps.midclan.activities.MainActivity;
 import com.gigabytedevs.apps.midclan.activities.NotificationActivity;
 import com.gigabytedevs.apps.midclan.activities.PostPreviewActivity;
-import com.gigabytedevs.apps.midclan.activities.SignInActivity;
 import com.gigabytedevs.apps.midclan.adapters.TimelineAdapter;
 import com.gigabytedevs.apps.midclan.models.TimelineModel;
 import com.gigabytedevs.apps.midclan.models.events_models.RequestDoneEvent;
 import com.gigabytedevs.apps.midclan.service.SendVolleyRequest;
 import com.gigabytedevs.apps.midclan.utils.TinyDb;
 import com.google.gson.Gson;
-
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -51,7 +46,7 @@ public class FeedsFragment extends Fragment {
     public static ArrayList<TimelineModel> list;
     private TimelineAdapter adapter;
     public static ArrayList<String> responseArray;
-    private Bitmap decodedByte;
+    private ProgressBar progressBar;
     private TinyDb tinyDb;
 
     public FeedsFragment() {
@@ -72,6 +67,7 @@ public class FeedsFragment extends Fragment {
         appTitle = view.findViewById(R.id.app_bar);
         appNotify = view.findViewById(R.id.notification_btn);
         appTitle.setText(getString(R.string.nav_feeds));
+        progressBar = view.findViewById(R.id.progress_bar);
         tinyDb = new TinyDb(requireContext());
         appNotify.setOnClickListener(view1 -> {
             startActivity(new Intent(getActivity(), NotificationActivity.class));
@@ -82,6 +78,7 @@ public class FeedsFragment extends Fragment {
 //
         responseArray = new ArrayList<>();
 
+//        progressBar.setVisibility(View.VISIBLE);
 //        responseArray = SendVolleyRequest.SendRequest(
 //                getResources().getString(R.string.base_url) + "posts/all",
 //                "",
@@ -141,6 +138,7 @@ public class FeedsFragment extends Fragment {
 
                 //If the success is true or false
                 if (responseObject.getBoolean("success")){
+                    progressBar.setVisibility(View.INVISIBLE);
                     JSONArray jsonArray = responseObject.getJSONObject("payload").getJSONArray("data");
 
                     //Getting the data object
@@ -172,6 +170,7 @@ public class FeedsFragment extends Fragment {
                     }
 
                 }else {
+                    progressBar.setVisibility(View.INVISIBLE);
                     String error = responseObject.getJSONObject("error").getString("message");
                     Toast.makeText(requireContext(), error, Toast.LENGTH_LONG).show();
                 }
@@ -214,30 +213,30 @@ public class FeedsFragment extends Fragment {
         list.add(timelineModel);
 
         adapter = new TimelineAdapter(getContext(), list, ((view1, position) -> {
-//            try {
-//                JSONArray itemJson = new JSONArray(getDetailsForTimeline(list,position));
-//
-//                for (int i =0; i< itemJson.length(); i++){
-//                    JSONObject itemObject = itemJson.getJSONObject(i);
-//                    String titleItem = itemObject.getString("title");
-//                    String descriptionItem = itemObject.getString("description");
-//                    String nameItem = itemObject.getString("name");
-//                    String timeItem = itemObject.getString("time");
-//                    String likesCountItem = itemObject.getString("likesCount");
-//                    String profileImageUrlItem = itemObject.getString("profileImageUrl");
-//                    String mainImageUrlItem = itemObject.getString("mainImageUrl");
-//
-//                    tinyDb.putString("titleItem", titleItem);
-//                    tinyDb.putString("descriptionItem", descriptionItem);
-//                    tinyDb.putString("nameItem", nameItem);
-//                    tinyDb.putString("timeItem", timeItem);
-//                    tinyDb.putString("likesCountItem", likesCountItem);
-//                    tinyDb.putString("profileImageUrlItem", profileImageUrlItem);
-//                    tinyDb.putString("mainImageUrlItem", mainImageUrlItem);
-//                }
-//            } catch (JSONException e) {
-//                e.printStackTrace();
-//            }
+            try {
+                JSONArray itemJson = new JSONArray(getDetailsForTimeline(list,position));
+
+                for (int i =0; i< itemJson.length(); i++){
+                    JSONObject itemObject = itemJson.getJSONObject(i);
+                    String titleItem = itemObject.getString("title");
+                    String descriptionItem = itemObject.getString("description");
+                    String nameItem = itemObject.getString("name");
+                    String timeItem = itemObject.getString("time");
+                    String likesCountItem = itemObject.getString("likesCount");
+                    String profileImageUrlItem = itemObject.getString("profileImageUrl");
+                    String mainImageUrlItem = itemObject.getString("mainImageUrl");
+
+                    tinyDb.putString("titleItem", titleItem);
+                    tinyDb.putString("descriptionItem", descriptionItem);
+                    tinyDb.putString("nameItem", nameItem);
+                    tinyDb.putString("timeItem", timeItem);
+                    tinyDb.putString("likesCountItem", likesCountItem);
+                    tinyDb.putString("profileImageUrlItem", profileImageUrlItem);
+                    tinyDb.putString("mainImageUrlItem", mainImageUrlItem);
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
             startActivity(new Intent(requireContext(),PostPreviewActivity.class));
         }));
 
@@ -254,7 +253,7 @@ public class FeedsFragment extends Fragment {
      * @param position position that was clicked
      * @return gives back the jsonarray
      */
-    private String getDetailsForTimeline(List<TimelineModel> timeLineList, int position){
+    public String getDetailsForTimeline(List<TimelineModel> timeLineList, int position){
         List<TimelineModel> timelineModels = new ArrayList<>();
         timelineModels.add(timeLineList.get(position));
 

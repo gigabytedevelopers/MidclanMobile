@@ -8,12 +8,24 @@
     tools:context=".fragments.FeedsFragment">
    <include layout="@layout/app_bar"/>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/feeds_list"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:paddingStart="@dimen/spacing_medium"
-        android:paddingEnd="@dimen/spacing_medium"/>
+        android:layout_height="match_parent">
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/feeds_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingStart="@dimen/spacing_medium"
+            android:paddingEnd="@dimen/spacing_medium"/>
+
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:visibility="gone"
+            android:theme="@style/Widget.AppCompat.ProgressBar"/>
+    </RelativeLayout>
+
 
 </LinearLayout>
