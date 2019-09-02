@@ -139,32 +139,35 @@ public class SignInActivity extends AppCompatActivity {
      */
     @Subscribe
     public void onEvent(RequestDoneEvent event){
-        String responseString = responseArray.get(0);
-        try {
-            JSONObject responseObject = new JSONObject(responseString);
+        if (event.getRequest().equals("SIGN-IN")){
+            String responseString = responseArray.get(0);
+            try {
+                JSONObject responseObject = new JSONObject(responseString);
 
-            //If the success is true or false
-            if (responseObject.getBoolean("success")){
-                String username = responseObject.getJSONObject("payload")
-                                    .getJSONObject("data").getString("username");
+                //If the success is true or false
+                if (responseObject.getBoolean("success")){
+                    String username = responseObject.getJSONObject("payload")
+                            .getJSONObject("data").getString("username");
 
-                String token = responseObject.getJSONObject("payload")
-                        .getString("token");
-                tinyDb.putString("token", token);
-                Log.i("token", tinyDb.getString("token"));
+                    String token = responseObject.getJSONObject("payload")
+                            .getString("token");
+                    tinyDb.putString("token", token);
+                    Log.i("token", tinyDb.getString("token"));
 
-                startActivity(new Intent(SignInActivity.this,MainActivity.class));
-                Toast.makeText(this,"Welcome "+ username , Toast.LENGTH_LONG).show();
-            }else {
-                signInProgress.setVisibility(View.GONE);
-                signIn.setVisibility(View.VISIBLE);
+                    startActivity(new Intent(SignInActivity.this,MainActivity.class));
+                    Toast.makeText(this,"Welcome "+ username , Toast.LENGTH_LONG).show();
+                }else {
+                    signInProgress.setVisibility(View.GONE);
+                    signIn.setVisibility(View.VISIBLE);
 
-                String error = responseObject.getJSONObject("error").getString("message");
-                Toast.makeText(this, error, Toast.LENGTH_LONG).show();
+                    String error = responseObject.getJSONObject("error").getString("message");
+                    Toast.makeText(this, error, Toast.LENGTH_LONG).show();
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
             }
-        } catch (JSONException e) {
-            e.printStackTrace();
         }
+
     }
 
 }

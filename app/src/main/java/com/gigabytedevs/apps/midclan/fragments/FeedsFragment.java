@@ -10,8 +10,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatImageView;
@@ -19,25 +19,20 @@ import androidx.appcompat.widget.AppCompatTextView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.gigabytedevs.apps.midclan.R;
-import com.gigabytedevs.apps.midclan.activities.MainActivity;
 import com.gigabytedevs.apps.midclan.activities.NotificationActivity;
 import com.gigabytedevs.apps.midclan.activities.PostPreviewActivity;
-import com.gigabytedevs.apps.midclan.activities.SignInActivity;
 import com.gigabytedevs.apps.midclan.adapters.TimelineAdapter;
 import com.gigabytedevs.apps.midclan.models.TimelineModel;
 import com.gigabytedevs.apps.midclan.models.events_models.RequestDoneEvent;
 import com.gigabytedevs.apps.midclan.service.SendVolleyRequest;
 import com.gigabytedevs.apps.midclan.utils.TinyDb;
 import com.google.gson.Gson;
-
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,10 +43,10 @@ public class FeedsFragment extends Fragment {
     private AppCompatTextView appTitle;
     private AppCompatImageView appNotify;
     private RecyclerView recyclerView;
-    private ArrayList<TimelineModel> list;
+    public static ArrayList<TimelineModel> list;
     private TimelineAdapter adapter;
-    private ArrayList<String> responseArray;
-    private Bitmap decodedByte;
+    public static ArrayList<String> responseArray;
+    private ProgressBar progressBar;
     private TinyDb tinyDb;
 
     public FeedsFragment() {
@@ -72,6 +67,7 @@ public class FeedsFragment extends Fragment {
         appTitle = view.findViewById(R.id.app_bar);
         appNotify = view.findViewById(R.id.notification_btn);
         appTitle.setText(getString(R.string.nav_feeds));
+        progressBar = view.findViewById(R.id.progress_bar);
         tinyDb = new TinyDb(requireContext());
         appNotify.setOnClickListener(view1 -> {
             startActivity(new Intent(getActivity(), NotificationActivity.class));
@@ -80,8 +76,9 @@ public class FeedsFragment extends Fragment {
         recyclerView = view.findViewById(R.id.feeds_list);
         list = new ArrayList<>();
 //
-//        responseArray = new ArrayList<>();
-//
+        responseArray = new ArrayList<>();
+
+//        progressBar.setVisibility(View.VISIBLE);
 //        responseArray = SendVolleyRequest.SendRequest(
 //                getResources().getString(R.string.base_url) + "posts/all",
 //                "",
@@ -132,51 +129,59 @@ public class FeedsFragment extends Fragment {
      */
     @Subscribe
     public void onEvent(RequestDoneEvent event){
-        String responseString = responseArray.get(0);
-        Log.i("Response", responseString);
+        if (event.getRequest().equals("TIMELINE")){
+            String responseString = responseArray.get(0);
+            Log.i("Response", responseString);
 
-        try {
-            JSONObject responseObject = new JSONObject(responseString);
+            try {
+                JSONObject responseObject = new JSONObject(responseString);
 
-            //If the success is true or false
-            if (responseObject.getBoolean("success")){
-                JSONArray jsonArray = responseObject.getJSONObject("payload").getJSONArray("data");
+                //If the success is true or false
+                if (responseObject.getBoolean("success")){
+                    progressBar.setVisibility(View.INVISIBLE);
+                    JSONArray jsonArray = responseObject.getJSONObject("payload").getJSONArray("data");
 
-                //Getting the data object
-                for (int i =0; i< jsonArray.length(); i++){
-                    JSONObject dataObject = jsonArray.getJSONObject(i);
-                    Log.i("DataObject", dataObject.toString());
+                    //Getting the data object
+                    for (int i =0; i< jsonArray.length(); i++){
+                        JSONObject dataObject = jsonArray.getJSONObject(i);
+                        Log.i("DataObject", dataObject.toString());
 
-                    //Getting some data from the data object
-                    String postId = dataObject.getString("_id");
-                    String profileUrl = dataObject.getJSONObject("author").getString("imageUrl");
-                    String name = dataObject.getJSONObject("author").getString("name");
-                    String title = dataObject.getString("title");
-                    String body = dataObject.getString("body");
-                    int likeCount = dataObject.getJSONObject("meta").getInt("likesCount");
-                    String likesCountString = String.valueOf(likeCount);
+                        //Getting some data from the data object
+                        String postId = dataObject.getString("_id");
+                        String profileUrl = dataObject.getJSONObject("author").getString("imageUrl");
+                        String name = dataObject.getJSONObject("author").getString("name");
+                        String title = dataObject.getString("title");
+                        String body = dataObject.getString("body");
+                        int likeCount = dataObject.getJSONObject("meta").getInt("likesCount");
+                        String likesCountString = String.valueOf(likeCount);
 
 
-                    //Getting the main images from the imagearray
-                    JSONArray mainImageArray = dataObject.getJSONArray("postImages");
-                    for (int j =0; j < mainImageArray.length(); j++ ){
-                        String postImage = mainImageArray.getString(0);
-                        Log.i("PostImage", postImage);
-                        byte[] decodedString = Base64.decode(postImage, Base64.DEFAULT);
-                        decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+                        //Getting the main images from the imagearray
+//                        JSONArray mainImageArray = dataObject.getJSONArray("postImages");
+//                        for (int j =0; j < mainImageArray.length(); j++ ){
+//                            String postImage = mainImageArray.getString(0);
+//                            Log.i("PostImage", postImage);
+//                            byte[] decodedString = Base64.decode(postImage, Base64.DEFAULT);
+//                            decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+//                        }
+
+                        //Method that updates the timeline list
+                        updateTimeLine(postId,profileUrl,title,body,name,"11:00",profileUrl, likesCountString);
                     }
 
-                    //Method that updates the timeline list
-                    updateTimeLine(postId,decodedByte,title,body,name,"11:00",profileUrl, likesCountString);
+                }else {
+                    progressBar.setVisibility(View.INVISIBLE);
+                    String error = responseObject.getJSONObject("error").getString("message");
+                    Toast.makeText(requireContext(), error, Toast.LENGTH_LONG).show();
                 }
-
-            }else {
-                String error = responseObject.getJSONObject("error").getString("message");
-                Toast.makeText(requireContext(), error, Toast.LENGTH_LONG).show();
+            } catch (JSONException e) {
+                e.printStackTrace();
             }
-        } catch (JSONException e) {
-            e.printStackTrace();
+        }else if (event.getRequest().equals("BOOKMARK")){
+            String responseString = responseArray.get(0);
+            Log.i("Response BookMark", responseString);
         }
+
     }
 
     /**
@@ -184,7 +189,7 @@ public class FeedsFragment extends Fragment {
      * @param postId this is the id for the post gotten from the server which is put here by the onEvent Method with param
      *               of RequestDone Event
      *
-     * @param mainImageBitmap this is the main Image for the post gotten from the server which is put here by the onEvent Method with param
+     * @param mainImageUrl this is the main Image for the post gotten from the server which is put here by the onEvent Method with param
      *      *               of RequestDone Event
      *
      * @param title this is the title for the post gotten from the server which is put here by the onEvent Method with param
@@ -202,9 +207,9 @@ public class FeedsFragment extends Fragment {
      * @param profileImageUrl this is the profile image url for the post gotten from the server which is put here by the onEvent Method with param
      *      *               of RequestDone Event
      */
-    private void updateTimeLine(String postId,Bitmap mainImageBitmap, String title, String description, String name, String time, String profileImageUrl, String likeCount){
+    private void updateTimeLine(String postId,String mainImageUrl, String title, String description, String name, String time, String profileImageUrl, String likeCount){
 
-        TimelineModel timelineModel = new TimelineModel(postId,mainImageBitmap,title,description,name,time,profileImageUrl, likeCount);
+        TimelineModel timelineModel = new TimelineModel(postId,mainImageUrl,title,description,name,time,profileImageUrl, likeCount);
         list.add(timelineModel);
 
         adapter = new TimelineAdapter(getContext(), list, ((view1, position) -> {
@@ -219,6 +224,7 @@ public class FeedsFragment extends Fragment {
                     String timeItem = itemObject.getString("time");
                     String likesCountItem = itemObject.getString("likesCount");
                     String profileImageUrlItem = itemObject.getString("profileImageUrl");
+                    String mainImageUrlItem = itemObject.getString("mainImageUrl");
 
                     tinyDb.putString("titleItem", titleItem);
                     tinyDb.putString("descriptionItem", descriptionItem);
@@ -226,6 +232,7 @@ public class FeedsFragment extends Fragment {
                     tinyDb.putString("timeItem", timeItem);
                     tinyDb.putString("likesCountItem", likesCountItem);
                     tinyDb.putString("profileImageUrlItem", profileImageUrlItem);
+                    tinyDb.putString("mainImageUrlItem", mainImageUrlItem);
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -246,7 +253,7 @@ public class FeedsFragment extends Fragment {
      * @param position position that was clicked
      * @return gives back the jsonarray
      */
-    private String getDetailsForTimeline(List<TimelineModel> timeLineList, int position){
+    public String getDetailsForTimeline(List<TimelineModel> timeLineList, int position){
         List<TimelineModel> timelineModels = new ArrayList<>();
         timelineModels.add(timeLineList.get(position));
 

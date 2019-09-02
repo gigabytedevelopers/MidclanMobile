@@ -40,6 +40,10 @@ public class PostPreviewActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setUpToolBar();
 
+
+        //Getting details from tinydb which were given by the FeedsFragment
+        //Update timeline method
+
 //        postUserNameTopBar.setText(tinyDb.getString("nameItem"));
 //        title.setText(tinyDb.getString("titeItem"));
 //        userName.setText(tinyDb.getString("nameItem"));
@@ -49,6 +53,10 @@ public class PostPreviewActivity extends AppCompatActivity {
 //        Glide.with(this)
 //                .load(tinyDb.getString("profileImageUrlItem"))
 //                .into(profileImage);
+//
+//        Glide.with(this)
+//                .load(tinyDb.getString("mainImageUrlItem"))
+//                .into(postImage);
     }
 
     private void setUpToolBar() {
