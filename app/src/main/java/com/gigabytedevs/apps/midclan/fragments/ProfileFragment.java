@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -19,6 +18,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.gigabytedevs.apps.midclan.R;
+import com.gigabytedevs.apps.midclan.activities.EditProfileActivity;
 import com.gigabytedevs.apps.midclan.activities.NotificationActivity;
 import com.gigabytedevs.apps.midclan.adapters.ProfileAdapter;
 import com.gigabytedevs.apps.midclan.models.ProfileModel;
@@ -75,7 +75,7 @@ public class ProfileFragment extends Fragment {
         adapter = new ProfileAdapter(getContext(), list, (view1, position)->{
             switch (position){
                 case 0:
-                    Toast.makeText(getContext(),"Hello it works",Toast.LENGTH_LONG).show();
+                    startActivity(new Intent(getActivity(), EditProfileActivity.class));
                 case 1:
             }
         });

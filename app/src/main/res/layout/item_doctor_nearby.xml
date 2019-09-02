@@ -16,10 +16,10 @@
         android:orientation="horizontal"
         android:padding="@dimen/spacing_xmedium">
         <com.mikhaellopez.circularimageview.CircularImageView
-            android:id="@+id/chat_user_avatar"
-            android:layout_width="@dimen/avatar_chat_size"
-            android:layout_height="@dimen/avatar_chat_size"
-            android:src="@drawable/test"
+            android:id="@+id/doctor_nearby_image"
+            android:layout_width="@dimen/avatar_disover_size"
+            android:layout_height="@dimen/avatar_disover_size"
+            android:src="@drawable/photo_male_2"
             android:scaleType="centerCrop"
             android:layout_gravity="center"
             android:layout_marginStart="@dimen/spacing_medium"
@@ -30,40 +30,46 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:paddingStart="@dimen/spacing_small"
+            android:layout_gravity="center"
             android:paddingEnd="@dimen/spacing_small"
             android:padding="@dimen/spacing_small">
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/chat_user_name"
+                android:id="@+id/doctor_nearby_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:singleLine="true"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textAppearance="@style/TextAppearance.AppCompat.Menu"
                 android:maxLines="1"
                 android:textColor="@color/primary_text"
                 android:fontFamily="@font/latoregular"
-                tools:text="@string/users_doctor"/>
+                tools:text="Doctor Jake"/>
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/chat_msg"
+                android:id="@+id/doctor_nearby_address"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                 android:maxLines="1"
                 android:singleLine="true"
-                android:textColor="@color/secondary_text"
-                android:layout_below="@id/chat_user_name"
+                android:layout_below="@id/doctor_nearby_name"
                 android:fontFamily="@font/latoregular"
-                android:layout_marginBottom="@dimen/spacing_small"
-                tools:text="@string/users_doctor"/>
+                tools:text="43 Edinburgh Road Ogui new Layout Enugu"/>
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/doctor_nearby_location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:layout_below="@id/doctor_nearby_address"
+                android:fontFamily="@font/latoregular"
+                tools:text="20 miles"/>
+            <RatingBar
+                android:id="@+id/doctor_nearby_rating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/doctor_nearby_location"
+                style="@style/Widget.AppCompat.RatingBar.Small"/>
         </RelativeLayout>
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/time"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="@style/TextAppearance.AppCompat.Caption"
-            android:maxLines="1"
-            android:layout_gravity="top"
-            android:fontFamily="@font/latoregular"
-            tools:text="4:00pm"/>
     </LinearLayout>
 
 </com.balysv.materialripple.MaterialRippleLayout>

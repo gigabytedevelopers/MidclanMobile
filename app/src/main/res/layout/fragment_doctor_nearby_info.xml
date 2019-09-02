@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/lyt_parent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/transparent"
+    android:orientation="vertical">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/app_bar_layout"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/bt_close"
+                android:layout_width="?attr/actionBarSize"
+                android:layout_height="?attr/actionBarSize"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:tint="@android:color/white"
+                app:srcCompat="@drawable/ic_close" />
+
+
+        </LinearLayout>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            android:orientation="vertical"
+            android:padding="@dimen/spacing_large">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <com.mikhaellopez.circularimageview.CircularImageView
+                    android:id="@+id/edit_profile_image"
+                    android:layout_width="@dimen/avatar_registration_size"
+                    android:layout_height="@dimen/avatar_registration_size"
+                    android:layout_gravity="center"
+                    android:src="@drawable/photo_male_2"
+                    app:civ_border="false"
+                    android:layout_marginEnd="@dimen/spacing_smlarge"/>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:padding="@dimen/spacing_middle">
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/doctor_nearby_name_info"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/primary_text"
+                        android:singleLine="true"
+                        android:fontFamily="@font/latosemibold"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                        android:text="Full Name"/>
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/doctor_nearby_name_age"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/primary_text"
+                        android:singleLine="true"
+                        android:fontFamily="@font/latosemibold"
+                        android:layout_marginTop="@dimen/spacing_small"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                        android:text="Age"/>
+                        <androidx.appcompat.widget.AppCompatButton
+                            android:id="@+id/message_doctor"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/spacing_middle"
+                            android:text="@string/nav_chat"
+                            android:textColor="@color/white"
+                            android:fontFamily="@font/latoregular"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Button"
+                            android:background="@drawable/btn_coloured"/>
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/primary_text"
+                android:singleLine="true"
+                android:fontFamily="@font/latosemibold"
+                android:layout_marginTop="@dimen/spacing_medium"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:text="@string/user_gender"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/doctor_nearby_info_gender"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:fontFamily="@font/latosemibold"
+                android:layout_marginTop="@dimen/spacing_small"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:text="Male"/>
+
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/primary_text"
+                android:singleLine="true"
+                android:fontFamily="@font/latosemibold"
+                android:layout_marginTop="@dimen/spacing_middle"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:text="@string/text_field_email"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/doctor_nearby_info_email"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:fontFamily="@font/latosemibold"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:text="ceejaymezue8@gamail.com"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/primary_text"
+                android:singleLine="true"
+                android:fontFamily="@font/latosemibold"
+                android:layout_marginTop="@dimen/spacing_medium"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:text="@string/address_user"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/doctor_nearby_info_address"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:maxLines="3"
+                android:ellipsize="end"
+                android:fontFamily="@font/latosemibold"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:text="@string/dummy_text"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/primary_text"
+                android:singleLine="true"
+                android:fontFamily="@font/latosemibold"
+                android:layout_marginTop="@dimen/spacing_medium"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:text="@string/text_field_user_dob"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/doctor_nearby_info_dob"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:fontFamily="@font/latosemibold"
+                android:layout_marginTop="@dimen/spacing_small"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:text="11/04/1954"/>
+            <FrameLayout
+                android:id="@+id/map_layout"
+                android:layout_width="match_parent"
+                android:layout_height="400dp"
+                android:layout_marginTop="@dimen/spacing_middle"
+                android:background="@color/secondary_text"/>
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/primary_text"
+                android:singleLine="true"
+                android:fontFamily="@font/latosemibold"
+                android:layout_marginTop="@dimen/spacing_medium"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:text="@string/user_state"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/doctor_nearby_info_state"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:fontFamily="@font/latosemibold"
+                android:layout_marginTop="@dimen/spacing_small"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:text="Enugu"/>
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/primary_text"
+                android:singleLine="true"
+                android:fontFamily="@font/latosemibold"
+                android:layout_marginTop="@dimen/spacing_medium"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:text="@string/user_country"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/doctor_nearby_info_country"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:fontFamily="@font/latosemibold"
+                android:layout_marginTop="@dimen/spacing_small"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:text="Nigeria"/>
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/primary_text"
+                android:singleLine="true"
+                android:fontFamily="@font/latosemibold"
+                android:layout_marginTop="@dimen/spacing_medium"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:text="@string/text_discover_doctor_medical_cases"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/doctor_nearby_info_medical_cases"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/latosemibold"
+                android:layout_marginTop="@dimen/spacing_small"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:text="Stuff here"/>
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/primary_text"
+                android:singleLine="true"
+                android:fontFamily="@font/latosemibold"
+                android:layout_marginTop="@dimen/spacing_medium"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:text="@string/text_discover_doctor_patient_list"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/doctor_nearby_info_patient_list"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/latosemibold"
+                android:layout_marginTop="@dimen/spacing_small"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:text="stuff here"/>
+
+
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</LinearLayout>

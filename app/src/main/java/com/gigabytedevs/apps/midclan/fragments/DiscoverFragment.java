@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.gigabytedevs.apps.midclan.R;
+import com.gigabytedevs.apps.midclan.activities.DoctorNearByActivity;
 import com.gigabytedevs.apps.midclan.activities.NotificationActivity;
 import com.gigabytedevs.apps.midclan.activities.SearchActivity;
 import com.gigabytedevs.apps.midclan.adapters.DiscoverAdapter;
@@ -87,6 +88,12 @@ public class DiscoverFragment extends Fragment {
 
 
         adapter = new DiscoverAdapter(getContext(), list, (view1, position)->{
+            switch (position){
+                case 0:
+                case 1:
+                    startActivity(new Intent(getActivity(), DoctorNearByActivity.class));
+                    return;
+            }
         });
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
