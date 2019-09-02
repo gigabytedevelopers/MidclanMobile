@@ -11,7 +11,7 @@
         android:layout_height="?android:attr/actionBarSize"
         android:theme="@style/AppTheme.AppBarOverlay">
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:padding="@dimen/spacing_middle"
@@ -22,14 +22,61 @@
                 android:layout_height="match_parent"
                 app:srcCompat="@drawable/ic_close"
                 android:tint="@color/white"/>
-        </LinearLayout>
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/create_post"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@color/white"
+                android:text="Post"/>
+        </RelativeLayout>
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <FrameLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:orientation="vertical"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-    </FrameLayout>
+        <!--        TODO Ebube Change this frame layout to whatever is meant to be here-->
+        <FrameLayout
+            android:id="@+id/post_view"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@color/white"
+            android:padding="@dimen/spacing_middle"
+            android:layout_marginTop="@dimen/spacing_medium"
+            android:layout_gravity="center">
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/create_add_camera"
+                android:layout_width="@dimen/create_post_icon_size"
+                android:layout_height="@dimen/create_post_icon_size"
+                android:tint="@color/secondary_text"
+                android:layout_marginEnd="@dimen/spacing_middle"
+                app:srcCompat="@drawable/ic_camera_outline" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/create_add_image"
+                android:layout_width="@dimen/create_post_icon_size"
+                android:layout_height="@dimen/create_post_icon_size"
+                android:tint="@color/secondary_text"
+                android:layout_marginEnd="@dimen/spacing_middle"
+                app:srcCompat="@drawable/ic_image_outline"/>
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/create_add_video"
+                android:layout_width="@dimen/create_post_icon_size"
+                android:layout_height="@dimen/create_post_icon_size"
+                android:tint="@color/secondary_text"
+                app:srcCompat="@drawable/ic_video_outline" />
+        </LinearLayout>
+
+    </LinearLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

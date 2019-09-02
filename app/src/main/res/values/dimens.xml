@@ -37,6 +37,7 @@
     <dimen name="spacing_xxxlarge">55dp</dimen>
 
     <dimen name="avatar_chat_size">48dp</dimen>
+    <dimen name="create_post_icon_size">38dp</dimen>
     <dimen name="avatar_disover_size">58dp</dimen>
     <dimen name="avatar_post_size">32dp</dimen>
     <dimen name="avatar_registration_size">100dp</dimen>
