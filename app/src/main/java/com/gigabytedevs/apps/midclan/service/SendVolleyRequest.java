@@ -48,7 +48,7 @@ public class SendVolleyRequest {
                 //Getting the error body from the server
                 res.clear();
                 try {
-                    String responseBody = new String(error.networkResponse.data, "utf-8");
+                    String responseBody = error.networkResponse.toString();
                     JSONObject jsonObject = new JSONObject(responseBody);
 
                     //add the response string to the array that is to be returned
@@ -57,9 +57,7 @@ public class SendVolleyRequest {
                     //Launch this event to the particular context when the response has been gotten
                     EventBus.getDefault().post(new RequestDoneEvent("SIGN-IN"));
 
-                } catch (UnsupportedEncodingException e) {
-                    e.printStackTrace();
-                } catch (JSONException e) {
+                }  catch (JSONException e) {
                     e.printStackTrace();
                 }
             }){
@@ -88,7 +86,7 @@ public class SendVolleyRequest {
                 //Getting the error body from the server
                 res.clear();
                 try {
-                    String responseBody = new String(error.networkResponse.data, "utf-8");
+                    String responseBody = error.networkResponse.toString();
                     JSONObject jsonObject = new JSONObject(responseBody);
 
                     //add the response string to the array that is to be returned
@@ -97,9 +95,7 @@ public class SendVolleyRequest {
                     //Launch this event to the particular context when the response has been gotten
                     EventBus.getDefault().post(new RequestDoneEvent("TIMELINE"));
 
-                } catch (UnsupportedEncodingException e) {
-                    e.printStackTrace();
-                } catch (JSONException e) {
+                }  catch (JSONException e) {
                     e.printStackTrace();
                 }
             }){

@@ -48,4 +48,7 @@
     <color name="overlay_light_70">#B3FFFFFF</color>
     <color name="overlay_light_80">#CCFFFFFF</color>
     <color name="overlay_light_90">#E6FFFFFF</color>
+
+    <color name="grey_90">#263238</color>
+    <color name="grey_10">#e6e6e6</color>
 </resources>

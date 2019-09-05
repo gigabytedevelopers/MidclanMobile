@@ -36,7 +36,7 @@ public class TimelineAdapter extends RecyclerView.Adapter<TimelineAdapter.ViewHo
      private AppCompatImageView mainImage;
      private AppCompatToggleButton bookMark;
      private AppCompatTextView title;
-     private AppCompatTextView description;
+     private AppCompatTextView description,commentsCount, commentsTxt;
      private AppCompatImageView profileImage;
      private AppCompatTextView name;
      private AppCompatTextView time;
@@ -49,6 +49,8 @@ public class TimelineAdapter extends RecyclerView.Adapter<TimelineAdapter.ViewHo
          name = view.findViewById(R.id.user_text_username);
          time = view.findViewById(R.id.user_text_time);
          bookMark = view.findViewById(R.id.post_text_bookmark);
+         commentsCount = view.findViewById(R.id.post_text_comment_count);
+         commentsTxt = view.findViewById(R.id.commentstxt);
      }
  }
          public TimelineAdapter(Context context, ArrayList<TimelineModel> list, ClickListener clickListener){
@@ -71,16 +73,24 @@ public class TimelineAdapter extends RecyclerView.Adapter<TimelineAdapter.ViewHo
     @Override
     public void onBindViewHolder(@NonNull TimelineAdapter.ViewHolder holder, int position) {
         TimelineModel timelineModel = list.get(position);
-        holder.mainImage.setImageResource(timelineModel.getMainImageResource());
-//        Glide.with(context)
-//                .load(timelineModel.getMainImageUrl())
-//                .into(holder.mainImage);
+//        holder.mainImage.setImageResource(timelineModel.getMainImageResource());
+        Glide.with(context)
+                .load(timelineModel.getMainImageUrl())
+                .into(holder.mainImage);
         holder.title.setText(timelineModel.getTitle());
         holder.description.setText(timelineModel.getDescription());
-        holder.profileImage.setImageResource(timelineModel.getProfileImage());
-//        Glide.with(context)
-//                .load(timelineModel.getProfileImageUrl())
-//                .into(holder.profileImage);
+        holder.commentsCount.setText(timelineModel.getCommentsCount());
+
+        if (holder.commentsCount.getText().equals("1")){
+            holder.commentsTxt.setText("comment");
+        }else {
+            holder.commentsTxt.setText("comments");
+        }
+
+//        holder.profileImage.setImageResource(timelineModel.getProfileImage());
+        Glide.with(context)
+                .load(timelineModel.getProfileImageUrl())
+                .into(holder.profileImage);
         holder.name.setText(timelineModel.getName());
         holder.time.setText(timelineModel.getTime());
 

@@ -2,6 +2,10 @@ package com.gigabytedevs.apps.midclan.models;
 
 import android.graphics.Bitmap;
 
+import org.json.JSONArray;
+
+import java.util.ArrayList;
+
 public class TimelineModel {
     public int getMainImageResource() {
         return mainImageResource;
@@ -56,11 +60,18 @@ public class TimelineModel {
     private String description;
     private String name;
     private String time;
+
+    public String getCommentsCount() {
+        return commentsCount;
+    }
+
+    private String commentsCount;
     private int profileImage;
     private String profileImageUrl;
     private String mainImageUrl;
     private String postId;
     private String likesCount;
+    private JSONArray comments;
 
     public TimelineModel(int mainImageResource, String title, String description, String name, String time, int profileImage){
         this.mainImageResource = mainImageResource;
@@ -96,7 +107,9 @@ public class TimelineModel {
         return likesCount;
     }
 
-    public TimelineModel(String postId, String mainImageUrl, String title, String description, String name, String time, String profileImageUrl, String likesCount){
+    public TimelineModel(String postId, String mainImageUrl, String title, String description,
+                         String name, String time, String profileImageUrl, String likesCount,
+                         String commentsCount, JSONArray comments){
         this.mainImageUrl = mainImageUrl;
         this.title = title;
         this.description = description;
@@ -105,5 +118,7 @@ public class TimelineModel {
         this.profileImageUrl = profileImageUrl;
         this.postId = postId;
         this.likesCount = likesCount;
+        this.commentsCount = commentsCount;
+        this.comments = comments;
     }
 }

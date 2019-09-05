@@ -103,4 +103,13 @@ anything meaningful with the integration. The product team
 changed course once the qualitative findings clarified the
 motivations behind the customer behavior</string>
     <string name="title_activity_notification">Notifications</string>
+
+    <string name="long_lorem_ipsum">
+        Duis tellus metus, elementum a lectus id, aliquet interdum mauris. Nam bibendum efficitur sollicitudin. Proin eleifend libero velit, nec fringilla dolor finibus quis. nMorbi eu libero pellentesque, rutrum metus quis, blandit est. Fusce bibendum accumsan nisi vulputate feugiat. In fermentum laoreet euismod. Praesent sem nisl, facilisis eget odio at, rhoncus scelerisque ipsum. Nulla orci dui, dignissim a risus ut, lobortis porttitor velit.
+        \n\nNulla id lectus metus. Maecenas a lorem in odio auctor facilisis non vitae nunc. Sed malesuada volutpat massa. Praesent sit amet lacinia augue, mollis tempor dolor.
+    </string>
+    <string name="write_title">Write title</string>
+    <string name="title">Title</string>
+    <string name="description">Description</string>
+    <string name="write_description">Write description</string>
 </resources>

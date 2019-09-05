@@ -49,10 +49,18 @@ public class FeedsFragment extends Fragment {
     private ProgressBar progressBar;
     private TinyDb tinyDb;
 
+
     public FeedsFragment() {
         // Required empty public constructor
     }
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (savedInstanceState != null){
+
+        }
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -78,32 +86,32 @@ public class FeedsFragment extends Fragment {
 //
         responseArray = new ArrayList<>();
 
-//        progressBar.setVisibility(View.VISIBLE);
-//        responseArray = SendVolleyRequest.SendRequest(
-//                getResources().getString(R.string.base_url) + "posts/all",
-//                "",
-//                "GET",
-//                requireContext()
-//        );
+        progressBar.setVisibility(View.VISIBLE);
+        responseArray = SendVolleyRequest.SendRequest(
+                getResources().getString(R.string.base_url) + "posts/all",
+                "",
+                "GET",
+                requireContext()
+        );
 
-        TimelineModel timelineModel = new TimelineModel(R.drawable.img_plant_9,getResources().getString(R.string.dummy_title),getResources().getString(R.string.dummy_text),"dennisrichtie","11:00pm",R.drawable.test);
-        list.add(timelineModel);
-
-        TimelineModel timelineModel2 = new TimelineModel(R.drawable.test,getResources().getString(R.string.dummy_title),getResources().getString(R.string.dummy_text),"mezueceejay","Today",R.drawable.test);
-        list.add(timelineModel2);
-
-        adapter = new TimelineAdapter(getContext(), list, ((view1, position) -> {
-            switch (position){
-                case 0:
-                    startActivity(new Intent(getActivity(), PostPreviewActivity.class));
-                    return;
-            }
-        }));
-
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
-        layoutManager.setOrientation(RecyclerView.VERTICAL);
-        recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setAdapter(adapter);
+//        TimelineModel timelineModel = new TimelineModel(R.drawable.img_plant_9,getResources().getString(R.string.dummy_title),getResources().getString(R.string.dummy_text),"dennisrichtie","11:00pm",R.drawable.test);
+//        list.add(timelineModel);
+//
+//        TimelineModel timelineModel2 = new TimelineModel(R.drawable.test,getResources().getString(R.string.dummy_title),getResources().getString(R.string.dummy_text),"mezueceejay","Today",R.drawable.test);
+//        list.add(timelineModel2);
+//
+//        adapter = new TimelineAdapter(getContext(), list, ((view1, position) -> {
+//            switch (position){
+//                case 0:
+//                    startActivity(new Intent(getActivity(), PostPreviewActivity.class));
+//                    return;
+//            }
+//        }));
+//
+//        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
+//        layoutManager.setOrientation(RecyclerView.VERTICAL);
+//        recyclerView.setLayoutManager(layoutManager);
+//        recyclerView.setAdapter(adapter);
     }
 
     //Registering the eventbus library
@@ -153,20 +161,18 @@ public class FeedsFragment extends Fragment {
                         String title = dataObject.getString("title");
                         String body = dataObject.getString("body");
                         int likeCount = dataObject.getJSONObject("meta").getInt("likesCount");
+                        int commentCount = dataObject.getJSONObject("meta").getInt("commentsCount");
                         String likesCountString = String.valueOf(likeCount);
+                        String commentsCountString = String.valueOf(commentCount);
 
 
-                        //Getting the main images from the imagearray
-//                        JSONArray mainImageArray = dataObject.getJSONArray("postImages");
-//                        for (int j =0; j < mainImageArray.length(); j++ ){
-//                            String postImage = mainImageArray.getString(0);
-//                            Log.i("PostImage", postImage);
-//                            byte[] decodedString = Base64.decode(postImage, Base64.DEFAULT);
-//                            decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
-//                        }
+                        //Getting the comments from the imagearray
+                        JSONArray mainCommentsArray = dataObject.getJSONArray("comments");
+
 
                         //Method that updates the timeline list
-                        updateTimeLine(postId,profileUrl,title,body,name,"11:00",profileUrl, likesCountString);
+                        updateTimeLine(postId,profileUrl,title,body,name,"11:00",profileUrl,
+                                likesCountString, commentsCountString, mainCommentsArray);
                     }
 
                 }else {
@@ -185,6 +191,7 @@ public class FeedsFragment extends Fragment {
     }
 
     /**
+     * This method updates the timeline list from the server and saves the needed details in tinydb
      *
      * @param postId this is the id for the post gotten from the server which is put here by the onEvent Method with param
      *               of RequestDone Event
@@ -207,9 +214,11 @@ public class FeedsFragment extends Fragment {
      * @param profileImageUrl this is the profile image url for the post gotten from the server which is put here by the onEvent Method with param
      *      *               of RequestDone Event
      */
-    private void updateTimeLine(String postId,String mainImageUrl, String title, String description, String name, String time, String profileImageUrl, String likeCount){
+    private void updateTimeLine(String postId,String mainImageUrl, String title, String description,
+                                String name, String time, String profileImageUrl, String likeCount,
+                                String commentsCount, JSONArray comments){
 
-        TimelineModel timelineModel = new TimelineModel(postId,mainImageUrl,title,description,name,time,profileImageUrl, likeCount);
+        TimelineModel timelineModel = new TimelineModel(postId,mainImageUrl,title,description,name,time,profileImageUrl, likeCount, commentsCount, comments);
         list.add(timelineModel);
 
         adapter = new TimelineAdapter(getContext(), list, ((view1, position) -> {
@@ -218,6 +227,7 @@ public class FeedsFragment extends Fragment {
 
                 for (int i =0; i< itemJson.length(); i++){
                     JSONObject itemObject = itemJson.getJSONObject(i);
+                    String postIdItem = itemObject.getString("postId");
                     String titleItem = itemObject.getString("title");
                     String descriptionItem = itemObject.getString("description");
                     String nameItem = itemObject.getString("name");
@@ -225,7 +235,10 @@ public class FeedsFragment extends Fragment {
                     String likesCountItem = itemObject.getString("likesCount");
                     String profileImageUrlItem = itemObject.getString("profileImageUrl");
                     String mainImageUrlItem = itemObject.getString("mainImageUrl");
+                    String commentCountItem = itemObject.getString("commentsCount");
+                    String commentsItem = itemObject.getJSONObject("comments").toString();
 
+                    tinyDb.putString("postIdItem", postIdItem);
                     tinyDb.putString("titleItem", titleItem);
                     tinyDb.putString("descriptionItem", descriptionItem);
                     tinyDb.putString("nameItem", nameItem);
@@ -233,6 +246,9 @@ public class FeedsFragment extends Fragment {
                     tinyDb.putString("likesCountItem", likesCountItem);
                     tinyDb.putString("profileImageUrlItem", profileImageUrlItem);
                     tinyDb.putString("mainImageUrlItem", mainImageUrlItem);
+                    tinyDb.putString("commentCountItem", commentCountItem);
+                    tinyDb.putString("commentsItem", commentsItem);
+
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -259,5 +275,11 @@ public class FeedsFragment extends Fragment {
 
         Gson gson = new Gson();
         return gson.toJson(timelineModels);
+    }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+
     }
 }
