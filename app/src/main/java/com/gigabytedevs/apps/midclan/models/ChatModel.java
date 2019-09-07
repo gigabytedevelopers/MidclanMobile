@@ -2,7 +2,7 @@ package com.gigabytedevs.apps.midclan.models;
 
 public class ChatModel {
     private int senderImage;
-    private String senderName, senderText, senderTime;
+    private String senderName, senderText, senderTime, senderImageUrl,id;
 
     public int getSenderImage() {
         return senderImage;
@@ -36,10 +36,19 @@ public class ChatModel {
         this.senderTime = senderTime;
     }
 
-    public ChatModel(String senderName, String senderText, String senderTime, int senderImage){
+    public String getSenderImageUrl() {
+        return senderImageUrl;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public ChatModel(String id, String senderName, String senderText, String senderTime, String senderImageUrl){
         this.senderName = senderName;
         this.senderText = senderText;
         this.senderTime = senderTime;
-        this.senderImage = senderImage;
+        this.senderImageUrl = senderImageUrl;
+        this.id = id;
     }
 }

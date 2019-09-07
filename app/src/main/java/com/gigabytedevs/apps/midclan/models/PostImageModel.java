@@ -1,13 +1,19 @@
 package com.gigabytedevs.apps.midclan.models;
 
-public class PostImageModel {
-    private int imgResource;
+import android.graphics.Bitmap;
+import android.net.Uri;
 
-    public PostImageModel(int imgResource){
+public class PostImageModel {
+    private Bitmap imgResource;
+
+    public PostImageModel(){
+
+    }
+    public PostImageModel(Bitmap imgResource){
         this.imgResource = imgResource;
     }
 
-    public int getImgResource() {
+    public Bitmap getImgResource() {
         return imgResource;
     }
 }

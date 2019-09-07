@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.gigabytedevs.apps.midclan.R;
 import com.gigabytedevs.apps.midclan.models.ChatModel;
 import com.gigabytedevs.apps.midclan.utils.ClickListener;
@@ -54,7 +55,10 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder> {
     public void onBindViewHolder(@NonNull ChatAdapter.ViewHolder holder, int position) {
         ChatModel chatModel = list.get(position);
 
-        holder.chatAvatar.setImageResource(chatModel.getSenderImage());
+        //holder.chatAvatar.setImageResource(chatModel.getSenderImage());
+        Glide.with(context)
+                .load(chatModel.getSenderImageUrl())
+                .into(holder.chatAvatar);
         holder.chatUserName.setText(chatModel.getSenderName());
         holder.chatMsg.setText(chatModel.getSenderText());
         holder.chatTime.setText(chatModel.getSenderTime());

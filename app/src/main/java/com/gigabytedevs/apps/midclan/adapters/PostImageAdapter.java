@@ -42,7 +42,7 @@ public class PostImageAdapter extends RecyclerView.Adapter<PostImageAdapter.View
     @Override
     public void onBindViewHolder(@NonNull PostImageAdapter.ViewHolder holder, int position) {
         PostImageModel postImageModel = list.get(position);
-        holder.imageView.setImageResource(postImageModel.getImgResource());
+        holder.imageView.setImageBitmap(postImageModel.getImgResource());
     }
 
     @Override

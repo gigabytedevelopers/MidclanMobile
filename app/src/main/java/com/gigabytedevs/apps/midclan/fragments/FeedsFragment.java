@@ -86,32 +86,32 @@ public class FeedsFragment extends Fragment {
 //
         responseArray = new ArrayList<>();
 
-        progressBar.setVisibility(View.VISIBLE);
-        responseArray = SendVolleyRequest.SendRequest(
-                getResources().getString(R.string.base_url) + "posts/all",
-                "",
-                "GET",
-                requireContext()
-        );
+//        progressBar.setVisibility(View.VISIBLE);
+//        responseArray = SendVolleyRequest.SendRequest(
+//                getResources().getString(R.string.base_url) + "posts/all",
+//                "",
+//                "GET",
+//                requireContext()
+//        );
 
-//        TimelineModel timelineModel = new TimelineModel(R.drawable.img_plant_9,getResources().getString(R.string.dummy_title),getResources().getString(R.string.dummy_text),"dennisrichtie","11:00pm",R.drawable.test);
-//        list.add(timelineModel);
-//
-//        TimelineModel timelineModel2 = new TimelineModel(R.drawable.test,getResources().getString(R.string.dummy_title),getResources().getString(R.string.dummy_text),"mezueceejay","Today",R.drawable.test);
-//        list.add(timelineModel2);
-//
-//        adapter = new TimelineAdapter(getContext(), list, ((view1, position) -> {
-//            switch (position){
-//                case 0:
-//                    startActivity(new Intent(getActivity(), PostPreviewActivity.class));
-//                    return;
-//            }
-//        }));
-//
-//        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
-//        layoutManager.setOrientation(RecyclerView.VERTICAL);
-//        recyclerView.setLayoutManager(layoutManager);
-//        recyclerView.setAdapter(adapter);
+        TimelineModel timelineModel = new TimelineModel(R.drawable.img_plant_9,getResources().getString(R.string.dummy_title),getResources().getString(R.string.dummy_text),"dennisrichtie","11:00pm",R.drawable.test);
+        list.add(timelineModel);
+
+        TimelineModel timelineModel2 = new TimelineModel(R.drawable.test,getResources().getString(R.string.dummy_title),getResources().getString(R.string.dummy_text),"mezueceejay","Today",R.drawable.test);
+        list.add(timelineModel2);
+
+        adapter = new TimelineAdapter(getContext(), list, ((view1, position) -> {
+            switch (position){
+                case 0:
+                    startActivity(new Intent(getActivity(), PostPreviewActivity.class));
+                    return;
+            }
+        }));
+
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
+        layoutManager.setOrientation(RecyclerView.VERTICAL);
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setAdapter(adapter);
     }
 
     //Registering the eventbus library
