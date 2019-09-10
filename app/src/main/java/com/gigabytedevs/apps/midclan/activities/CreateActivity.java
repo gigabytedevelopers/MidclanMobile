@@ -87,9 +87,7 @@ public class CreateActivity extends AppCompatActivity {
                     +"posts/create",mRequestBody,"POST-HEAD", CreateActivity.this);
         });
 
-        closeCreate.setOnClickListener(v -> {
-            finish();
-        });
+        closeCreate.setOnClickListener(v -> finish());
         imageList = new ArrayList<>();
         postImageRecycler = findViewById(R.id.picture_layout);
 

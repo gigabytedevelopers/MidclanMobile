@@ -22,7 +22,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -67,7 +66,12 @@ public class SendVolleyRequest {
                     public byte[] getBody() {
                         //Sending the user parameters as a body to the server
 
-                        return bodyParams == null ? null : bodyParams.getBytes(StandardCharsets.UTF_8);
+                        try {
+                            return bodyParams == null ? null : bodyParams.getBytes("utf-8");
+                        } catch (UnsupportedEncodingException uee) {
+                            VolleyLog.wtf("Unsupported Encoding while trying to get the bytes of %s using %s", bodyParams, "utf-8");
+                            return null;
+                        }
                     }
                 };
 
@@ -121,7 +125,7 @@ public class SendVolleyRequest {
                     //Getting the error body from the server
                     res.clear();
                     try {
-                        String responseBody = new String(error.networkResponse.data, StandardCharsets.UTF_8);
+                        String responseBody = new String(error.networkResponse.data, "utf-8");
                         JSONObject jsonObject = new JSONObject(responseBody);
 
                         //add the response string to the array that is to be returned
@@ -130,6 +134,8 @@ public class SendVolleyRequest {
                         //Launch this event to the particular context when the response has been gotten
                         EventBus.getDefault().post(new RequestDoneEvent("BOOKMARK"));
 
+                    } catch (UnsupportedEncodingException e) {
+                        e.printStackTrace();
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -146,7 +152,12 @@ public class SendVolleyRequest {
                     public byte[] getBody() {
                         //Sending the user parameters as a body to the server
 
-                        return bodyParams == null ? null : bodyParams.getBytes(StandardCharsets.UTF_8);
+                        try {
+                            return bodyParams == null ? null : bodyParams.getBytes("utf-8");
+                        } catch (UnsupportedEncodingException uee) {
+                            VolleyLog.wtf("Unsupported Encoding while trying to get the bytes of %s using %s", bodyParams, "utf-8");
+                            return null;
+                        }
                     }
                 };
 
