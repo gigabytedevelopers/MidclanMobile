@@ -39,125 +39,132 @@ public class SendVolleyRequest {
         final ArrayList<String> res = new ArrayList<>();
         TinyDb tinyDb = new TinyDb(context);
 
-        if (method.equals("POST")){
-            JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url, null, response -> {
-                res.clear();
-                res.add(response.toString());
-                EventBus.getDefault().post(new RequestDoneEvent("SIGN-IN"));
-            }, error -> {
-                //Getting the error body from the server
-                res.clear();
-                try {
-                    String responseBody = error.networkResponse.toString();
-                    JSONObject jsonObject = new JSONObject(responseBody);
-
-                    //add the response string to the array that is to be returned
-                    res.add(jsonObject.toString());
-
-                    //Launch this event to the particular context when the response has been gotten
+        switch (method) {
+            case "POST": {
+                JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url, null, response -> {
+                    res.clear();
+                    res.add(response.toString());
                     EventBus.getDefault().post(new RequestDoneEvent("SIGN-IN"));
-
-                }  catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }){
-                @Override
-                public byte[] getBody() {
-                    //Sending the user parameters as a body to the server
-
+                }, error -> {
+                    //Getting the error body from the server
+                    res.clear();
                     try {
-                        return bodyParams == null ? null : bodyParams.getBytes("utf-8");
-                    } catch (UnsupportedEncodingException uee) {
-                        VolleyLog.wtf("Unsupported Encoding while trying to get the bytes of %s using %s", bodyParams, "utf-8");
-                        return null;
+                        String responseBody = error.networkResponse.toString();
+                        JSONObject jsonObject = new JSONObject(responseBody);
+
+                        //add the response string to the array that is to be returned
+                        res.add(jsonObject.toString());
+
+                        //Launch this event to the particular context when the response has been gotten
+                        EventBus.getDefault().post(new RequestDoneEvent("SIGN-IN"));
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
                     }
-                }
-            };
+                }) {
+                    @Override
+                    public byte[] getBody() {
+                        //Sending the user parameters as a body to the server
 
-            RequestQueue requestQueue = Volley.newRequestQueue(context);
-            requestQueue.add(request);
+                        try {
+                            return bodyParams == null ? null : bodyParams.getBytes("utf-8");
+                        } catch (UnsupportedEncodingException uee) {
+                            VolleyLog.wtf("Unsupported Encoding while trying to get the bytes of %s using %s", bodyParams, "utf-8");
+                            return null;
+                        }
+                    }
+                };
 
-        }else if(method.equals("GET")){
-            JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null, response -> {
-                res.clear();
-                res.add(response.toString());
-                EventBus.getDefault().post(new RequestDoneEvent("TIMELINE"));
-            }, error -> {
-                //Getting the error body from the server
-                res.clear();
-                try {
-                    String responseBody = error.networkResponse.toString();
-                    JSONObject jsonObject = new JSONObject(responseBody);
+                RequestQueue requestQueue = Volley.newRequestQueue(context);
+                requestQueue.add(request);
 
-                    //add the response string to the array that is to be returned
-                    res.add(jsonObject.toString());
-
-                    //Launch this event to the particular context when the response has been gotten
+                break;
+            }
+            case "GET": {
+                JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null, response -> {
+                    res.clear();
+                    res.add(response.toString());
                     EventBus.getDefault().post(new RequestDoneEvent("TIMELINE"));
-
-                }  catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }){
-                @Override
-                public Map<String, String> getHeaders() throws AuthFailureError {
-                    HashMap<String, String> headers = new HashMap<>();
-                    headers.put("Content-Type", "application/json");
-                    headers.put("Authorization", "Bearer " + tinyDb.getString("token"));
-                    return headers;
-                }
-            };
-
-            RequestQueue requestQueue = Volley.newRequestQueue(context);
-            requestQueue.add(request);
-
-        }else if (method.equals("POST-HEAD")){
-            JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url, null, response -> {
-                res.clear();
-                res.add(response.toString());
-                EventBus.getDefault().post(new RequestDoneEvent("BOOKMARK"));
-            }, error -> {
-                //Getting the error body from the server
-                res.clear();
-                try {
-                    String responseBody = new String(error.networkResponse.data, "utf-8");
-                    JSONObject jsonObject = new JSONObject(responseBody);
-
-                    //add the response string to the array that is to be returned
-                    res.add(jsonObject.toString());
-
-                    //Launch this event to the particular context when the response has been gotten
-                    EventBus.getDefault().post(new RequestDoneEvent("BOOKMARK"));
-
-                } catch (UnsupportedEncodingException e) {
-                    e.printStackTrace();
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }){
-                @Override
-                public Map<String, String> getHeaders() throws AuthFailureError {
-                    HashMap<String, String> headers = new HashMap<>();
-                    headers.put("Content-Type", "application/json");
-                    headers.put("Authorization", "Bearer " + tinyDb.getString("token"));
-                    return headers;
-                }
-
-                @Override
-                public byte[] getBody() {
-                    //Sending the user parameters as a body to the server
-
+                }, error -> {
+                    //Getting the error body from the server
+                    res.clear();
                     try {
-                        return bodyParams == null ? null : bodyParams.getBytes("utf-8");
-                    } catch (UnsupportedEncodingException uee) {
-                        VolleyLog.wtf("Unsupported Encoding while trying to get the bytes of %s using %s", bodyParams, "utf-8");
-                        return null;
-                    }
-                }
-            };
+                        String responseBody = error.networkResponse.toString();
+                        JSONObject jsonObject = new JSONObject(responseBody);
 
-            RequestQueue requestQueue = Volley.newRequestQueue(context);
-            requestQueue.add(request);
+                        //add the response string to the array that is to be returned
+                        res.add(jsonObject.toString());
+
+                        //Launch this event to the particular context when the response has been gotten
+                        EventBus.getDefault().post(new RequestDoneEvent("TIMELINE"));
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }) {
+                    @Override
+                    public Map<String, String> getHeaders() throws AuthFailureError {
+                        HashMap<String, String> headers = new HashMap<>();
+                        headers.put("Content-Type", "application/json");
+                        headers.put("Authorization", "Bearer " + tinyDb.getString("token"));
+                        return headers;
+                    }
+                };
+
+                RequestQueue requestQueue = Volley.newRequestQueue(context);
+                requestQueue.add(request);
+
+                break;
+            }
+            case "POST-HEAD": {
+                JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url, null, response -> {
+                    res.clear();
+                    res.add(response.toString());
+                    EventBus.getDefault().post(new RequestDoneEvent("BOOKMARK"));
+                }, error -> {
+                    //Getting the error body from the server
+                    res.clear();
+                    try {
+                        String responseBody = new String(error.networkResponse.data, "utf-8");
+                        JSONObject jsonObject = new JSONObject(responseBody);
+
+                        //add the response string to the array that is to be returned
+                        res.add(jsonObject.toString());
+
+                        //Launch this event to the particular context when the response has been gotten
+                        EventBus.getDefault().post(new RequestDoneEvent("BOOKMARK"));
+
+                    } catch (UnsupportedEncodingException e) {
+                        e.printStackTrace();
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }) {
+                    @Override
+                    public Map<String, String> getHeaders() throws AuthFailureError {
+                        HashMap<String, String> headers = new HashMap<>();
+                        headers.put("Content-Type", "application/json");
+                        headers.put("Authorization", "Bearer " + tinyDb.getString("token"));
+                        return headers;
+                    }
+
+                    @Override
+                    public byte[] getBody() {
+                        //Sending the user parameters as a body to the server
+
+                        try {
+                            return bodyParams == null ? null : bodyParams.getBytes("utf-8");
+                        } catch (UnsupportedEncodingException uee) {
+                            VolleyLog.wtf("Unsupported Encoding while trying to get the bytes of %s using %s", bodyParams, "utf-8");
+                            return null;
+                        }
+                    }
+                };
+
+                RequestQueue requestQueue = Volley.newRequestQueue(context);
+                requestQueue.add(request);
+                break;
+            }
         }
 
         return res;
