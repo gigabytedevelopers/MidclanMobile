@@ -53,7 +53,6 @@ public class SubscriptionFragment extends Fragment{
     private TinyDb tinyDb;
     private String mRequestBody;
     private String base_url_signup;
-    private ArrayList<String> responseArray;
 
 
     public SubscriptionFragment() {
@@ -76,7 +75,6 @@ public class SubscriptionFragment extends Fragment{
 
         new CardSnapHelper().attachToRecyclerView(recyclerView);
         list = new ArrayList<>();
-        responseArray = new ArrayList<>();
         MaterialRippleLayout nextSession = view.findViewById(R.id.next_session);
         MaterialRippleLayout previousSession = view.findViewById(R.id.previous_session);
         tinyDb = new TinyDb(requireContext());
@@ -190,6 +188,7 @@ public class SubscriptionFragment extends Fragment{
             params.put("country", tinyDb.getString("country"));
             params.put("dob", tinyDb.getString("dob"));
             params.put("gender", tinyDb.getString("gender"));
+            params.put("profilepicture",profilePicture());
             mRequestBody = params.toString();
 
         } catch (JSONException e) {
@@ -238,5 +237,24 @@ public class SubscriptionFragment extends Fragment{
         RequestQueue requestQueue = Volley.newRequestQueue(requireContext());
         requestQueue.add(signUp);
 
+    }
+
+    private JSONObject profilePicture(){
+        JSONObject params = new JSONObject();
+        String imagePath = tinyDb.getString("image_path");
+        String imageNameWithExt = imagePath.substring(imagePath.lastIndexOf("/")+1);
+
+        String[] imageNameArray = imageNameWithExt.split(".");
+        String imageName = imageNameArray[0];
+        String imageExt = imageNameArray[1];
+
+        try {
+            params.put("str", tinyDb.getString("profile64String"));
+            params.put("image_ext", imageExt);
+            params.put("filename", imageName);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return params;
     }
 }

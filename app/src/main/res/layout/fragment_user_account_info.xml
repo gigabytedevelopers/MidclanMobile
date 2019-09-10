@@ -23,6 +23,7 @@
             android:scaleType="centerCrop"
             android:src="@drawable/test"
             app:civ_border="false"
+            android:id="@+id/profile_pic"
             android:layout_marginTop="@dimen/spacing_small"
             android:layout_marginBottom="@dimen/spacing_large"/>
 

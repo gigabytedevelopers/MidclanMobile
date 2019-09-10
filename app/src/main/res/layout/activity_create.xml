@@ -22,6 +22,9 @@
                 android:layout_height="match_parent"
                 app:srcCompat="@drawable/ic_close"
                 android:tint="@color/white"/>
+
+
+
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/create_post"
                 android:layout_width="wrap_content"
@@ -123,29 +126,42 @@
             android:orientation="horizontal"
             android:background="@color/white"
             android:padding="@dimen/spacing_middle"
+            android:weightSum="4"
             android:layout_marginTop="@dimen/spacing_medium"
             android:layout_gravity="center">
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/create_add_camera"
-                android:layout_width="@dimen/create_post_icon_size"
+                android:layout_width="0dp"
                 android:layout_height="@dimen/create_post_icon_size"
+                android:layout_weight="1"
                 android:tint="@color/secondary_text"
                 android:layout_marginEnd="@dimen/spacing_middle"
                 app:srcCompat="@drawable/ic_camera_outline" />
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/create_add_image"
-                android:layout_width="@dimen/create_post_icon_size"
+                android:layout_width="0dp"
                 android:layout_height="@dimen/create_post_icon_size"
+                android:layout_weight="1"
                 android:tint="@color/secondary_text"
                 android:layout_marginEnd="@dimen/spacing_middle"
                 app:srcCompat="@drawable/ic_image_outline"/>
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/create_add_video"
-                android:layout_width="@dimen/create_post_icon_size"
+                android:layout_width="0dp"
                 android:layout_height="@dimen/create_post_icon_size"
+                android:layout_weight="1"
                 android:tint="@color/secondary_text"
                 app:srcCompat="@drawable/ic_video_outline" />
+
+            <ProgressBar
+                android:id="@+id/post_progress_bar"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/create_post_icon_size"
+                android:layout_weight="1"
+                android:layout_gravity="end"
+                android:visibility="gone"
+                android:theme="@style/Widget.AppCompat.ProgressBar"/>
         </LinearLayout>
 
     </LinearLayout>
