@@ -38,6 +38,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class CreateActivity extends AppCompatActivity {
     private AppCompatEditText title,description;
@@ -66,27 +67,24 @@ public class CreateActivity extends AppCompatActivity {
         postImageRecycler = findViewById(R.id.picture_layout);
         imageList = new ArrayList<>();
 
-        createPost.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                postProgressBar.setVisibility(View.VISIBLE);
-                //Creating the body of the request
-                JSONObject params = new JSONObject();
+        createPost.setOnClickListener(view -> {
+            postProgressBar.setVisibility(View.VISIBLE);
+            //Creating the body of the request
+            JSONObject params = new JSONObject();
 
 
-                try {
-                    params.put("title", String.valueOf(title.getText()));
-                    params.put("body", String.valueOf(description.getText()));
-                    params.put("postImages", postImages());
-                    mRequestBody = params.toString();
+            try {
+                params.put("title", String.valueOf(title.getText()));
+                params.put("body", String.valueOf(description.getText()));
+                params.put("postImages", postImages());
+                mRequestBody = params.toString();
 
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-
-                responseArray = SendVolleyRequest.SendRequest(getResources().getString(R.string.base_url)
-                        +"posts/create",mRequestBody,"POST-HEAD", CreateActivity.this);
+            } catch (JSONException e) {
+                e.printStackTrace();
             }
+
+            responseArray = SendVolleyRequest.SendRequest(getResources().getString(R.string.base_url)
+                    +"posts/create",mRequestBody,"POST-HEAD", CreateActivity.this);
         });
 
         closeCreate.setOnClickListener(v -> {
@@ -95,41 +93,35 @@ public class CreateActivity extends AppCompatActivity {
         imageList = new ArrayList<>();
         postImageRecycler = findViewById(R.id.picture_layout);
 
-        cameraUpload.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                    if (checkAndRequestPermissions()){
-                       takePicture();
-                    }else {
-                        Toast.makeText(CreateActivity.this, "Permissions Not Granted", Toast.LENGTH_SHORT).show();
+        cameraUpload.setOnClickListener(view -> {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                if (checkAndRequestPermissions()){
+                   takePicture();
+                }else {
+                    Toast.makeText(CreateActivity.this, "Permissions Not Granted", Toast.LENGTH_SHORT).show();
 
-                    }
-
-
-                } else {
-                    // code for lollipop and pre-lollipop devices
-                    takePicture();
                 }
+
+
+            } else {
+                // code for lollipop and pre-lollipop devices
+                takePicture();
             }
         });
 
-        galleryUpload.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                    if (checkAndRequestPermissions()){
-                        choosePhotoFromGallary();
-                    }else {
-                        Toast.makeText(CreateActivity.this, "Permissions Not Granted", Toast.LENGTH_SHORT).show();
-
-                    }
-
-
-                } else {
-                    // code for lollipop and pre-lollipop devices
+        galleryUpload.setOnClickListener(view -> {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                if (checkAndRequestPermissions()){
                     choosePhotoFromGallary();
+                }else {
+                    Toast.makeText(CreateActivity.this, "Permissions Not Granted", Toast.LENGTH_SHORT).show();
+
                 }
+
+
+            } else {
+                // code for lollipop and pre-lollipop devices
+                choosePhotoFromGallary();
             }
         });
 
@@ -164,7 +156,7 @@ public class CreateActivity extends AppCompatActivity {
             listPermissionsNeeded.add(Manifest.permission.READ_EXTERNAL_STORAGE);
         }
         if (!listPermissionsNeeded.isEmpty()) {
-            ActivityCompat.requestPermissions(this, listPermissionsNeeded.toArray(new String[listPermissionsNeeded.size()]), REQUEST_ID_MULTIPLE_PERMISSIONS);
+            ActivityCompat.requestPermissions(this, listPermissionsNeeded.toArray(new String[0]), REQUEST_ID_MULTIPLE_PERMISSIONS);
             return false;
         }
         return true;
@@ -188,8 +180,9 @@ public class CreateActivity extends AppCompatActivity {
 
         if (requestCode == 100) {
             if (resultCode == RESULT_OK) {
+                assert data != null;
                 Uri contentURI = data.getData();
-                Bitmap thumbnail = (Bitmap) data.getExtras().get("data");
+                Bitmap thumbnail = (Bitmap) Objects.requireNonNull(data.getExtras()).get("data");
                 String imagePath = getRealPathFromURI(contentURI);
                 String imageNameWithExt = imagePath.substring(imagePath.lastIndexOf("/")+1);
 
@@ -203,6 +196,7 @@ public class CreateActivity extends AppCompatActivity {
         }else  if (requestCode == 1){
 
             try {
+                assert data != null;
                 Uri contentURI = data.getData();
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), contentURI);
 
@@ -232,6 +226,7 @@ public class CreateActivity extends AppCompatActivity {
                 null,       // WHERE clause; which rows to return (all rows)
                 null,       // WHERE clause selection arguments (none)
                 null); // Order-by clause (ascending by name)
+        assert cursor != null;
         int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
         cursor.moveToFirst();
 
