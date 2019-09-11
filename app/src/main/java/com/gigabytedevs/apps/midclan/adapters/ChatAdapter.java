@@ -17,7 +17,6 @@ import com.gigabytedevs.apps.midclan.utils.ClickListener;
 
 import java.util.ArrayList;
 
-
 public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ViewHolder> {
     private Context context;
     private ArrayList<ChatModel> list;

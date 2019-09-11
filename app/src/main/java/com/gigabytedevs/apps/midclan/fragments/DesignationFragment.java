@@ -20,7 +20,6 @@ import com.gigabytedevs.apps.midclan.utils.TinyDb;
 import org.greenrobot.eventbus.EventBus;
 import org.jetbrains.annotations.NotNull;
 
-
 /**
  * A simple {@link Fragment} subclass.
  */
@@ -30,14 +29,12 @@ public class DesignationFragment extends Fragment {
         // Required empty public constructor
     }
 
-
     @Override
     public View onCreateView(@NotNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_designation, container, false);
     }
-
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -50,18 +47,14 @@ public class DesignationFragment extends Fragment {
         MaterialRippleLayout hospitalRipple = view.findViewById(R.id.hospital_ripple);
         tinyDb = new TinyDb(getContext());
 
-
-
         patientRipple.setOnClickListener(view1 -> {
             tinyDb.putString("category", "patient");
             switchFragment();
-
         });
 
         doctorRipple.setOnClickListener(view12 -> {
             tinyDb.putString("category", "doctor");
             switchFragment();
-
         });
 
         nurseRipple.setOnClickListener(view1->{
@@ -72,7 +65,6 @@ public class DesignationFragment extends Fragment {
         hospitalRipple.setOnClickListener(view1->{
             tinyDb.putString("category", "hospital");
             switchFragment();
-
         });
 
         labTechRipple.setOnClickListener(view1->{
@@ -84,7 +76,6 @@ public class DesignationFragment extends Fragment {
             tinyDb.putString("category", "pharm");
             switchFragment();
         });
-
     }
 
     private void switchFragment(){

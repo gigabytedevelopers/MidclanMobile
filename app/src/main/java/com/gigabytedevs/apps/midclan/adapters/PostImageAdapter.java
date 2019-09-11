@@ -31,12 +31,12 @@ public class PostImageAdapter extends RecyclerView.Adapter<PostImageAdapter.View
             imageView = view.findViewById(R.id.image_picked);
         }
     }
+
     @NonNull
     @Override
     public PostImageAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         final View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_picked_images, parent, false);
-        final PostImageAdapter.ViewHolder viewHolder = new PostImageAdapter.ViewHolder(view);
-        return viewHolder;
+        return new ViewHolder(view);
     }
 
     @Override

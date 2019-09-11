@@ -2,10 +2,7 @@ package com.gigabytedevs.apps.midclan.fragments;
 
 
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,7 +22,6 @@ import com.gigabytedevs.apps.midclan.activities.PostPreviewActivity;
 import com.gigabytedevs.apps.midclan.adapters.TimelineAdapter;
 import com.gigabytedevs.apps.midclan.models.TimelineModel;
 import com.gigabytedevs.apps.midclan.models.events_models.RequestDoneEvent;
-import com.gigabytedevs.apps.midclan.service.SendVolleyRequest;
 import com.gigabytedevs.apps.midclan.utils.TinyDb;
 import com.google.gson.Gson;
 import org.greenrobot.eventbus.EventBus;
@@ -101,10 +97,8 @@ public class FeedsFragment extends Fragment {
         list.add(timelineModel2);
 
         adapter = new TimelineAdapter(getContext(), list, ((view1, position) -> {
-            switch (position){
-                case 0:
-                    startActivity(new Intent(getActivity(), PostPreviewActivity.class));
-                    return;
+            if (position == 0) {
+                startActivity(new Intent(getActivity(), PostPreviewActivity.class));
             }
         }));
 
@@ -136,7 +130,7 @@ public class FeedsFragment extends Fragment {
      * @param event
      */
     @Subscribe
-    public void onEvent(RequestDoneEvent event){
+    public void onEvent(RequestDoneEvent event) {
         if (event.getRequest().equals("TIMELINE")){
             String responseString = responseArray.get(0);
             Log.i("Response", responseString);
@@ -165,17 +159,15 @@ public class FeedsFragment extends Fragment {
                         String likesCountString = String.valueOf(likeCount);
                         String commentsCountString = String.valueOf(commentCount);
 
-
                         //Getting the comments from the imagearray
                         JSONArray mainCommentsArray = dataObject.getJSONArray("comments");
-
 
                         //Method that updates the timeline list
                         updateTimeLine(postId,profileUrl,title,body,name,"11:00",profileUrl,
                                 likesCountString, commentsCountString, mainCommentsArray);
                     }
 
-                }else {
+                } else {
                     progressBar.setVisibility(View.INVISIBLE);
                     String error = responseObject.getJSONObject("error").getString("message");
                     Toast.makeText(requireContext(), error, Toast.LENGTH_LONG).show();
@@ -183,11 +175,10 @@ public class FeedsFragment extends Fragment {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-        }else if (event.getRequest().equals("BOOKMARK")){
+        } else if (event.getRequest().equals("BOOKMARK")) {
             String responseString = responseArray.get(0);
             Log.i("Response BookMark", responseString);
         }
-
     }
 
     /**
@@ -225,7 +216,7 @@ public class FeedsFragment extends Fragment {
             try {
                 JSONArray itemJson = new JSONArray(getDetailsForTimeline(list,position));
 
-                for (int i =0; i< itemJson.length(); i++){
+                for (int i =0; i< itemJson.length(); i++) {
                     JSONObject itemObject = itemJson.getJSONObject(i);
                     String postIdItem = itemObject.getString("postId");
                     String titleItem = itemObject.getString("title");

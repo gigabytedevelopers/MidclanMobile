@@ -9,13 +9,6 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatEditText;
 import androidx.appcompat.widget.AppCompatTextView;
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.VolleyLog;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.Volley;
 import com.balysv.materialripple.MaterialRippleLayout;
 import com.gigabytedevs.apps.midclan.R;
 import com.gigabytedevs.apps.midclan.models.events_models.RequestDoneEvent;
@@ -26,7 +19,6 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.json.JSONException;
 import org.json.JSONObject;
-import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 
 public class SignInActivity extends AppCompatActivity {
@@ -167,7 +159,5 @@ public class SignInActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
         }
-
     }
-
 }

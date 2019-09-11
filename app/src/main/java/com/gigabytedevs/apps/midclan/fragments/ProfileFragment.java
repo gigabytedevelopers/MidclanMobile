@@ -41,7 +41,6 @@ public class ProfileFragment extends Fragment {
         // Required empty public constructor
     }
 
-
     @Override
     public View onCreateView(@NotNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -70,7 +69,6 @@ public class ProfileFragment extends Fragment {
 
         ProfileModel profileModel7 = new ProfileModel(getString(R.string.text_profile_about), getString(R.string.text_profile_about_hint));
         list.add(profileModel7);
-
 
         adapter = new ProfileAdapter(getContext(), list, (view1, position)->{
             switch (position){

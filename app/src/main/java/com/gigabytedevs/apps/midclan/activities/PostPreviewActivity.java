@@ -30,7 +30,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-
+import java.util.Objects;
 
 public class PostPreviewActivity extends AppCompatActivity {
     private Toolbar toolbar;
@@ -44,7 +44,6 @@ public class PostPreviewActivity extends AppCompatActivity {
     private ArrayList<CommentsModel> commentsList;
     private CommentsAdapter commentsAdapter;
     private ArrayList<String> responseArray;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,51 +67,46 @@ public class PostPreviewActivity extends AppCompatActivity {
         responseArray = new ArrayList<>();
         tinyDb = new TinyDb(this);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         setUpToolBar();
 
         CommentsModel commentsModel = new CommentsModel();
         commentsModel.setColor(getResources().getColor(R.color.primary_text));
 
-        sendButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String commentTxt = String.valueOf(commentEditText.getText());
-                commentEditText.setText("");
-                CommentsModel commentsModel = new CommentsModel(tinyDb.getString("profileImageUrlItem"),
-                        tinyDb.getString("nameItem"),commentTxt);
-                commentsList.add(commentsModel);
+        sendButton.setOnClickListener(view -> {
+            String commentTxt = String.valueOf(commentEditText.getText());
+            commentEditText.setText("");
+            CommentsModel commentsModel1 = new CommentsModel(tinyDb.getString("profileImageUrlItem"),
+                    tinyDb.getString("nameItem"),commentTxt);
+            commentsList.add(commentsModel1);
 
-                commentsModel.setColor(getResources().getColor(R.color.secondary_text));
+            commentsModel1.setColor(getResources().getColor(R.color.secondary_text));
 
-                commentsAdapter = new CommentsAdapter(PostPreviewActivity.this,commentsList);
-                commentsAdapter.notifyDataSetChanged();
+            commentsAdapter = new CommentsAdapter(PostPreviewActivity.this,commentsList);
+            commentsAdapter.notifyDataSetChanged();
 
-                LinearLayoutManager layoutManager = new LinearLayoutManager(PostPreviewActivity.this);
-                layoutManager.setOrientation(RecyclerView.VERTICAL);
-                commentRecycleView.setLayoutManager(layoutManager);
-                commentRecycleView.setAdapter(commentsAdapter);
+            LinearLayoutManager layoutManager = new LinearLayoutManager(PostPreviewActivity.this);
+            layoutManager.setOrientation(RecyclerView.VERTICAL);
+            commentRecycleView.setLayoutManager(layoutManager);
+            commentRecycleView.setAdapter(commentsAdapter);
 
+            //Sending the comment to the server using the SendVolleyRequest class
+            JSONObject params = new JSONObject();
+            String mRequestBody = "";
 
-                //Sending the comment to the server using the SendVolleyRequest class
-                JSONObject params = new JSONObject();
-                String mRequestBody = "";
+            try {
+                params.put("postId", tinyDb.getString("postIdItem"));
+                params.put("comment", commentTxt);
+                mRequestBody = params.toString();
 
-                try {
-                    params.put("postId", tinyDb.getString("postIdItem"));
-                    params.put("comment", commentTxt);
-                    mRequestBody = params.toString();
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-                responseArray = SendVolleyRequest.SendRequest(getResources().getString(R.string.base_url)+ "posts/comment/create",mRequestBody,"POST-HEAD", PostPreviewActivity.this);
+            } catch (JSONException e) {
+                e.printStackTrace();
             }
+            responseArray = SendVolleyRequest.SendRequest(getResources().getString(R.string.base_url)+ "posts/comment/create",mRequestBody,"POST-HEAD", PostPreviewActivity.this);
         });
 
         //Getting details from tinydb which were given by the FeedsFragment
         //Update timeline method
-
         postUserNameTopBar.setText(tinyDb.getString("nameItem"));
         title.setText(tinyDb.getString("titeItem"));
         userName.setText(tinyDb.getString("nameItem"));
@@ -128,8 +122,6 @@ public class PostPreviewActivity extends AppCompatActivity {
                 .into(postImage);
 
         getComments();
-
-
     }
 
     private void setUpToolBar() {
@@ -158,7 +150,7 @@ public class PostPreviewActivity extends AppCompatActivity {
     }
 
     @Subscribe
-    public void onEvent(RequestDoneEvent event){
+    public void onEvent(RequestDoneEvent event) {
         if (event.getRequest().equals("BOOKMARK")){
             String responseString = responseArray.get(0);
             Log.i("Response", responseString);

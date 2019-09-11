@@ -31,14 +31,11 @@ public class DiscoverAdapter extends RecyclerView.Adapter<DiscoverAdapter.ViewHo
         }
     }
 
-
     public DiscoverAdapter(Context context, ArrayList<DiscoverModel> list, ClickListener clickListener){
         this.context = context;
         this.list = list;
         this.clickListener = clickListener;
     }
-
-
 
     @NonNull
     @Override

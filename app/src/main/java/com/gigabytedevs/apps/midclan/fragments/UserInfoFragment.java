@@ -37,7 +37,6 @@ public class UserInfoFragment extends Fragment {
         // Required empty public constructor
     }
 
-
     @Override
     public View onCreateView(@NotNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -65,7 +64,6 @@ public class UserInfoFragment extends Fragment {
         populateGenderList();
         populateStateList();
 
-
         //Get the saved strings from tinydb if they exist if they don't exist
         //then it will be empty
         address.setText(tinyDb.getString("addressUser"));
@@ -85,7 +83,6 @@ public class UserInfoFragment extends Fragment {
         gender.setAdapter(genderAdapter);
 
         nextSession.setOnClickListener(view12 -> {
-
             //This event bus gives an int telling the Register Activity that this is the
             // third fragment thereby changing the dots on top
             EventBus.getDefault().post(new CountEvent(4));
@@ -100,7 +97,6 @@ public class UserInfoFragment extends Fragment {
             subscriptionTransaction.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
             subscriptionTransaction.replace(R.id.frame_content, subscriptionFragment);
             subscriptionTransaction.commit();
-
         });
 
         previousSession.setOnClickListener(view1 -> {
@@ -114,7 +110,6 @@ public class UserInfoFragment extends Fragment {
             userInfoInfoTransaction.replace(R.id.frame_content, userInfoFragment);
             userInfoInfoTransaction.commit();
         });
-
     }
 
     private void populateStateList(){
@@ -132,5 +127,4 @@ public class UserInfoFragment extends Fragment {
         genderList.add("Male");
         genderList.add("Female");
     }
-
 }

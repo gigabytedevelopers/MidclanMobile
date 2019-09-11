@@ -5,7 +5,6 @@ import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 
 import androidx.annotation.NonNull;
 
@@ -14,6 +13,8 @@ import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
+
+import java.util.Objects;
 
 
 public class DoctorNearbyInfoFragment extends BottomSheetDialogFragment {
@@ -31,7 +32,7 @@ public class DoctorNearbyInfoFragment extends BottomSheetDialogFragment {
         mBehavior = BottomSheetBehavior.from((View) view.getParent());
         mBehavior.setPeekHeight(BottomSheetBehavior.PEEK_HEIGHT_AUTO);
 
-        app_bar_layout = (AppBarLayout) view.findViewById(R.id.app_bar_layout);
+        app_bar_layout = view.findViewById(R.id.app_bar_layout);
         hideView(app_bar_layout);
 
         mBehavior.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
@@ -55,12 +56,7 @@ public class DoctorNearbyInfoFragment extends BottomSheetDialogFragment {
             }
         });
 
-        ((ImageButton) view.findViewById(R.id.bt_close)).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dismiss();
-            }
-        });
+        view.findViewById(R.id.bt_close).setOnClickListener(v -> dismiss());
 
         return dialog;
     }
@@ -84,8 +80,7 @@ public class DoctorNearbyInfoFragment extends BottomSheetDialogFragment {
     }
 
     private int getActionBarSize() {
-        final TypedArray styledAttributes = getContext().getTheme().obtainStyledAttributes(new int[]{android.R.attr.actionBarSize});
-        int size = (int) styledAttributes.getDimension(0, 0);
-        return size;
+        final TypedArray styledAttributes = Objects.requireNonNull(getContext()).getTheme().obtainStyledAttributes(new int[]{android.R.attr.actionBarSize});
+        return (int) styledAttributes.getDimension(0, 0);
     }
 }

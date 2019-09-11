@@ -17,7 +17,6 @@ public class RegisterActivity extends AppCompatActivity {
     private AppCompatImageView firstDotDesignation, secondDot,thirdDot,finalDot;
     public static int count = 0;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,7 +56,7 @@ public class RegisterActivity extends AppCompatActivity {
      *              so as to know which dot to fill in the register activity
      */
     @Subscribe
-    public void onEvent(CountEvent event){
+    public void onEvent(CountEvent event) {
         if (event.getCount() == 1) {
             firstDotDesignation.setImageResource(R.drawable.shape_round_primary);
         } else {
@@ -82,5 +81,4 @@ public class RegisterActivity extends AppCompatActivity {
             finalDot.setImageResource(R.drawable.shape_round_outline_primary);
         }
     }
-
 }

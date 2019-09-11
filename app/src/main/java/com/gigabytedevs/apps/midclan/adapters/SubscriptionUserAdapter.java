@@ -38,12 +38,12 @@ public class SubscriptionUserAdapter extends RecyclerView.Adapter<SubscriptionUs
             featureInfo3 = view.findViewById(R.id.user_subscription_feature_3);
         }
     }
+
     @NonNull
     @Override
     public SubscriptionUserAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         final View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_subscription_user, parent, false);
-        final ViewHolder myViewHolder = new ViewHolder(view);
-        return myViewHolder;
+        return new ViewHolder(view);
     }
 
     @Override

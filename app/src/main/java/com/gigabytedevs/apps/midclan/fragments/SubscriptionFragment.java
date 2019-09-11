@@ -1,7 +1,5 @@
 package com.gigabytedevs.apps.midclan.fragments;
 
-
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -22,20 +20,15 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.balysv.materialripple.MaterialRippleLayout;
 import com.gigabytedevs.apps.midclan.R;
-import com.gigabytedevs.apps.midclan.activities.MainActivity;
 import com.gigabytedevs.apps.midclan.adapters.ProfileAdapter;
 import com.gigabytedevs.apps.midclan.adapters.SubscriptionUserAdapter;
 import com.gigabytedevs.apps.midclan.models.SubscriptionUserModel;
 import com.gigabytedevs.apps.midclan.models.events_models.CountEvent;
-import com.gigabytedevs.apps.midclan.models.events_models.RequestDoneEvent;
-import com.gigabytedevs.apps.midclan.service.PatientClient;
-import com.gigabytedevs.apps.midclan.service.SendVolleyRequest;
 import com.gigabytedevs.apps.midclan.utils.TinyDb;
 import com.ramotion.cardslider.CardSliderLayoutManager;
 import com.ramotion.cardslider.CardSnapHelper;
 
 import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
 import org.jetbrains.annotations.NotNull;
 import org.json.JSONException;
 import org.json.JSONObject;

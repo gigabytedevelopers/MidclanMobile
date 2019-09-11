@@ -7,6 +7,8 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.gigabytedevs.apps.midclan.R;
 
+import java.util.Objects;
+
 public class NotificationActivity extends AppCompatActivity {
 
     @Override
@@ -15,7 +17,7 @@ public class NotificationActivity extends AppCompatActivity {
         setContentView(R.layout.activity_notification);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
     }
 
 }

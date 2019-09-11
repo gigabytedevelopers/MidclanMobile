@@ -1,6 +1,7 @@
 package com.gigabytedevs.apps.midclan.activities;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
@@ -111,12 +112,12 @@ public class CreateActivity extends AppCompatActivity {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 if (checkAndRequestPermissions()){
                     choosePhotoFromGallary();
-                }else {
-                    Toast.makeText(CreateActivity.this, "Permissions Not Granted", Toast.LENGTH_SHORT).show();
-
+                } else {
+                    Toast.makeText(
+                            CreateActivity.this,
+                            "Permissions Not Granted", Toast.LENGTH_SHORT)
+                            .show();
                 }
-
-
             } else {
                 // code for lollipop and pre-lollipop devices
                 choosePhotoFromGallary();
@@ -191,8 +192,7 @@ public class CreateActivity extends AppCompatActivity {
                 updateImageList(thumbnail, imageName);
 
             }
-        }else  if (requestCode == 1){
-
+        } else if (requestCode == 1) {
             try {
                 assert data != null;
                 Uri contentURI = data.getData();
@@ -210,13 +210,14 @@ public class CreateActivity extends AppCompatActivity {
             } catch (IOException e) {
                 e.printStackTrace();
                 Toast.makeText(CreateActivity.this, "Failed!", Toast.LENGTH_SHORT).show();
-            }catch (NullPointerException npe){
+            } catch (NullPointerException npe) {
                 npe.printStackTrace();
             }
         }
     }
-    public String getRealPathFromURI(Uri contentUri) {
 
+    @SuppressLint("Recycle")
+    public String getRealPathFromURI(Uri contentUri) {
         // can post image
         String [] proj={MediaStore.Images.Media.DATA};
         Cursor cursor = this.getContentResolver().query( contentUri,
@@ -230,6 +231,7 @@ public class CreateActivity extends AppCompatActivity {
 
         return cursor.getString(column_index);
     }
+
     private void updateImageList(Bitmap file, String imageName) {
         PostImageModel postImageModel = new PostImageModel(file, imageName);
         imageList.add(postImageModel);
@@ -293,12 +295,12 @@ public class CreateActivity extends AppCompatActivity {
                 if (responseObject.getBoolean("success")){
                     postProgressBar.setVisibility(View.INVISIBLE);
                     Toast.makeText(this, "Post Sent Successfully", Toast.LENGTH_SHORT).show();
-                }else {
+                } else {
                     postProgressBar.setVisibility(View.INVISIBLE);
                     String error = responseObject.getJSONObject("error").getString("message");
                     Toast.makeText(this, error, Toast.LENGTH_LONG).show();
                 }
-            }catch (Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }

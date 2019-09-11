@@ -46,7 +46,7 @@ public class UserChatActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.nav_add_attachment:
 
             case R.id.nav_chat_public_chat:
@@ -55,7 +55,6 @@ public class UserChatActivity extends AppCompatActivity {
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
-
         }
     }
 
@@ -71,5 +70,4 @@ public class UserChatActivity extends AppCompatActivity {
 
         toolbar.setNavigationOnClickListener(v -> onBackPressed());
     }
-
 }

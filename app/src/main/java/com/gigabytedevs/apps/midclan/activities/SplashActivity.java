@@ -11,7 +11,6 @@ import com.gigabytedevs.apps.midclan.R;
 
 public class SplashActivity extends AppCompatActivity {
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

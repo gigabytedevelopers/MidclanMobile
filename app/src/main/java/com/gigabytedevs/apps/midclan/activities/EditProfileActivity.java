@@ -17,7 +17,6 @@ public class EditProfileActivity extends AppCompatActivity {
         setUpToolBar();
     }
 
-
     private void setUpToolBar() {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);

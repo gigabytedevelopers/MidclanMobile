@@ -28,7 +28,6 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 
-
 /**
  * A simple {@link Fragment} subclass.
  */
@@ -40,7 +39,6 @@ public class DiscoverFragment extends Fragment {
     public DiscoverFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(@NotNull LayoutInflater inflater, ViewGroup container,
@@ -64,7 +62,6 @@ public class DiscoverFragment extends Fragment {
         DiscoverModel discoverModel0 = new DiscoverModel(getString(R.string.text_discover_find_hospital),R.drawable.ic_hospital);
         list.add(discoverModel0);
 
-
         DiscoverModel discoverModel1 = new DiscoverModel(getString(R.string.text_discover_doctor), R.drawable.ic_doctor);
         list.add(discoverModel1);
 
@@ -86,13 +83,11 @@ public class DiscoverFragment extends Fragment {
         DiscoverModel discoverModel7 = new DiscoverModel(getString(R.string.text_discover_medical_aid), R.drawable.ic_first_aid_kit);
         list.add(discoverModel7);
 
-
         adapter = new DiscoverAdapter(getContext(), list, (view1, position)->{
             switch (position){
                 case 0:
                 case 1:
                     startActivity(new Intent(getActivity(), DoctorNearByActivity.class));
-                    return;
             }
         });
 

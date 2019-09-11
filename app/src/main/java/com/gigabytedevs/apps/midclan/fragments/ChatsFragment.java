@@ -53,7 +53,6 @@ public class ChatsFragment extends Fragment {
         // Required empty public constructor
     }
 
-
     @Override
     public View onCreateView(@NotNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -172,8 +171,6 @@ public class ChatsFragment extends Fragment {
         recyclerView.addItemDecoration(new DividerItemDecoration(requireActivity(),DividerItemDecoration.VERTICAL));
         recyclerView.setAdapter(adapter);
     }
-
-
 
     private String getDetailsForChat(List<ChatModel> chatList, int position){
         List<ChatModel> chatModels = new ArrayList<>();

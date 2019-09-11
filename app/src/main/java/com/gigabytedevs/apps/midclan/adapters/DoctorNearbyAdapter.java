@@ -43,6 +43,7 @@ public class DoctorNearbyAdapter extends RecyclerView.Adapter<DoctorNearbyAdapte
             doctorRating = view.findViewById(R.id.doctor_nearby_rating);
         }
     }
+
     @NonNull
     @Override
     public DoctorNearbyAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {

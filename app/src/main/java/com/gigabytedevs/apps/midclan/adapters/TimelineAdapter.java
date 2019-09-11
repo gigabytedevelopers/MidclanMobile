@@ -131,10 +131,7 @@ public class TimelineAdapter extends RecyclerView.Adapter<TimelineAdapter.ViewHo
 
             }
         });
-
-
     }
-
 
     @Override
     public int getItemCount() {
@@ -162,5 +159,4 @@ public class TimelineAdapter extends RecyclerView.Adapter<TimelineAdapter.ViewHo
         }
         return id;
     }
-
 }

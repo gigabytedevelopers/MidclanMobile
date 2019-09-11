@@ -13,7 +13,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.gigabytedevs.apps.midclan.R;
 import com.gigabytedevs.apps.midclan.models.CommentsModel;
-import com.gigabytedevs.apps.midclan.utils.ClickListener;
 
 import java.util.List;
 
@@ -40,8 +39,7 @@ public class CommentsAdapter extends RecyclerView.Adapter<CommentsAdapter.ViewHo
     @Override
     public CommentsAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         final View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_comment, parent, false);
-        final CommentsAdapter.ViewHolder viewHolder = new CommentsAdapter.ViewHolder(view);
-        return viewHolder;
+        return new ViewHolder(view);
 
     }
 

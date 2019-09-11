@@ -51,6 +51,5 @@ dependencies {
     implementation 'com.github.nihad92:SwipeableCards:1.0.19'
     implementation 'com.android.support:multidex:1.0.3'
     def archLifecycleVersion = '2.0.0'
-    implementation "android.arch.lifecycle:extensions:$archLifecycleVersion"
     implementation "androidx.lifecycle:lifecycle-common-java8:$archLifecycleVersion"
 }

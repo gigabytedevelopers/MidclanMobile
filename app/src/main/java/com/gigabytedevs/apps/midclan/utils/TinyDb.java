@@ -51,7 +51,6 @@ public class TinyDb {
         return bitmapFromPath;
     }
 
-
     /**
      * Returns the String path of the last saved image
      * @return string path of the last saved image
@@ -59,7 +58,6 @@ public class TinyDb {
     public String getSavedImagePath() {
         return lastImagePath;
     }
-
 
     /**
      * Saves 'theBitmap' into folder 'theFolder' with the name 'theImageName'
@@ -82,7 +80,6 @@ public class TinyDb {
 
         return mFullPath;
     }
-
 
     /**
      * Saves 'theBitmap' into 'fullPath'
@@ -166,7 +163,6 @@ public class TinyDb {
     }
 
     // Getters
-
     /**
      * Get int value from SharedPreferences at 'key'. If key not found, return 'defaultValue'
      * @param key SharedPreferences key
@@ -310,7 +306,6 @@ public class TinyDb {
         return newList;
     }
 
-
     public ArrayList<Object> getListObject(String key, Class<?> mClass){
     	Gson gson = new Gson();
 
@@ -324,8 +319,6 @@ public class TinyDb {
     	return objects;
     }
 
-
-
     public <T> T getObject(String key, Class<T> classOfT){
 
         String json = getString(key);
@@ -335,9 +328,7 @@ public class TinyDb {
         return (T)value;
     }
 
-
     // Put methods
-
     /**
      * Put int value into SharedPreferences with 'key' and save
      * @param key SharedPreferences key
@@ -355,7 +346,7 @@ public class TinyDb {
      */
     public void putListInt(String key, ArrayList<Integer> intList) {
         checkForNullKey(key);
-        Integer[] myIntList = intList.toArray(new Integer[intList.size()]);
+        Integer[] myIntList = intList.toArray(new Integer[0]);
         preferences.edit().putString(key, TextUtils.join("‚‗‚", myIntList)).apply();
     }
 
@@ -500,7 +491,6 @@ public class TinyDb {
         return new File(path).delete();
     }
 
-
     /**
      * Clear SharedPreferences (remove everything)
      */
@@ -515,7 +505,6 @@ public class TinyDb {
     public Map<String, ?> getAll() {
         return preferences.getAll();
     }
-
 
     /**
      * Register SharedPreferences change listener
@@ -537,7 +526,6 @@ public class TinyDb {
         preferences.unregisterOnSharedPreferenceChangeListener(listener);
     }
 
-
     /**
      * Check if external storage is writable or not
      * @return true if writable, false otherwise
@@ -556,6 +544,7 @@ public class TinyDb {
         return Environment.MEDIA_MOUNTED.equals(state) ||
                 Environment.MEDIA_MOUNTED_READ_ONLY.equals(state);
     }
+
     /**
      * null keys would corrupt the shared pref file and make them unreadable this is a preventive measure
      *  the pref key
@@ -565,6 +554,7 @@ public class TinyDb {
             throw new NullPointerException();
         }
     }
+
     /**
      * null keys would corrupt the shared pref file and make them unreadable this is a preventive measure
      *

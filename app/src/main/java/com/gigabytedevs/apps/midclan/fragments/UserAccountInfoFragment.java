@@ -25,7 +25,6 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.balysv.materialripple.MaterialRippleLayout;
 import com.gigabytedevs.apps.midclan.R;
-import com.gigabytedevs.apps.midclan.activities.CreateActivity;
 import com.gigabytedevs.apps.midclan.models.events_models.CountEvent;
 import com.gigabytedevs.apps.midclan.utils.TinyDb;
 import com.mikhaellopez.circularimageview.CircularImageView;
@@ -53,7 +52,6 @@ public class UserAccountInfoFragment extends Fragment {
     public UserAccountInfoFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(@NotNull LayoutInflater inflater, ViewGroup container,
@@ -85,22 +83,16 @@ public class UserAccountInfoFragment extends Fragment {
         phone.setText(tinyDb.getString("phoneUser"));
         password.setText(tinyDb.getString("passwordUser"));
 
-        profilePic.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                    if (checkAndRequestPermissions()){
-                        choosePhotoFromGallary();
-                    }else {
-                        Toast.makeText(getContext(), "Permissions Not Granted", Toast.LENGTH_SHORT).show();
-
-                    }
-
-
-                } else {
-                    // code for lollipop and pre-lollipop devices
+        profilePic.setOnClickListener(view13 -> {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                if (checkAndRequestPermissions()){
                     choosePhotoFromGallary();
+                } else {
+                    Toast.makeText(getContext(), "Permissions Not Granted", Toast.LENGTH_SHORT).show();
                 }
+            } else {
+                // code for lollipop and pre-lollipop devices
+                choosePhotoFromGallary();
             }
         });
 
@@ -110,7 +102,6 @@ public class UserAccountInfoFragment extends Fragment {
             EventBus.getDefault().post(new CountEvent(3));
 
             //save user details in tinydb
-
             tinyDb.putString("firstNameUser", String.valueOf(firstName.getText()));
             tinyDb.putString("lastNameUser", String.valueOf(lastName.getText()));
             tinyDb.putString("userNameUser", String.valueOf(userName.getText()));
@@ -123,7 +114,6 @@ public class UserAccountInfoFragment extends Fragment {
                 userInfoInfoTransaction.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
                 userInfoInfoTransaction.replace(R.id.frame_content, userInfoFragment);
                 userInfoInfoTransaction.commit();
-
         });
 
         previousSession.setOnClickListener(view1 -> {
@@ -136,9 +126,7 @@ public class UserAccountInfoFragment extends Fragment {
             designationTransaction.replace(R.id.frame_content,designationFragment);
             designationTransaction.commit();
         });
-
     }
-
 
     private boolean checkAndRequestPermissions() {
         int camera = ContextCompat.checkSelfPermission(requireContext(),
@@ -156,7 +144,7 @@ public class UserAccountInfoFragment extends Fragment {
             listPermissionsNeeded.add(Manifest.permission.READ_EXTERNAL_STORAGE);
         }
         if (!listPermissionsNeeded.isEmpty()) {
-            ActivityCompat.requestPermissions(requireActivity(), listPermissionsNeeded.toArray(new String[listPermissionsNeeded.size()]), REQUEST_ID_MULTIPLE_PERMISSIONS);
+            ActivityCompat.requestPermissions(requireActivity(), listPermissionsNeeded.toArray(new String[0]), REQUEST_ID_MULTIPLE_PERMISSIONS);
             return false;
         }
         return true;
@@ -167,7 +155,6 @@ public class UserAccountInfoFragment extends Fragment {
                 android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
 
         galleryIntent.putExtra(android.provider.MediaStore.EXTRA_OUTPUT,mImageCaptureUri);
-
         startActivityForResult(galleryIntent, 1);
     }
 
@@ -176,6 +163,7 @@ public class UserAccountInfoFragment extends Fragment {
         bitmap.compress(Bitmap.CompressFormat.JPEG, 70, outputStream);
         return Base64.encodeToString(outputStream.toByteArray(), Base64.DEFAULT);
     }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -183,6 +171,7 @@ public class UserAccountInfoFragment extends Fragment {
             if (resultCode == RESULT_OK) {
 
                 try {
+                    assert data != null;
                     Uri contentURI = data.getData();
                     Bitmap bitmap = MediaStore.Images.Media.getBitmap(requireActivity().getContentResolver(), contentURI);
                     profilePic.setImageBitmap(bitmap);
@@ -196,7 +185,7 @@ public class UserAccountInfoFragment extends Fragment {
                 } catch (IOException e) {
                     e.printStackTrace();
                     Toast.makeText(requireContext(), "Failed!", Toast.LENGTH_SHORT).show();
-                }catch (NullPointerException npe){
+                } catch (NullPointerException npe) {
                     npe.printStackTrace();
                 }
             }

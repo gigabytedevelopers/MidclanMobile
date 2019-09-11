@@ -21,6 +21,7 @@ public class DoctorNearByActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     ArrayList<DoctorNearByModel> list;
     DoctorNearbyAdapter adapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,17 +42,12 @@ public class DoctorNearByActivity extends AppCompatActivity {
         DoctorNearByModel doctorNearByModel3 = new DoctorNearByModel(R.drawable.photo_male_3, 3.5f,"Dr Georgy","50 miles away", "location");
         list.add(doctorNearByModel3);
 
-
-
-
-
         adapter = new DoctorNearbyAdapter(this, list, (view1, position)->{
             switch (position){
                 case 0:
                     DoctorNearbyInfoFragment fragment = new DoctorNearbyInfoFragment();
                     fragment.show(getSupportFragmentManager(), fragment.getTag());
                 case 1:
-                    return;
             }
         });
 
@@ -62,7 +58,6 @@ public class DoctorNearByActivity extends AppCompatActivity {
         recyclerView.addItemDecoration(new DividerItemDecoration(this,DividerItemDecoration.VERTICAL));
         recyclerView.setAdapter(adapter);
     }
-
 
     private void setUpToolBar() {
         Toolbar toolbar = findViewById(R.id.toolbar);

@@ -35,6 +35,7 @@ public class ProfileAdapter extends RecyclerView.Adapter<ProfileAdapter.ViewHold
             profileCaption = view.findViewById(R.id.profile_caption);
         }
     }
+
     @NonNull
     @Override
     public ProfileAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {

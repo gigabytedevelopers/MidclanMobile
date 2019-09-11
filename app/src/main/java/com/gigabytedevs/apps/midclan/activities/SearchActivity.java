@@ -26,10 +26,9 @@ public class SearchActivity extends AppCompatActivity {
         search = findViewById(R.id.search_edit_text);
         search.addTextChangedListener(textWatcher);
         clearSearch = findViewById(R.id.search_clear);
-        clearSearch.setOnClickListener(v->{
-            search.setText("");
-        });
+        clearSearch.setOnClickListener(v-> search.setText(""));
     }
+
     TextWatcher textWatcher = new TextWatcher() {
         @Override
         public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -50,5 +49,4 @@ public class SearchActivity extends AppCompatActivity {
 
         }
     };
-
 }
