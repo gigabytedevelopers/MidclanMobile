@@ -47,11 +47,9 @@ public class SubscriptionFragment extends Fragment{
     private String mRequestBody;
     private String base_url_signup;
 
-
     public SubscriptionFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(@NotNull LayoutInflater inflater, ViewGroup container,
@@ -78,19 +76,16 @@ public class SubscriptionFragment extends Fragment{
             sendSignUpRequest();
         });
 
-        previousSession.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //This event bus gives an int telling the Register Activity that this is the
-                // first fragment thereby changing the dots on top
-                EventBus.getDefault().post(new CountEvent(3));
+        previousSession.setOnClickListener(view12 -> {
+            //This event bus gives an int telling the Register Activity that this is the
+            // first fragment thereby changing the dots on top
+            EventBus.getDefault().post(new CountEvent(3));
 
-                UserInfoFragment userInfoFragment = new UserInfoFragment();
-                FragmentTransaction userInfoInfoTransaction = requireActivity().getSupportFragmentManager().beginTransaction();
-                userInfoInfoTransaction.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
-                userInfoInfoTransaction.replace(R.id.frame_content, userInfoFragment);
-                userInfoInfoTransaction.commit();
-            }
+            UserInfoFragment userInfoFragment = new UserInfoFragment();
+            FragmentTransaction userInfoInfoTransaction = requireActivity().getSupportFragmentManager().beginTransaction();
+            userInfoInfoTransaction.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+            userInfoInfoTransaction.replace(R.id.frame_content, userInfoFragment);
+            userInfoInfoTransaction.commit();
         });
         //category gotten from designation fragment
         if (tinyDb.getString("category").equals("doctor") || tinyDb.getString("category").equals("nurse")||
@@ -116,7 +111,7 @@ public class SubscriptionFragment extends Fragment{
             SubscriptionUserModel subscriptionUserModel6 = new SubscriptionUserModel("Diamond", "Lifetime");
             list.add(subscriptionUserModel6);
 
-        }else {
+        } else {
             SubscriptionUserModel subscriptionUserModel = new SubscriptionUserModel(getString(R.string.text_subscription_user_feature_free),
                     "0.0",
                     getString(R.string.text_subscription_user_feature_free_1),
@@ -229,7 +224,6 @@ public class SubscriptionFragment extends Fragment{
         //Queuing the data so as to be async
         RequestQueue requestQueue = Volley.newRequestQueue(requireContext());
         requestQueue.add(signUp);
-
     }
 
     private JSONObject profilePicture(){

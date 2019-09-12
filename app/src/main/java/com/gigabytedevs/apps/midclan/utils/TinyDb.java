@@ -21,9 +21,7 @@ import android.util.Log;
 
 import com.google.gson.Gson;
 
-
 public class TinyDb {
-
     private SharedPreferences preferences;
     private String DEFAULT_APP_IMAGEDATA_DIRECTORY;
     private String lastImagePath = "";
@@ -398,7 +396,7 @@ public class TinyDb {
      */
     public void putListDouble(String key, ArrayList<Double> doubleList) {
         checkForNullKey(key);
-        Double[] myDoubleList = doubleList.toArray(new Double[doubleList.size()]);
+        Double[] myDoubleList = doubleList.toArray(new Double[0]);
         preferences.edit().putString(key, TextUtils.join("‚‗‚", myDoubleList)).apply();
     }
 
@@ -419,7 +417,7 @@ public class TinyDb {
      */
     public void putListString(String key, ArrayList<String> stringList) {
         checkForNullKey(key);
-        String[] myStringList = stringList.toArray(new String[stringList.size()]);
+        String[] myStringList = stringList.toArray(new String[0]);
         preferences.edit().putString(key, TextUtils.join("‚‗‚", myStringList)).apply();
     }
 
