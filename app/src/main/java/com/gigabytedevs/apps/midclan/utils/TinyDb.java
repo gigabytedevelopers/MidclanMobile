@@ -30,7 +30,6 @@ public class TinyDb {
         preferences = PreferenceManager.getDefaultSharedPreferences(appContext);
     }
 
-
     /**
      * Decodes the Bitmap from 'path' and returns it
      * @param path image path
